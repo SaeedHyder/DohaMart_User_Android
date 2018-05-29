@@ -26,7 +26,7 @@
             android:background="@drawable/btn_toggle"
             android:orientation="horizontal">
 
-            <com.ingic.ezalbatek.ui.views.AnyTextView
+            <com.ingic.ezhalbatek.ui.views.AnyTextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
@@ -37,7 +37,7 @@
                 android:textSize="@dimen/x18"
                 app:typeface="@string/font_bold"/>
 
-            <com.ingic.ezalbatek.ui.views.AnyTextView
+            <com.ingic.ezhalbatek.ui.views.AnyTextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -66,7 +66,7 @@
             android:background="@drawable/btn_toggle"
             android:orientation="horizontal">
 
-            <com.ingic.ezalbatek.ui.views.AnyTextView
+            <com.ingic.ezhalbatek.ui.views.AnyTextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
@@ -77,7 +77,7 @@
                 android:textSize="@dimen/x18"
                 app:typeface="@string/font_bold"/>
 
-            <com.ingic.ezalbatek.ui.views.AnyTextView
+            <com.ingic.ezhalbatek.ui.views.AnyTextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -106,7 +106,7 @@
             android:background="@drawable/btn_toggle"
             android:orientation="horizontal">
 
-            <com.ingic.ezalbatek.ui.views.AnyTextView
+            <com.ingic.ezhalbatek.ui.views.AnyTextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
@@ -117,7 +117,7 @@
                 android:textSize="@dimen/x18"
                 app:typeface="@string/font_bold"/>
 
-            <com.ingic.ezalbatek.ui.views.AnyTextView
+            <com.ingic.ezhalbatek.ui.views.AnyTextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"

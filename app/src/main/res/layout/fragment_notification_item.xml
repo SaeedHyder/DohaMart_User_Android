@@ -27,7 +27,7 @@
             android:layout_marginLeft="@dimen/x5"
             android:orientation="vertical">
 
-            <com.ingic.ezalbatek.ui.views.AnyTextView
+            <com.ingic.ezhalbatek.ui.views.AnyTextView
                 android:id="@+id/tv_msg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
                 android:layout_marginTop="@dimen/x5"
                 android:orientation="horizontal">
 
-                <com.ingic.ezalbatek.ui.views.AnyTextView
+                <com.ingic.ezhalbatek.ui.views.AnyTextView
                     android:id="@+id/tv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                     android:layout_marginRight="@dimen/x5"/>
 
 
-                <com.ingic.ezalbatek.ui.views.AnyTextView
+                <com.ingic.ezhalbatek.ui.views.AnyTextView
                     android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

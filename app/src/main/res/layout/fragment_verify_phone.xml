@@ -14,7 +14,7 @@
         android:src="@drawable/logo"
         />
 
-    <com.ingic.ezalbatek.ui.views.AnyTextView
+    <com.ingic.ezhalbatek.ui.views.AnyTextView
         android:id="@+id/title_white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
         android:textSize="@dimen/x16"
         app:typeface="@string/font_normal"/>
 
-    <com.ingic.ezalbatek.ui.views.AnyTextView
+    <com.ingic.ezhalbatek.ui.views.AnyTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/x20"
@@ -35,7 +35,7 @@
         android:textSize="@dimen/x16"
         app:typeface="@string/font_normal_dark"/>
 
-    <com.ingic.ezalbatek.ui.views.PinEntryEditText
+    <com.ingic.ezhalbatek.ui.views.PinEntryEditText
         android:id="@+id/txt_pin_entry"
         android:layout_width="@dimen/x300"
         android:layout_height="wrap_content"

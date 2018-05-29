@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ingic.ezalbatek" >
-
+    package="com.ingic.ezhalbatek" >
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
     <application
-        android:name="com.ingic.ezalbatek.BaseApplication"
+        android:name="com.ingic.ezhalbatek.BaseApplication"
         android:allowBackup="true"
         android:icon="@drawable/android_icon"
         android:label="@string/app_name"
@@ -12,7 +13,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/api_key" />
         <activity
-            android:name="com.ingic.ezalbatek.activities.SplashActivity"
+            android:name="com.ingic.ezhalbatek.activities.SplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -22,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ingic.ezalbatek.activities.MainActivity"
+            android:name="com.ingic.ezhalbatek.activities.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"

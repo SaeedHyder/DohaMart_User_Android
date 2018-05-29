@@ -19,7 +19,7 @@
         android:visibility="visible" />
 
 
-    <com.ingic.ezalbatek.ui.views.AnyTextView
+    <com.ingic.ezhalbatek.ui.views.AnyTextView
         android:id="@+id/txt_subHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
         android:layout_alignStart="@+id/btnRight2"
         android:layout_alignTop="@+id/btnRight2">
 
-        <com.ingic.ezalbatek.ui.views.AnyTextView
+        <com.ingic.ezhalbatek.ui.views.AnyTextView
             android:id="@+id/txtBadge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
