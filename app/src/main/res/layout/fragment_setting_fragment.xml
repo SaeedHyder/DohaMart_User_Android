@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x10"
+        android:orientation="horizontal"
+        >
+
+        <com.ingic.ezhalbatek.ui.views.AnyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_weight="0.8"
+            android:text="@string/turn_notification"
+            android:textColor="@color/app_font_gray"
+            android:textSize="@dimen/x14"
+            app:typeface="@string/font_normal_dark"/>
+
+        <Switch
+            android:id="@+id/swtNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:checked="true"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginBottom="@dimen/x3"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:alpha="0.6"
+        android:background="@color/app_font_gray"/>
+
+    <LinearLayout
+        android:id="@+id/btnChangePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x10"
+        android:orientation="horizontal">
+
+        <com.ingic.ezhalbatek.ui.views.AnyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_weight="0.8"
+            android:text="@string/change_password"
+            android:textColor="@color/app_font_gray"
+            android:textSize="@dimen/x14"
+            app:typeface="@string/font_normal_dark"/>
+
+        <ImageView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.1"
+            android:src="@drawable/rightarrow"
+
+            />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginBottom="@dimen/x3"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:alpha="0.6"
+        android:background="@color/app_font_gray"/>
+
+    <LinearLayout
+        android:id="@+id/btnRateApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x10"
+        android:orientation="horizontal">
+
+        <com.ingic.ezhalbatek.ui.views.AnyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_weight="0.8"
+            android:text="@string/rate_app"
+            android:textColor="@color/app_font_gray"
+            android:textSize="@dimen/x14"
+            app:typeface="@string/font_normal_dark"/>
+
+        <ImageView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.1"
+            android:src="@drawable/rightarrow"
+
+            />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginBottom="@dimen/x3"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:alpha="0.6"
+        android:background="@color/app_font_gray"/>
+
+    <LinearLayout
+        android:id="@+id/btnChangePhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x10"
+        android:orientation="horizontal">
+
+        <com.ingic.ezhalbatek.ui.views.AnyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_weight="0.8"
+            android:text="@string/change_phone"
+            android:textColor="@color/app_font_gray"
+            android:textSize="@dimen/x14"
+            app:typeface="@string/font_normal_dark"/>
+
+        <ImageView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.1"
+            android:src="@drawable/rightarrow"
+
+            />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginBottom="@dimen/x3"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:alpha="0.6"
+        android:background="@color/app_font_gray"/>
+
+    <LinearLayout
+        android:id="@+id/btnChangeLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x10"
+        android:orientation="horizontal">
+
+        <com.ingic.ezhalbatek.ui.views.AnyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_weight="0.8"
+            android:text="@string/change_language"
+            android:textColor="@color/app_font_gray"
+            android:textSize="@dimen/x14"
+            app:typeface="@string/font_normal_dark"/>
+
+        <ImageView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.1"
+            android:src="@drawable/rightarrow"
+
+            />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginBottom="@dimen/x3"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:alpha="0.6"
+        android:background="@color/app_font_gray"/>
+
+    <LinearLayout
+        android:id="@+id/btnAboutApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x10"
+        android:orientation="horizontal">
+
+        <com.ingic.ezhalbatek.ui.views.AnyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_weight="0.8"
+            android:text="@string/about_app"
+            android:textColor="@color/app_font_gray"
+            android:textSize="@dimen/x14"
+            app:typeface="@string/font_normal_dark"/>
+
+        <ImageView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.1"
+            android:src="@drawable/rightarrow"
+
+            />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginBottom="@dimen/x3"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:alpha="0.6"
+        android:background="@color/app_font_gray"/>
+
+    <LinearLayout
+        android:id="@+id/btnContactUs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x10"
+        android:orientation="horizontal">
+
+        <com.ingic.ezhalbatek.ui.views.AnyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_weight="0.8"
+            android:text="@string/contact_us"
+            android:textColor="@color/app_font_gray"
+            android:textSize="@dimen/x14"
+            app:typeface="@string/font_normal_dark"/>
+
+        <ImageView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.1"
+            android:src="@drawable/rightarrow"
+
+            />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginBottom="@dimen/x3"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:alpha="0.6"
+        android:background="@color/app_font_gray"/>
+
+    <LinearLayout
+        android:id="@+id/btnCallUs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x10"
+        android:orientation="horizontal">
+
+        <com.ingic.ezhalbatek.ui.views.AnyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_weight="0.8"
+            android:text="@string/call_us"
+            android:textColor="@color/app_font_gray"
+            android:textSize="@dimen/x14"
+            app:typeface="@string/font_normal_dark"/>
+
+        <ImageView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.1"
+            android:src="@drawable/rightarrow"
+
+            />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

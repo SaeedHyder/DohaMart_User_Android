@@ -26,6 +26,7 @@ import butterknife.ButterKnife;
 public class HomeFragment extends BaseFragment {
 
 
+    public static final String TAG = "HomeFragment";
     @BindView(R.id.rvCategories)
     CustomRecyclerView rvCategories;
     ArrayList<CategoryEnt> categoryCollection;

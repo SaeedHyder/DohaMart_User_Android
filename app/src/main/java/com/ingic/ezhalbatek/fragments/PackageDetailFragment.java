@@ -9,7 +9,6 @@ import android.widget.Button;
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
-import com.ingic.ezhalbatek.ui.views.CustomRecyclerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,8 +22,6 @@ public class PackageDetailFragment extends BaseFragment {
     public static final String TAG = "PackageDetailFragment";
     @BindView(R.id.txtDuration)
     AnyTextView txtDuration;
-    @BindView(R.id.rv_features)
-    CustomRecyclerView rvFeatures;
     @BindView(R.id.txtSubscriptionFee)
     AnyTextView txtSubscriptionFee;
     @BindView(R.id.txtCustomerName)
@@ -40,6 +37,8 @@ public class PackageDetailFragment extends BaseFragment {
     @BindView(R.id.btnProceedPayment)
     Button btnProceedPayment;
     Unbinder unbinder;
+    @BindView(R.id.txtFeatures)
+    AnyTextView txtFeatures;
 
     public static PackageDetailFragment newInstance() {
         Bundle args = new Bundle();

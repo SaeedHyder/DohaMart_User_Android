@@ -1,5 +1,7 @@
 package com.ingic.ezhalbatek.fragments;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,11 +13,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
+import com.ingic.ezhalbatek.helpers.DateHelper;
+import com.ingic.ezhalbatek.helpers.DatePickerHelper;
+import com.ingic.ezhalbatek.helpers.TimePickerHelper;
 import com.ingic.ezhalbatek.helpers.UIHelper;
 import com.ingic.ezhalbatek.interfaces.onDeleteImage;
 import com.ingic.ezhalbatek.ui.binders.RecyclerViewAdapterImages;
@@ -28,7 +36,11 @@ import com.ingic.ezhalbatek.ui.views.CustomRecyclerView;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -89,6 +101,7 @@ public class BookRequestFragment extends BaseFragment {
     Button btnBook;
     Unbinder unbinder;
     RecyclerViewAdapterImages adapterImages;
+    private Date DateSelected;
     private ArrayList<String> jobsCollection;
     private ArrayList<String> selectedJobsCollection;
     private ArrayList<String> imagesCollection = new ArrayList<>();
@@ -105,6 +118,8 @@ public class BookRequestFragment extends BaseFragment {
             rvSelectedJobs.notifyDataSetChanged();
         }
     };
+    private String predate = "";
+    private String preTime = "";
 
     public static BookRequestFragment newInstance() {
         Bundle args = new Bundle();
@@ -128,6 +143,8 @@ public class BookRequestFragment extends BaseFragment {
         if (requestCode == FilePickerConst.REQUEST_CODE_PHOTO) {
             if (data != null) {
                 imagesCollection.addAll(data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_MEDIA));
+                //    adapterImages.addAllItem(data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_MEDIA));
+                adapterImages.notifyItemInserted(imagesCollection.size() - 1);
                 adapterImages.notifyDataSetChanged();
             }
 
@@ -152,6 +169,76 @@ public class BookRequestFragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    private void initDatePicker(final TextView textView) {
+        Calendar calendar = Calendar.getInstance();
+        final DatePickerHelper datePickerHelper = new DatePickerHelper();
+        datePickerHelper.initDateDialog(
+                getDockActivity(),
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+                , new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        Date date = new Date();
+                        Calendar c = Calendar.getInstance();
+                        c.set(Calendar.YEAR, year);
+                        c.set(Calendar.MONTH, month);
+                        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+// and get that as a Date
+                        Date dateSpecified = c.getTime();
+                        if (dateSpecified.before(date)) {
+                            UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.date_before_error));
+                        } else {
+                            DateSelected = dateSpecified;
+                            if (prefHelper.isLanguageArabic())
+                                textView.setText(new SimpleDateFormat("yyyy-MM-dd", new Locale("ar")).format(c.getTime()));
+                            else
+                                textView.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(c.getTime()));
+                            predate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(c.getTime());
+
+                        }
+
+                    }
+                }, "PreferredDate");
+
+        datePickerHelper.showDate();
+    }
+
+    private void initTimePicker(final TextView textView) {
+        if (DateSelected != null) {
+            Calendar calendar = Calendar.getInstance();
+            final TimePickerHelper timePicker = new TimePickerHelper();
+
+            timePicker.initTimeDialog(getDockActivity(), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                    Date date = new Date();
+                    if (DateHelper.isSameDay(DateSelected, date) && !DateHelper.isTimeAfter(date.getHours(), date.getMinutes(), hourOfDay, minute)) {
+                        UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.less_time_error));
+                    } else {
+                        Calendar c = Calendar.getInstance();
+                        int year = c.get(Calendar.YEAR);
+                        int month = c.get(Calendar.MONTH);
+                        int day = c.get(Calendar.DAY_OF_MONTH);
+                        c.set(year, month, day, hourOfDay, minute);
+                        preTime = new SimpleDateFormat("HH:mm", Locale.ENGLISH).format(c.getTime());
+                        if (prefHelper.isLanguageArabic())
+                            textView.setText(new SimpleDateFormat("HH:mm", new Locale("ar")).format(c.getTime()));
+                        else
+                            textView.setText(new SimpleDateFormat("HH:mm", Locale.ENGLISH).format(c.getTime()));
+                    }
+
+                }
+            }, true);
+
+            timePicker.showTime();
+        } else {
+            UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.select_date_error));
+        }
     }
 
     private void bindJobsViews() {
@@ -184,7 +271,7 @@ public class BookRequestFragment extends BaseFragment {
 
     private void bindImageViews() {
         adapterImages = new RecyclerViewAdapterImages(imagesCollection, getDockActivity(), onDeleteListener);
-        rvAddImages.setLayoutManager(new LinearLayoutManager(getDockActivity(), LinearLayoutManager.VERTICAL, false));
+        rvAddImages.setLayoutManager(new LinearLayoutManager(getDockActivity(), LinearLayoutManager.HORIZONTAL, false));
         rvAddImages.setItemAnimator(new DefaultItemAnimator());
         rvAddImages.setAdapter(adapterImages);
     }
@@ -216,8 +303,10 @@ public class BookRequestFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_preferreddate:
+                initDatePicker(btnPreferreddate);
                 break;
             case R.id.btn_preferredtime:
+                initTimePicker(btnPreferredtime );
                 break;
             case R.id.btn_addimage:
                 if (imagesCollection.size() == 5) {

@@ -8,11 +8,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-
 import com.ingic.ezhalbatek.R;
-import com.ingic.ezhalbatek.entities.NotificationEnt;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
-import com.ingic.ezhalbatek.global.WebServiceConstants;
 import com.ingic.ezhalbatek.ui.adapters.ArrayListAdapter;
 import com.ingic.ezhalbatek.ui.binders.BinderNotification;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
@@ -36,8 +33,8 @@ public class NotificationsFragment extends BaseFragment {
     Unbinder unbinder;
     @BindView(R.id.txt_no_data)
     AnyTextView txtNoData;
-    private List<NotificationEnt> notificationCollection;
-    private ArrayListAdapter<NotificationEnt> adapter;
+    private List<String> notificationCollection;
+    private ArrayListAdapter<String> adapter;
 
     public static NotificationsFragment newInstance() {
         return new NotificationsFragment();
@@ -47,7 +44,7 @@ public class NotificationsFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        adapter = new ArrayListAdapter<>(getDockActivity(), new BinderNotification(getDockActivity(),prefHelper));
+        adapter = new ArrayListAdapter<>(getDockActivity(), new BinderNotification(getDockActivity(), prefHelper));
     }
 
    /* @Override
@@ -84,8 +81,12 @@ public class NotificationsFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         prefHelper.setNotificationCount(0);
         //serviceHelper.enqueueCall(webService.getNotificationCount(prefHelper.getMerchantId()), WebServiceConstants.NotificaitonCount);
-       //bindData();
-
+        //bindData();
+        ArrayList<String> dummy = new ArrayList<>(3);
+        dummy.add("");
+        dummy.add("");
+        dummy.add("");
+        bindData(dummy);
         lvNotification.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -102,7 +103,7 @@ public class NotificationsFragment extends BaseFragment {
 
     }
 
-    public void bindData(ArrayList<NotificationEnt> result) {
+    public void bindData(ArrayList<String> result) {
 
         notificationCollection = new ArrayList<>();
 

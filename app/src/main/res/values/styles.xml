@@ -22,7 +22,9 @@
     <style name="AppTheme" parent="AppBaseTheme">
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-
+        <item name="colorAccent">@color/app_red</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorPrimary">@color/app_red</item>
         <item name="android:windowNoTitle">true</item>
     </style>
 

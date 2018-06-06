@@ -39,9 +39,11 @@ public class SideMenuFragment extends BaseFragment {
                     getMainActivity().closeDrawer();
                     break;
                 case R.string.subsctiption:
+                    getDockActivity().replaceDockableFragment(SubscriptionTypesFragment.Companion.newInstance(),SubscriptionTypesFragment.Companion.getTag());
                     getMainActivity().closeDrawer();
                     break;
                 case R.string.my_subscription:
+                    getDockActivity().replaceDockableFragment(SubscriptionStatusFragment.newInstance(),SubscriptionStatusFragment.TAG);
                     getMainActivity().closeDrawer();
                     break;
                 case R.string.my_services:

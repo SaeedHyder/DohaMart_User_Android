@@ -58,13 +58,16 @@
                     android:textSize="@dimen/x16"
                     app:typeface="@string/font_normal_dark"/>
 
-                <com.ingic.ezhalbatek.ui.views.CustomRecyclerView
-                    android:id="@+id/rv_features"
+                <com.ingic.ezhalbatek.ui.views.AnyTextView
+                    android:id="@+id/txtFeatures"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/x10"
                     android:layout_marginEnd="@dimen/x10"
-                    android:layout_marginStart="@dimen/x10"/>
+                    android:layout_marginStart="@dimen/x10"
+                    android:textSize="@dimen/x16"
+                    android:text="@string/lorem_ipsum"
+                    app:typeface="@string/font_normal_dark"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

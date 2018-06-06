@@ -1,5 +1,6 @@
 package com.ingic.ezhalbatek.ui.binders;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.ingic.ezhalbatek.activities.DockActivity;
 import com.ingic.ezhalbatek.interfaces.onDeleteImage;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,12 +25,21 @@ public class RecyclerViewAdapterImages extends RecyclerView.Adapter<RecyclerView
 
     private DockActivity context;
     private ImageLoader imageLoader;
+
+    public void setAddedImages(List<String> addedImages) {
+        this.addedImages = addedImages;
+    }
+    public void  addAllItem(List<String> item){
+        this.addedImages. addAll(item);
+        notifyDataSetChanged();
+    }
     private List<String> addedImages;
     private onDeleteImage onDeleteImage;
 
 
     public RecyclerViewAdapterImages(List<String> Addedimages, DockActivity a, onDeleteImage onDeleteImage) {
         this.addedImages = Addedimages;
+        //this.addedImages.addAll(Addedimages);
         this.context = a;
         imageLoader = ImageLoader.getInstance();
         this.onDeleteImage = onDeleteImage;
@@ -44,8 +55,8 @@ public class RecyclerViewAdapterImages extends RecyclerView.Adapter<RecyclerView
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
-        final String imagespath = addedImages.get(position);
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+        final String imagespath = addedImages.get(holder.getAdapterPosition());
 
         //Picasso.with(context).load(imagespath).into(holder.img_addedimages);
         if (imagespath.contains("https")) {
@@ -57,7 +68,7 @@ public class RecyclerViewAdapterImages extends RecyclerView.Adapter<RecyclerView
             @Override
             public void onClick(View view) {
                 //context.replaceDockableFragment(ChatFragment.newInstance(), "Chat Fragment");
-                onDeleteImage.onDelete(position);
+                onDeleteImage.onDelete(holder.getAdapterPosition());
             }
         });
     }

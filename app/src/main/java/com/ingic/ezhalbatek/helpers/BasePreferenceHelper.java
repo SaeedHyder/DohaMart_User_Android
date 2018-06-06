@@ -51,4 +51,7 @@ public class BasePreferenceHelper extends PreferenceHelper {
     }
 
 
+    public boolean isLanguageArabic() {
+        return false;
+    }
 }

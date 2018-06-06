@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/x10">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="2dp"
+            app:cardMaxElevation="4dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.ingic.ezhalbatek.ui.views.AnyTextView
+                    android:id="@+id/txtDuration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/x10"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/x10"
+                    android:paddingStart="@dimen/x10"
+                    android:text="Monthly Maintenance"
+                    android:textColor="@color/app_font_dark_gray"
+                    android:textSize="@dimen/x16"
+                    app:typeface="@string/font_normal_dark"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginBottom="@dimen/x10"
+                    android:layout_marginTop="@dimen/x10"
+                    android:background="@color/app_font_dark_gray"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.ingic.ezhalbatek.ui.views.AnyTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="center"
+                        android:paddingEnd="@dimen/x5"
+                        android:paddingStart="@dimen/x10"
+                        android:text="@string/service_id"
+                        android:textColor="@color/app_red"
+                        android:textSize="@dimen/x16"
+                        app:typeface="@string/font_normal_dark"/>
+
+                    <com.ingic.ezhalbatek.ui.views.AnyTextView
+                        android:id="@+id/txtServiceID"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="center"
+                        android:text="01"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x16"
+                        app:typeface="@string/font_bold"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x5"
+                    android:orientation="horizontal">
+
+                    <com.ingic.ezhalbatek.ui.views.AnyTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="center"
+                        android:paddingEnd="@dimen/x5"
+                        android:paddingStart="@dimen/x10"
+                        android:text="@string/date"
+                        android:textColor="@color/app_red"
+                        android:textSize="@dimen/x16"
+                        app:typeface="@string/font_normal_dark"/>
+
+                    <com.ingic.ezhalbatek.ui.views.AnyTextView
+                        android:id="@+id/txtDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="center"
+                        android:text="January 2017"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x16"
+                        app:typeface="@string/font_bold"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x5"
+                    android:orientation="horizontal">
+
+                    <com.ingic.ezhalbatek.ui.views.AnyTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="center"
+                        android:paddingEnd="@dimen/x5"
+                        android:paddingStart="@dimen/x10"
+                        android:text="@string/visit_made"
+                        android:textColor="@color/app_red"
+                        android:textSize="@dimen/x16"
+                        app:typeface="@string/font_normal_dark"/>
+
+                    <com.ingic.ezhalbatek.ui.views.AnyTextView
+                        android:id="@+id/txtVisitDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="center"
+                        android:text="21 January 2017"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x16"
+                        app:typeface="@string/font_bold"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x5"
+                    android:orientation="horizontal">
+
+                    <com.ingic.ezhalbatek.ui.views.AnyTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="center"
+                        android:paddingEnd="@dimen/x5"
+                        android:paddingStart="@dimen/x10"
+                        android:text="@string/time_duration"
+                        android:textColor="@color/app_red"
+                        android:textSize="@dimen/x16"
+                        app:typeface="@string/font_normal_dark"/>
+
+                    <com.ingic.ezhalbatek.ui.views.AnyTextView
+                        android:id="@+id/txtTimeDuration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="center"
+                        android:text="3 hour"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x16"
+                        app:typeface="@string/font_bold"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginBottom="@dimen/x10"
+                    android:layout_marginTop="@dimen/x10"
+                    android:background="@color/app_font_dark_gray"/>
+
+                <com.ingic.ezhalbatek.ui.views.AnyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:gravity="center"
+                    android:padding="@dimen/x10"
+                    android:text="@string/tesk_summary"
+                    android:textColor="@color/app_red"
+                    android:textSize="@dimen/x16"
+                    app:typeface="@string/font_normal_dark"/>
+
+                <com.ingic.ezhalbatek.ui.views.AnyTextView
+                    android:id="@+id/txtTask"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/x10"
+                    android:layout_marginEnd="@dimen/x10"
+                    android:layout_marginStart="@dimen/x10"
+                    android:text="@string/lorem_ipsum"
+                    android:textSize="@dimen/x16"
+                    app:typeface="@string/font_normal_dark"/>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginBottom="@dimen/x10"
+                    android:layout_marginTop="@dimen/x10"
+                    android:background="@color/app_font_dark_gray"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.ingic.ezhalbatek.ui.views.AnyTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="center"
+                        android:paddingEnd="@dimen/x5"
+                        android:paddingStart="@dimen/x10"
+                        android:text="@string/technician_name"
+                        android:textColor="@color/app_red"
+                        android:textSize="@dimen/x16"
+                        app:typeface="@string/font_normal_dark"/>
+
+                    <com.ingic.ezhalbatek.ui.views.AnyTextView
+                        android:id="@+id/txtTechnicianName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="center"
+                        android:text="Graham Bill"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x16"
+                        app:typeface="@string/font_bold"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x5"
+                    android:orientation="horizontal">
+
+                    <com.ingic.ezhalbatek.ui.views.AnyTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="center"
+                        android:paddingEnd="@dimen/x5"
+                        android:paddingStart="@dimen/x10"
+                        android:text="@string/technician_number"
+                        android:textColor="@color/app_red"
+                        android:textSize="@dimen/x16"
+                        app:typeface="@string/font_normal_dark"/>
+
+                    <com.ingic.ezhalbatek.ui.views.AnyTextView
+                        android:id="@+id/txtTechnicianNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="center"
+                        android:text="01"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x16"
+                        app:typeface="@string/font_bold"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x5"
+                    android:orientation="horizontal">
+
+                    <com.ingic.ezhalbatek.ui.views.AnyTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="center"
+                        android:paddingEnd="@dimen/x5"
+                        android:paddingStart="@dimen/x10"
+                        android:text="@string/rating"
+                        android:textColor="@color/app_red"
+                        android:textSize="@dimen/x16"
+                        app:typeface="@string/font_normal_dark"/>
+
+                    <com.ingic.ezhalbatek.ui.views.CustomRatingBar
+                        android:id="@+id/rbRating"
+                        android:layout_width="@dimen/x120"
+                        android:layout_height="@dimen/x20"
+                        android:alpha="0.7"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        app:onlyForDisplay="true"
+                        app:starHalf="@drawable/rate_star_selected"
+                        app:starOn="@drawable/rate_star_selected"
+                        app:stars="1"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+</ScrollView>

@@ -904,4 +904,19 @@ public class DateHelper {
 		return OurDate;
 	}
 
+	public static boolean isTimeAfter(int starthour, int starmin, int endhour, int endmin) {
+		if (starthour > endhour) { //Same way you can check with after() method also.
+			return false;
+		} else {
+
+			if (starthour >= endhour && starmin > endmin) {
+				return false;
+			} else {
+				return true;
+			}
+
+
+		}
+	}
+
 }
