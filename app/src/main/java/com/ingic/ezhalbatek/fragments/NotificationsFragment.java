@@ -64,7 +64,7 @@ public class NotificationsFragment extends BaseFragment {
         super.setTitleBar(titleBar);
         titleBar.hideButtons();
         titleBar.showBackButton();
-        titleBar.setSubHeading(getString(R.string.notification));
+        titleBar.setSubHeading(getResString(R.string.notification));
     }
 
     @Nullable

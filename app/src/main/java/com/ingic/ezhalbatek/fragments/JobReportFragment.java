@@ -9,6 +9,7 @@ import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
 import com.ingic.ezhalbatek.ui.views.CustomRatingBar;
+import com.ingic.ezhalbatek.ui.views.TitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,7 +55,13 @@ public class JobReportFragment extends BaseFragment {
         }
 
     }
-
+    @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.showBackButton();
+        titleBar.setSubHeading(getResString(R.string.view_report));
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_job_report, container, false);

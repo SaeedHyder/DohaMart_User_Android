@@ -8,13 +8,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.ingic.ezhalbatek.R
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment
-import com.ingic.ezhalbatek.ui.views.*
+import com.ingic.ezhalbatek.ui.views.AnyEditTextView
+import com.ingic.ezhalbatek.ui.views.KotterKnife
+import com.ingic.ezhalbatek.ui.views.TitleBar
+import com.ingic.ezhalbatek.ui.views.bindView
 
 /**
  * Created on 5/19/18.
  */
 class SignupFragment : BaseFragment(), View.OnClickListener {
-    private val edtCity: AutoCompleteLocation by bindView(R.id.edtCity)
+    private val edtCity: AnyEditTextView by bindView(R.id.edtCity)
     private val edtPassword: AnyEditTextView by bindView(R.id.edt_password)
     private val edtZipCode: AnyEditTextView by bindView(R.id.edtZipCode)
     private val edtName: AnyEditTextView by bindView(R.id.edt_name)
@@ -39,6 +42,7 @@ class SignupFragment : BaseFragment(), View.OnClickListener {
         super.onDestroyView()
         KotterKnife.reset(this)
     }
+
     override fun setTitleBar(titleBar: TitleBar) {
         super.setTitleBar(titleBar)
         titleBar.hideButtons()
@@ -47,7 +51,7 @@ class SignupFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun isvalidated(): Boolean {
-        if (edtName.getText().toString().isEmpty()) run {
+        if (edtName.getText().toString().isEmpty()|| edtName.text.toString().length < 3) run {
 
             edtName.setError(getString(R.string.enter_name))
             if (edtName.requestFocus()) {
@@ -68,7 +72,7 @@ class SignupFragment : BaseFragment(), View.OnClickListener {
                 setEditTextFocus(edtPhone)
             }
             return false
-        } else if (edtPhone.getText().toString().length < 10) run {
+        } else if (edtPhone.getText().toString().length < 9 || edtPhone.text.toString().length > 16) run {
             edtPhone.setError(getString(R.string.numberLength))
             if (edtPhone.requestFocus()) {
                 setEditTextFocus(edtPhone)
@@ -91,7 +95,11 @@ class SignupFragment : BaseFragment(), View.OnClickListener {
 
             edtCity.setError(getString(R.string.enter_city))
             return false
-        } else if (edtZipCode.getText().toString().isEmpty()) run {
+        }else if ( edtCity.text.toString().length < 3) run {
+
+            edtCity.setError(getString(R.string.enter_valid_city))
+            return false
+        } else if (edtZipCode.getText().toString().isEmpty()||edtZipCode.text.toString().length < 3) run {
 
             edtZipCode.setError(getString(R.string.enter_zipcode))
             if (edtZipCode.requestFocus()) {

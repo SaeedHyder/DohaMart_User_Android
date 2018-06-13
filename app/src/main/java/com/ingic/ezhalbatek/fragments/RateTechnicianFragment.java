@@ -12,6 +12,7 @@ import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
 import com.ingic.ezhalbatek.ui.views.AnyEditTextView;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
 import com.ingic.ezhalbatek.ui.views.CustomRatingBar;
+import com.ingic.ezhalbatek.ui.views.TitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,7 +59,13 @@ public class RateTechnicianFragment extends BaseFragment {
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
-
+    @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.showBackButton();
+        titleBar.setSubHeading(getResString(R.string.rate_review));
+    }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

@@ -27,39 +27,47 @@ public class SideMenuFragment extends BaseFragment {
     CustomRecyclerView rvNav;
     Unbinder unbinder;
     private ArrayList<NavigationEnt> navItems;
-    private RecyclerItemListener listener = new RecyclerItemListener() {
-        @Override
-        public void onItemClicked(Object Ent, int position, int id) {
-            NavigationEnt ent = (NavigationEnt) Ent;
-            switch (ent.getTitle()) {
-                case R.string.home:
-                    getMainActivity().closeDrawer();
-                    break;
-                case R.string.profile:
-                    getMainActivity().closeDrawer();
-                    break;
-                case R.string.subsctiption:
-                    getDockActivity().replaceDockableFragment(SubscriptionTypesFragment.Companion.newInstance(),SubscriptionTypesFragment.Companion.getTag());
-                    getMainActivity().closeDrawer();
-                    break;
-                case R.string.my_subscription:
-                    getDockActivity().replaceDockableFragment(SubscriptionStatusFragment.newInstance(),SubscriptionStatusFragment.TAG);
-                    getMainActivity().closeDrawer();
-                    break;
-                case R.string.my_services:
-                    getMainActivity().closeDrawer();
+    private RecyclerItemListener listener = (Ent, position, id) -> {
+        NavigationEnt ent = (NavigationEnt) Ent;
+        switch (ent.getTitle()) {
+            case R.string.home:
+                getMainActivity().closeDrawer();
+                break;
+            case R.string.profile:
+                getDockActivity().replaceDockableFragment(EditProfileFragment.newInstance(),EditProfileFragment.TAG);
+                getMainActivity().closeDrawer();
+                break;
+            case R.string.subsctiption:
+                getDockActivity().replaceDockableFragment(SubscriptionTypesFragment.Companion.newInstance(),SubscriptionTypesFragment.Companion.getTag());
+                getMainActivity().closeDrawer();
+                break;
+            case R.string.my_subscription:
+                getDockActivity().replaceDockableFragment(SubscriptionStatusFragment.newInstance(),SubscriptionStatusFragment.TAG);
+                getMainActivity().closeDrawer();
+                break;
+            case R.string.my_services:
+                getDockActivity().replaceDockableFragment(MyServicesFragment.newInstance(),MyServicesFragment.TAG);
+                getMainActivity().closeDrawer();
 
-                    break;
-                case R.string.settings:
-                    getMainActivity().closeDrawer();
+                break;
+            case R.string.settings:
+                getDockActivity().replaceDockableFragment(SettingFragment.newInstance(),SettingFragment.TAG);
+                getMainActivity().closeDrawer();
 
-                    break;
-                case R.string.logout:
+                break;
+            case R.string.logout:
+                getMainActivity().closeDrawer();
+                dialogHelper.showCommonDialog(v -> {
+                    dialogHelper.hideDialog();
+                    prefHelper.setLoginStatus(false);
+                    getDockActivity().popBackStackTillEntry(0);
+                    getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
+                }, R.string.logout, R.string.logout_message, R.string.yes, R.string.no, true, true);
+                dialogHelper.setCancelable(true);
+                dialogHelper.showDialog();
 
-                    getMainActivity().closeDrawer();
 
-                    break;
-            }
+                break;
         }
     };
 

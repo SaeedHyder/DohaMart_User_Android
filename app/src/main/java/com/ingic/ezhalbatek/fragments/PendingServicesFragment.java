@@ -30,10 +30,10 @@ public class PendingServicesFragment extends BaseFragment {
     private RecyclerItemListener ItemClicklistener = ((ent, position, id) -> {
         switch (id) {
             case R.id.btnCallRate:
-                getDockActivity().replaceDockableFragment(RateTechnicianFragment.newInstance(), RateTechnicianFragment.TAG);
+                willbeimplementedinBeta();
                 break;
             case R.id.btnDetails:
-                getDockActivity().replaceDockableFragment(ServiceDetailFragment.newInstance(),ServiceDetailFragment.TAG);
+                getDockActivity().replaceDockableFragment(ServiceDetailFragment.newInstance(false),ServiceDetailFragment.TAG);
                 break;
         }
     });

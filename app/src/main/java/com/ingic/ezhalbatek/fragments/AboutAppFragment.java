@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
+import com.ingic.ezhalbatek.ui.views.TitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,7 +53,13 @@ public class AboutAppFragment extends BaseFragment {
         scrollTv1.setText(getResString(R.string.lorem_ipsum));
         scrollTv1.setMovementMethod(new ScrollingMovementMethod());
     }
-
+    @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.showBackButton();
+        titleBar.setSubHeading(getResString(R.string.about_app));
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();

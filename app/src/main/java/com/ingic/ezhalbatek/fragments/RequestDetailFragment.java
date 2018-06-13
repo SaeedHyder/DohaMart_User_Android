@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
+import com.ingic.ezhalbatek.ui.views.TitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,12 +32,14 @@ public class RequestDetailFragment extends BaseFragment {
     @BindView(R.id.btnRequest)
     Button btnRequest;
     Unbinder unbinder;
+    private String titleHeading = "";
 
-    public static RequestDetailFragment newInstance() {
+    public static RequestDetailFragment newInstance(String titleHeading) {
         Bundle args = new Bundle();
 
         RequestDetailFragment fragment = new RequestDetailFragment();
         fragment.setArguments(args);
+        fragment.setTitleHeading(titleHeading);
         return fragment;
     }
 
@@ -49,6 +52,14 @@ public class RequestDetailFragment extends BaseFragment {
     }
 
     @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.showBackButton();
+        titleBar.setSubHeading(titleHeading);
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_request_detail, container, false);
         unbinder = ButterKnife.bind(this, view);
@@ -58,7 +69,6 @@ public class RequestDetailFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 
     @Override
@@ -69,6 +79,10 @@ public class RequestDetailFragment extends BaseFragment {
 
     @OnClick(R.id.btnRequest)
     public void onViewClicked() {
-        getDockActivity().replaceDockableFragment(BookRequestFragment.newInstance(),BookRequestFragment.TAG);
+        getDockActivity().replaceDockableFragment(BookRequestFragment.newInstance(), BookRequestFragment.TAG);
+    }
+
+    public void setTitleHeading(String titleHeading) {
+        this.titleHeading = titleHeading;
     }
 }

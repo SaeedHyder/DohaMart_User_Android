@@ -58,7 +58,7 @@ public class SubscriptionStatusFragment extends BaseFragment {
         super.setTitleBar(titleBar);
         titleBar.hideButtons();
         titleBar.showBackButton();
-        titleBar.setSubHeading(getResString(R.string.my_subscription));
+        titleBar.setSubHeading(getResString(R.string.subscription_status));
     }
 
     @Override

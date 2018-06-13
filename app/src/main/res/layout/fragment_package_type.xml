@@ -72,7 +72,7 @@
                 android:layout_gravity="start"
                 android:layout_weight="0.17"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="01"
+                android:text="02"
                 android:textColor="@color/white"
                 android:textSize="@dimen/x18"
                 app:typeface="@string/font_bold"/>
@@ -112,7 +112,7 @@
                 android:layout_gravity="start"
                 android:layout_weight="0.17"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="01"
+                android:text="03"
                 android:textColor="@color/white"
                 android:textSize="@dimen/x18"
                 app:typeface="@string/font_bold"/>

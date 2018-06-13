@@ -10,6 +10,7 @@ import android.widget.Button
 import com.ingic.ezhalbatek.R
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment
 import com.ingic.ezhalbatek.ui.views.*
+import kotlinx.android.synthetic.main.fragment_reset_password_code.*
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -17,7 +18,7 @@ import java.util.concurrent.TimeUnit
  * Created on 5/19/18.
  */
 class ResetPasswordCodeFragment : BaseFragment() {
-    val txtTimer: AnyTextView by bindView(R.id.txtTimer)
+    //val txtTimer: AnyTextView? by bindView(R.id.txtTimer)
     val btnSubmit: Button by bindView(R.id.btn_submit)
     val edtCode: AnyEditTextView by bindView(R.id.edtcode)
     lateinit var timer: CountDownTimer
@@ -40,8 +41,8 @@ class ResetPasswordCodeFragment : BaseFragment() {
                 val text = String.format(Locale.getDefault(), "%2d:%02d",
                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60)
-                txtTimer.setText(text)
-                txtTimer.setTypeface(Typeface.DEFAULT_BOLD)
+                txtTimer?.setText(text)
+                txtTimer?.setTypeface(Typeface.DEFAULT_BOLD)
             }
         }.start()
     }
@@ -66,7 +67,7 @@ class ResetPasswordCodeFragment : BaseFragment() {
             if (isValidate()) {
                 timer.cancel()
                 dockActivity.popBackStackTillEntry(0)
-                dockActivity.replaceDockableFragment(LanguageSelectionFragment.newInstance(), "LanguageSelectionFragment")
+                dockActivity.replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment")
             }
         }
     }
@@ -79,7 +80,14 @@ class ResetPasswordCodeFragment : BaseFragment() {
                 setEditTextFocus(edtCode)
             }
             return false
-        } else
+        }else if (edtCode.getText().toString().length<4) run {
+
+            edtCode.setError(getString(R.string.enter_valid_code_error))
+            if (edtCode.requestFocus()) {
+                setEditTextFocus(edtCode)
+            }
+            return false
+        }  else
             return true
     }
 

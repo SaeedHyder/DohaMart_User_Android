@@ -16,6 +16,7 @@ import com.ingic.ezhalbatek.R
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment
 import com.ingic.ezhalbatek.ui.adapters.ViewPagerAdapter
 import com.ingic.ezhalbatek.ui.views.KotterKnife
+import com.ingic.ezhalbatek.ui.views.TitleBar
 import com.ingic.ezhalbatek.ui.views.bindView
 
 
@@ -32,7 +33,7 @@ class SubscriptionDetailFragment : BaseFragment() {
     private val pagerAdapter: ViewPagerAdapter  by lazy { ViewPagerAdapter(childFragmentManager) }
 
     companion object {
-        val Tag: String = "SubscriptionDetailFragment"
+        val Tag: String = "SubscriptionFragment"
         fun newInstance(): SubscriptionDetailFragment {
             val fragment = SubscriptionDetailFragment()
             return fragment
@@ -53,7 +54,12 @@ class SubscriptionDetailFragment : BaseFragment() {
         bindViewPager()
         btnContinue.setOnClickListener { _ -> openLocationSelector() }
     }
-
+    override fun setTitleBar(titleBar: TitleBar) {
+        super.setTitleBar(titleBar)
+        titleBar.hideButtons()
+        titleBar.showBackButton()
+        titleBar.setSubHeading(getResString(R.string.subscriptions))
+    }
     private fun openLocationSelector() {
 
         try {
@@ -82,6 +88,7 @@ class SubscriptionDetailFragment : BaseFragment() {
                     address = place.address.toString()
                     addressLat = place.latLng.latitude.toString() + ""
                     addressLng = place.latLng.longitude.toString() + ""
+                    dockActivity.replaceDockableFragment(PackageDetailFragment.newInstance(),PackageDetailFragment.TAG)
                 }
                 Log.i(Tag, "Place: " + place!!.name)
 

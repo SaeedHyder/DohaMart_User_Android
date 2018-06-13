@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
+import com.ingic.ezhalbatek.ui.views.TitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,7 +60,13 @@ public class MyServicesFragment extends BaseFragment {
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
-
+    @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.showBackButton();
+        titleBar.setSubHeading(getResString(R.string.service_status));
+    }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

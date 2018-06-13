@@ -20,11 +20,21 @@
         >
 
         <ImageView
-            android:id="@+id/btnProfielImage"
+            android:id="@+id/btnImagePick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/camera"/>
+            android:src="@drawable/camera"
+            />
+
+        <ImageView
+            android:id="@+id/btnProfielImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            />
+
     </android.support.v7.widget.CardView>
 
     <LinearLayout
@@ -39,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/x10"
-            android:src="@drawable/email"/>
+            android:src="@drawable/username"/>
 
         <com.ingic.ezhalbatek.ui.views.AnyEditTextView
             android:id="@+id/edt_name"
@@ -136,14 +146,14 @@
             android:layout_marginStart="@dimen/x10"
             android:src="@drawable/address"/>
 
-        <com.ingic.ezhalbatek.ui.views.AutoCompleteLocation
+        <com.ingic.ezhalbatek.ui.views.AnyEditTextView
             android:id="@+id/edtCity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/x10"
             android:background="@null"
-            android:hint="@string/phone"
+            android:hint="@string/city"
             android:imeOptions="actionNext"
             android:inputType="text"
             android:maxLines="1"

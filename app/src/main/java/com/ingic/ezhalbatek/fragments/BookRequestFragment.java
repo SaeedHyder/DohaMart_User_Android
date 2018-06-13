@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.Spannable;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +37,7 @@ import com.ingic.ezhalbatek.ui.views.AnySpinner;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
 import com.ingic.ezhalbatek.ui.views.AutoCompleteLocation;
 import com.ingic.ezhalbatek.ui.views.CustomRecyclerView;
+import com.ingic.ezhalbatek.ui.views.TitleBar;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 
@@ -163,6 +168,40 @@ public class BookRequestFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         bindJobsViews();
         bindImageViews();
+        bindSpannableText();
+    }
+
+    private void bindSpannableText() {
+        setClickableText(getResString(R.string.term_option_value) , getResString(R.string.terms),getResString(R.string.privacy), chkTermPrivacy, new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+              //  getDockActivity().popBackStackTillEntry(0);
+                //getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
+                willbeimplementedinBeta();
+
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(getDockActivity().getResources().getColor(R.color.app_red));
+                ds.setUnderlineText(false);
+            }
+        },new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                willbeimplementedinBeta();
+                // getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(getDockActivity().getResources().getColor(R.color.app_red));
+                ds.setUnderlineText(false);
+            }
+        });
+       // setClickableText(getResString(R.string.term_option_value) , getResString(R.string.privacy), chkTermPrivacy, );
     }
 
     @Override
@@ -244,9 +283,11 @@ public class BookRequestFragment extends BaseFragment {
     private void bindJobsViews() {
         jobsCollection = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            jobsCollection.add("Sample Job");
-        }
 
+        }
+        jobsCollection.add("Total Electricity failure/breakdown");
+        jobsCollection.add("No Electricity in some rooms");
+        jobsCollection.add("Repairing of fixed electrical fittings");
         selectedJobsCollection = new ArrayList<>();
 
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getDockActivity(), android.R.layout.simple_spinner_item, jobsCollection);
@@ -299,11 +340,22 @@ public class BookRequestFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.btn_preferreddate, R.id.btn_preferredtime, R.id.btn_addimage, R.id.btnBook})
+    @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.showBackButton();
+        titleBar.setSubHeading(getResString(R.string.request_for_service));
+    }
+
+    @OnClick({R.id.btn_preferreddate, R.id.btn_preferredtime, R.id.btn_addimage, R.id.btnBook,R.id.img_gps})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_preferreddate:
                 initDatePicker(btnPreferreddate);
+                break;
+                case R.id.img_gps:
+                willbeimplementedinBeta();
                 break;
             case R.id.btn_preferredtime:
                 initTimePicker(btnPreferredtime );
@@ -317,7 +369,26 @@ public class BookRequestFragment extends BaseFragment {
                 }
                 break;
             case R.id.btnBook:
+                dialogHelper.showCommonDialog(v -> {
+                    dialogHelper.hideDialog();
+                    getDockActivity().popBackStackTillEntry(0);
+                    getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
+                }, R.string.empty, R.string.request_send, R.string.ok, R.string.empty, false, false);
+                dialogHelper.setCancelable(false);
+                dialogHelper.showDialog();
                 break;
         }
+    }
+    private void setClickableText(String text, String clickableItem,String clickableItem2, CheckBox textView, ClickableSpan clickableSpan,ClickableSpan clickableSpan2) {
+
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
+        textView.setText(text, TextView.BufferType.SPANNABLE);
+        Spannable mySpannable = (Spannable) textView.getText();
+        int startPosition = text.indexOf(clickableItem);
+        int endPosition = text.lastIndexOf(clickableItem) + clickableItem.length();
+        int startPosition2 = text.indexOf(clickableItem2);
+        int endPosition2 = text.lastIndexOf(clickableItem2) + clickableItem2.length();
+        mySpannable.setSpan(clickableSpan, startPosition, endPosition, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        mySpannable.setSpan(clickableSpan2, startPosition2, endPosition2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 }

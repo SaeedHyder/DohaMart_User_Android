@@ -30,14 +30,14 @@
                 android:paddingStart="@dimen/x10"
                 android:text="Monthly Maintenance"
                 android:textColor="@color/app_font_dark_gray"
-                android:textSize="@dimen/x16"
+                android:textSize="@dimen/x15"
                 app:typeface="@string/font_normal_dark"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layout_marginBottom="@dimen/x10"
-                android:layout_marginTop="@dimen/x10"
+                android:layout_marginBottom="@dimen/x5"
+                android:layout_marginTop="@dimen/x5"
                 android:background="@color/app_font_dark_gray"/>
 
             <LinearLayout
@@ -56,7 +56,7 @@
                     android:paddingStart="@dimen/x10"
                     android:text="@string/subscriber_id"
                     android:textColor="@color/app_red"
-                    android:textSize="@dimen/x16"
+                    android:textSize="@dimen/x14"
                     app:typeface="@string/font_normal_dark"/>
 
                 <com.ingic.ezhalbatek.ui.views.AnyTextView
@@ -67,7 +67,7 @@
                     android:gravity="center"
                     android:text="01"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/x16"
+                    android:textSize="@dimen/x14"
                     app:typeface="@string/font_bold"/>
             </LinearLayout>
 
@@ -87,7 +87,7 @@
                     android:paddingStart="@dimen/x10"
                     android:text="@string/subscription_package"
                     android:textColor="@color/app_red"
-                    android:textSize="@dimen/x16"
+                    android:textSize="@dimen/x14"
                     app:typeface="@string/font_normal_dark"/>
 
                 <com.ingic.ezhalbatek.ui.views.AnyTextView
@@ -99,7 +99,7 @@
                     android:maxLines="1"
                     android:text="Gold Package"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/x16"
+                    android:textSize="@dimen/x14"
                     app:typeface="@string/font_bold"/>
             </LinearLayout>
 
@@ -120,7 +120,7 @@
                     android:paddingStart="@dimen/x10"
                     android:text="@string/next_visit"
                     android:textColor="@color/app_red"
-                    android:textSize="@dimen/x16"
+                    android:textSize="@dimen/x14"
                     app:typeface="@string/font_normal_dark"/>
 
                 <com.ingic.ezhalbatek.ui.views.AnyTextView
@@ -131,7 +131,7 @@
                     android:gravity="center"
                     android:text="11/2/2018"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/x16"
+                    android:textSize="@dimen/x14"
                     app:typeface="@string/font_bold"/>
             </LinearLayout>
 

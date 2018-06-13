@@ -56,7 +56,7 @@ class ResetPasswordFragment : BaseFragment() {
                 setEditTextFocus(edtPhone)
             }
             return false
-        } else if (edtPhone.getText().toString().length < 10) run {
+        } else  if (edtPhone.text.toString().length < 9 || edtPhone.text.toString().length > 16) run {
             edtPhone.setError(getString(R.string.numberLength))
             if (edtPhone.requestFocus()) {
                 setEditTextFocus(edtPhone)

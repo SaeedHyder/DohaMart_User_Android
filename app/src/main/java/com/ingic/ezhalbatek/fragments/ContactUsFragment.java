@@ -1,7 +1,6 @@
 package com.ingic.ezhalbatek.fragments;
 
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import android.widget.Button;
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
 import com.ingic.ezhalbatek.ui.views.AnyEditTextView;
-import com.ingic.ezhalbatek.ui.views.AutoCompleteLocation;
+import com.ingic.ezhalbatek.ui.views.TitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,7 +26,7 @@ public class ContactUsFragment extends BaseFragment {
     @BindView(R.id.edtPhone)
     AnyEditTextView edtPhone;
     @BindView(R.id.edtCity)
-    AutoCompleteLocation edtCity;
+    AnyEditTextView edtCity;
     @BindView(R.id.edtQuery)
     AnyEditTextView edtQuery;
     @BindView(R.id.btnSubmit)
@@ -49,28 +48,42 @@ public class ContactUsFragment extends BaseFragment {
         }
 
     }
+
+    @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.showBackButton();
+        titleBar.setSubHeading(getResString(R.string.contact_form));
+    }
+
     private boolean isvalidated() {
 
         if (edtName.getText().toString().isEmpty()) {
             edtName.setError(getString(R.string.enter_name));
             return false;
-        }  else if (edtPhone.getText().toString().equals("") && edtPhone.getText().toString().isEmpty()) {
+        } else if (edtPhone.getText().toString().equals("") && edtPhone.getText().toString().isEmpty()) {
             edtPhone.setError(getString(R.string.enter_phone));
             return false;
-        } else if (edtPhone.getText().toString().length() < 9 || edtPhone.getText().toString().length() > 10) {
+        } else if (edtPhone.getText().toString().length() < 9 || edtPhone.getText().toString().length() > 16) {
             edtPhone.setError(getString(R.string.numberLength));
             return false;
-        }  else if (edtCity.getText().toString().isEmpty()) {
+        } else if (edtCity.getText().toString().isEmpty()) {
             edtCity.setError(getString(R.string.enter_city));
             return false;
-        } else if (edtQuery.getText().toString().isEmpty()) {
+        } else if (edtCity.getText().toString().length() < 3) {
+
+            edtCity.setError(getString(R.string.enter_valid_city));
+            return false;
+        } else if (edtQuery.getText().toString().isEmpty() || edtQuery.getText().toString().length() < 3) {
             edtQuery.setError(getString(R.string.enter_query));
             return false;
-        }  else {
+        } else {
             return true;
         }
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contact_us, container, false);
@@ -92,9 +105,9 @@ public class ContactUsFragment extends BaseFragment {
 
     @OnClick(R.id.btnSubmit)
     public void onViewClicked() {
-        if (isvalidated()){
+        if (isvalidated()) {
             getDockActivity().popBackStackTillEntry(0);
-            getDockActivity().replaceDockableFragment(HomeFragment.newInstance(),HomeFragment.TAG);
+            getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), HomeFragment.TAG);
         }
     }
 }

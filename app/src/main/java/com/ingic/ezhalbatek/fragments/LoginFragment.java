@@ -1,6 +1,7 @@
 package com.ingic.ezhalbatek.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,11 +46,15 @@ public class LoginFragment extends BaseFragment {
     public void setTitleBar(TitleBar titleBar) {
         super.setTitleBar(titleBar);
         titleBar.hideButtons();
-        titleBar.showBackButton();
+        //titleBar.showBackButton();
+        if (edtEmail!=null&&edtPassword!=null){
+            edtEmail.setText("");
+            edtPassword.setText("");
+        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         View view = inflater.inflate(R.layout.fragment_login, container, false);
@@ -62,17 +67,9 @@ public class LoginFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
-
+        getMainActivity().changeBackgroundResources(R.drawable.bg);
 
     }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
     @OnClick({R.id.btn_forgot_password, R.id.loginButton, R.id.btn_register, R.id.facebook_login, R.id.guest_login})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -82,6 +79,7 @@ public class LoginFragment extends BaseFragment {
             case R.id.loginButton:
                 if (isvalidated()) {
                     prefHelper.setLoginStatus(true);
+                    getDockActivity().popBackStackTillEntry(0);
                     getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragmnet");
                 }
                 break;

@@ -34,7 +34,7 @@ public class CompleteServicesFragment extends BaseFragment {
 
                 break;
             case R.id.btnDetails:
-                getDockActivity().replaceDockableFragment(ServiceDetailFragment.newInstance(), ServiceDetailFragment.TAG);
+                getDockActivity().replaceDockableFragment(ServiceDetailFragment.newInstance(true), ServiceDetailFragment.TAG);
                 break;
         }
     });

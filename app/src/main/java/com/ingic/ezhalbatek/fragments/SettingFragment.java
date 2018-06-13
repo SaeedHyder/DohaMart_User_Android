@@ -9,6 +9,7 @@ import android.widget.Switch;
 
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
+import com.ingic.ezhalbatek.ui.views.TitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,7 +65,13 @@ public class SettingFragment extends BaseFragment {
         super.onDestroyView();
         unbinder.unbind();
     }
-
+    @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.showBackButton();
+        titleBar.setSubHeading(getResString(R.string.app_settings));
+    }
     @OnClick({R.id.btnChangePassword, R.id.btnRateApp, R.id.btnChangePhone, R.id.btnChangeLanguage, R.id.btnAboutApp, R.id.btnContactUs, R.id.btnCallUs})
     public void onViewClicked(View view) {
         switch (view.getId()) {

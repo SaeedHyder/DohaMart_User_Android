@@ -33,7 +33,7 @@ public class HomeFragment extends BaseFragment {
     private RecyclerItemListener itemClickListener = new RecyclerItemListener() {
         @Override
         public void onItemClicked(Object ent, int position, int id) {
-            getDockActivity().replaceDockableFragment(RequestDetailFragment.newInstance(), RequestDetailFragment.TAG);
+            getDockActivity().replaceDockableFragment(RequestDetailFragment.newInstance(((CategoryEnt) ent).getTitle()), RequestDetailFragment.TAG);
         }
     };
 
@@ -83,10 +83,10 @@ public class HomeFragment extends BaseFragment {
         categoryCollection.add(new CategoryEnt("Plumbing", R.drawable.plumbing));
         categoryCollection.add(new CategoryEnt("Electricity", R.drawable.electricity));
         categoryCollection.add(new CategoryEnt("Painting", R.drawable.paint));
-        categoryCollection.add(new CategoryEnt("Celiling Gypsum", R.drawable.gypsum));
+        categoryCollection.add(new CategoryEnt("Ceiling Gypsum", R.drawable.gypsum));
         categoryCollection.add(new CategoryEnt("Carpentry", R.drawable.carpentry));
         categoryCollection.add(new CategoryEnt("Flooring", R.drawable.floor));
-        categoryCollection.add(new CategoryEnt("Swiming Pool", R.drawable.swimmingpool));
+        categoryCollection.add(new CategoryEnt("Swimming Pool", R.drawable.swimmingpool));
         categoryCollection.add(new CategoryEnt("Others", R.drawable.others));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getDockActivity(), 3);
         rvCategories.bindRecyclerView(new CategoryItemBinder(itemClickListener), categoryCollection, gridLayoutManager, new DefaultItemAnimator());

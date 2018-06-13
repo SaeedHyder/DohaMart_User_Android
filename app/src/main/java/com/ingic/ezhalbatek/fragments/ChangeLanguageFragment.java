@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
+import com.ingic.ezhalbatek.ui.views.TitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,7 +54,13 @@ public class ChangeLanguageFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
     }
-
+    @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.showBackButton();
+        titleBar.setSubHeading(getResString(R.string.change_language));
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();

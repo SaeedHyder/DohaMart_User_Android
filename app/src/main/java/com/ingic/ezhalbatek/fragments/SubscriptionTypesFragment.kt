@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import com.ingic.ezhalbatek.R
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment
 import com.ingic.ezhalbatek.ui.views.KotterKnife
+import com.ingic.ezhalbatek.ui.views.TitleBar
 import com.ingic.ezhalbatek.ui.views.bindView
 
 /**
@@ -48,6 +49,13 @@ class SubscriptionTypesFragment : BaseFragment() {
         }
     }
 
+    override fun setTitleBar(titleBar: TitleBar) {
+        super.setTitleBar(titleBar)
+        titleBar.hideButtons()
+        titleBar.showBackButton()
+        titleBar.setSubHeading(getResString(R.string.offer_packages))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -57,6 +65,7 @@ class SubscriptionTypesFragment : BaseFragment() {
         btnPlatinium.setOnClickListener(clicklistener)
         btnGold.setOnClickListener(clicklistener)
         btnSilver.setOnClickListener(clicklistener)
+        mainActivity.changeBackgroundResources(R.drawable.bg)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
 import com.ingic.ezhalbatek.ui.views.AnyEditTextView;
+import com.ingic.ezhalbatek.ui.views.TitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,7 +59,13 @@ public class ChangePasswordFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
     }
-
+    @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.showBackButton();
+        titleBar.setSubHeading(getResString(R.string.change_password));
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();

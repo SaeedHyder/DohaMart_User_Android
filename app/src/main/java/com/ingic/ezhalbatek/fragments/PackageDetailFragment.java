@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
+import com.ingic.ezhalbatek.ui.views.TitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,6 +71,14 @@ public class PackageDetailFragment extends BaseFragment {
     }
 
     @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.showBackButton();
+        titleBar.setSubHeading(getResString(R.string.package_detail));
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
@@ -77,8 +86,14 @@ public class PackageDetailFragment extends BaseFragment {
 
     @OnClick(R.id.btnProceedPayment)
     public void onViewClicked() {
-        getDockActivity().popBackStackTillEntry(0);
-        getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
-        willbeimplementedinBeta();
+        dialogHelper.showCommonDialog(v -> {
+            prefHelper.setLoginStatus(true);
+            dialogHelper.hideDialog();
+            getDockActivity().popBackStackTillEntry(0);
+            getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
+        }, R.string.empty, R.string.thankyou, R.string.ok, R.string.empty, false, false);
+        dialogHelper.setCancelable(false);
+        dialogHelper.showDialog();
+
     }
 }

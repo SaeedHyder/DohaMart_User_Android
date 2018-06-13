@@ -46,6 +46,10 @@ class VerifyPhoneFragment : BaseFragment() {
         if (txtPinEntry.text.toString().trim().equals("")) {
             UIHelper.showShortToastInCenter(dockActivity, getString(R.string.verification_code_error))
             return false
+        }else if (txtPinEntry.text.toString().length<4) run {
+            UIHelper.showShortToastInCenter(dockActivity, getString(R.string.enter_valid_code_error))
+
+            return false
         } else {
             return true
         }

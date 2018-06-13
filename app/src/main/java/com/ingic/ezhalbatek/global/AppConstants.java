@@ -11,6 +11,7 @@ public class AppConstants {
     public static final String TOPIC_GLOBAL = "global";
     public static final String REGISTRATION_COMPLETE = "registrationComplete";
     public static final String PUSH_NOTIFICATION = "pushNotification";
+    public static final String FILE_PATH = "file://";
 
     // id to handle the notification in the notification tray
     public static  int NOTIFICATION_ID = 100;

@@ -20,6 +20,7 @@ import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.activities.DockActivity;
 import com.ingic.ezhalbatek.activities.MainActivity;
 import com.ingic.ezhalbatek.helpers.BasePreferenceHelper;
+import com.ingic.ezhalbatek.helpers.DialogHelper;
 import com.ingic.ezhalbatek.helpers.GPSTracker;
 import com.ingic.ezhalbatek.helpers.ServiceHelper;
 import com.ingic.ezhalbatek.helpers.UIHelper;
@@ -42,6 +43,7 @@ public abstract class BaseFragment extends Fragment implements webServiceRespons
 	protected ServiceHelper serviceHelper;
 
 	protected GPSTracker mGpsTracker;
+	protected DialogHelper dialogHelper;
 
 	protected  DockActivity myDockActivity;
 	//private DockActivity activity;
@@ -55,7 +57,7 @@ public abstract class BaseFragment extends Fragment implements webServiceRespons
 		}
 
 		mGpsTracker = new GPSTracker(getDockActivity());
-
+		dialogHelper  =new DialogHelper(getDockActivity());
 		if (webService == null) {
 			//webService = WebServiceFactory.getWebServiceInstanceWithCustomInterceptor(getDockActivity(),"End Point");
 		}

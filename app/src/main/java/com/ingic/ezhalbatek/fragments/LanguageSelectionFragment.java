@@ -55,7 +55,7 @@ public class LanguageSelectionFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        getMainActivity().changeBackgroundResources(R.drawable.bg);
     }
 
     @Override
@@ -76,6 +76,7 @@ public class LanguageSelectionFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_english:
+                getDockActivity().popBackStackTillEntry(0);
                 getDockActivity().replaceDockableFragment(LoginFragment.newInstance(),"LoginFragment");
                 break;
             case R.id.btn_arabic:
