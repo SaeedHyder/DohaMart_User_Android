@@ -17,9 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-/**
- * Created on 6/6/18.
- */
+
 public class MyServicesFragment extends BaseFragment {
     public static final String TAG = "MyServicesFragment";
     @BindView(R.id.txtPendingJobCount)
@@ -74,6 +72,7 @@ public class MyServicesFragment extends BaseFragment {
         changeColorToUnSelected(txtCompleteCount, txtCompleteText);
         replaceFragmentOnTab(PendingServicesFragment.newInstance());
     }
+
     private void changeColorToSelected(AnyTextView txtCount, AnyTextView txtTitle) {
         txtCount.setTextColor(getDockActivity().getResources().getColor(R.color.app_red));
         txtTitle.setTextColor(getDockActivity().getResources().getColor(R.color.app_red));

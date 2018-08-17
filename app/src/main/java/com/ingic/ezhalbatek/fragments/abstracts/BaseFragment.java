@@ -19,6 +19,7 @@ import com.andreabaccega.formedittextvalidator.Validator;
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.activities.DockActivity;
 import com.ingic.ezhalbatek.activities.MainActivity;
+import com.ingic.ezhalbatek.global.WebServiceConstants;
 import com.ingic.ezhalbatek.helpers.BasePreferenceHelper;
 import com.ingic.ezhalbatek.helpers.DialogHelper;
 import com.ingic.ezhalbatek.helpers.GPSTracker;
@@ -59,7 +60,7 @@ public abstract class BaseFragment extends Fragment implements webServiceRespons
 		mGpsTracker = new GPSTracker(getDockActivity());
 		dialogHelper  =new DialogHelper(getDockActivity());
 		if (webService == null) {
-			//webService = WebServiceFactory.getWebServiceInstanceWithCustomInterceptor(getDockActivity(),"End Point");
+			webService = WebServiceFactory.getWebServiceInstanceWithCustomInterceptor(getDockActivity(), WebServiceConstants.SERVICE_URL);
 		}
 		if (serviceHelper == null){
 			serviceHelper = new ServiceHelper(this,getDockActivity());
@@ -160,7 +161,7 @@ public abstract class BaseFragment extends Fragment implements webServiceRespons
 	}
 	
 	public String getTitleName() {
-		return "";
+		return this.getClass().getSimpleName();
 	}
 	
 	/**
@@ -328,5 +329,9 @@ public abstract class BaseFragment extends Fragment implements webServiceRespons
 	public void showGuestMessage(){
 		UIHelper.showShortToastInCenter(getDockActivity(),getResString(R.string.guest_message));
 	}
-	
+
+	@Override
+	public String toString() {
+		return this.getTitleName();
+	}
 }

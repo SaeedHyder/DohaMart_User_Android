@@ -22,9 +22,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-/**
- * Created by khan_muhammad on 9/15/2017.
- */
 
 public class NotificationsFragment extends BaseFragment {
 

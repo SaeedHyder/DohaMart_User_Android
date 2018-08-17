@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:scrollbars="none">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/x10"
-            android:src="@drawable/logo"/>
+            android:src="@drawable/logo" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/x10"
-                android:src="@drawable/email"/>
+                android:src="@drawable/email" />
 
             <com.ingic.ezhalbatek.ui.views.AnyEditTextView
                 android:id="@+id/edt_email"
@@ -46,7 +46,7 @@
                 android:textColor="@color/app_font_gray"
                 android:textColorHint="@color/app_font_gray"
                 android:textSize="@dimen/x14"
-                app:typeface="@string/font_normal"/>
+                app:typeface="@string/font_normal" />
         </LinearLayout>
 
         <LinearLayout
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/x10"
-                android:src="@drawable/pass"/>
+                android:src="@drawable/pass" />
 
             <com.ingic.ezhalbatek.ui.views.AnyEditTextView
                 android:id="@+id/edt_password"
@@ -76,7 +76,7 @@
                 android:textColor="@color/app_font_gray"
                 android:textColorHint="@color/app_font_gray"
                 android:textSize="@dimen/x14"
-                app:typeface="@string/font_normal"/>
+                app:typeface="@string/font_normal" />
         </LinearLayout>
 
         <com.ingic.ezhalbatek.ui.views.AnyTextView
@@ -89,7 +89,7 @@
             android:text="@string/reset_password"
             android:textColor="@color/app_font_gray"
             android:textSize="@dimen/x14"
-            app:typeface="@string/font_normal"/>
+            app:typeface="@string/font_normal" />
 
         <Button
             android:id="@+id/loginButton"
@@ -101,8 +101,7 @@
             android:background="@drawable/button_red"
             android:text="@string/sign_in"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            />
+            android:textColor="@color/white" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -119,7 +118,7 @@
                 android:text="@string/newuser"
                 android:textColor="@color/app_font_gray"
                 android:textSize="@dimen/x14"
-                app:typeface="@string/font_normal"/>
+                app:typeface="@string/font_normal" />
 
 
             <com.ingic.ezhalbatek.ui.views.AnyTextView
@@ -130,7 +129,7 @@
                 android:text="@string/create_account"
                 android:textColor="@color/app_font_dark_gray"
                 android:textSize="@dimen/x14"
-                app:typeface="@string/font_normal_dark"/>
+                app:typeface="@string/font_normal_dark" />
 
         </LinearLayout>
 
@@ -143,7 +142,7 @@
             android:text="@string/othersignin"
             android:textColor="@color/app_font_dark_gray"
             android:textSize="@dimen/x14"
-            app:typeface="@string/font_normal_dark"/>
+            app:typeface="@string/font_normal_dark" />
 
         <Button
             android:id="@+id/facebook_login"
@@ -155,8 +154,7 @@
             android:background="@drawable/button_blue"
             android:text="@string/facebook_login"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            />
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/guest_login"
@@ -168,7 +166,6 @@
             android:background="@drawable/button_gray_dark"
             android:text="@string/guest_user"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            />
+            android:textColor="@color/white" />
     </LinearLayout>
 </ScrollView>

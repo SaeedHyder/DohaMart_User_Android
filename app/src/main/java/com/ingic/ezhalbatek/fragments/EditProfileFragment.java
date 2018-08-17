@@ -120,7 +120,7 @@ public class EditProfileFragment extends BaseFragment {
                             .setActivityTheme(R.style.AppTheme)
                             .pickPhoto(EditProfileFragment.this);
                 })
-                .onDenied(permissions -> {
+                .onDenied(permStrings -> {
                     UIHelper.showShortToastInCenter(getDockActivity(), getResString(R.string.permission_error));
                 })
                 .start();

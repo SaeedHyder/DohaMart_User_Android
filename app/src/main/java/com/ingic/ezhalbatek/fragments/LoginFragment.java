@@ -7,13 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
 import com.ingic.ezhalbatek.ui.views.AnyEditTextView;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
 import com.ingic.ezhalbatek.ui.views.TitleBar;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -77,10 +75,8 @@ public class LoginFragment extends BaseFragment {
                 getDockActivity().replaceDockableFragment(ResetPasswordFragment.Companion.newInstance(), ResetPasswordFragment.Companion.getTag());
                 break;
             case R.id.loginButton:
-                if (isvalidated()) {
-                    prefHelper.setLoginStatus(true);
-                    getDockActivity().popBackStackTillEntry(0);
-                    getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragmnet");
+                if (isValidated()) {
+                   loginUser();
                 }
                 break;
             case R.id.btn_register:
@@ -95,7 +91,14 @@ public class LoginFragment extends BaseFragment {
         }
     }
 
-    private boolean isvalidated() {
+    private void loginUser() {
+
+        getDockActivity().popBackStackTillEntry(0);
+        getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
+
+    }
+
+    private boolean isValidated() {
         if (edtEmail.getText() == null || (edtEmail.getText().toString().isEmpty()) ||
                 !(Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText().toString()).matches())) {
             edtEmail.setError(getString(R.string.enter_valid_email));

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.text.Html;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -265,6 +266,7 @@ public class MainActivity extends DockActivity implements OnClickListener {
                         drawerLayout.openDrawer(Gravity.LEFT);
                     } else {
                         drawerLayout.openDrawer(Gravity.RIGHT);
+                        
                     }
                 } else {
                     resideMenu.openMenu(sideMenuDirection);

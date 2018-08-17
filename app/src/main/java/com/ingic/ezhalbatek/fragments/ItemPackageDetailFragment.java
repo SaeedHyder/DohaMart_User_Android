@@ -60,7 +60,6 @@ public class ItemPackageDetailFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         bindRecyclerView();
-
     }
 
     @Override

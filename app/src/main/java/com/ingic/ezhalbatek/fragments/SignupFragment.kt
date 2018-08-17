@@ -13,7 +13,7 @@ import com.ingic.ezhalbatek.ui.views.KotterKnife
 import com.ingic.ezhalbatek.ui.views.TitleBar
 import com.ingic.ezhalbatek.ui.views.bindView
 
-/**
+/**l
  * Created on 5/19/18.
  */
 class SignupFragment : BaseFragment(), View.OnClickListener {
