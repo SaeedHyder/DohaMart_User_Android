@@ -919,4 +919,19 @@ public class DateHelper {
 		}
 	}
 
+	public static boolean TwoHoursCheck(int starthour, int starmin, int endhour, int endmin) {
+		if (starthour+2 > endhour) { //Same way you can check with after() method also.
+			return false;
+		} else {
+
+			if ((starthour+2) >= endhour && starmin > endmin) {
+				return false;
+			} else {
+				return true;
+			}
+
+
+		}
+	}
+
 }

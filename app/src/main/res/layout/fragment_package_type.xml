@@ -1,142 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"
-        android:scaleType="fitXY"
-        android:src="@drawable/image"/>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.6"
-        android:orientation="vertical"
-        android:padding="@dimen/x10">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:scaleType="fitXY"
+            android:src="@drawable/image" />
+
+
+        <com.ingic.ezhalbatek.ui.views.AnyTextView
+            android:id="@+id/txt_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:visibility="gone"
+            android:gravity="center"
+            android:text="@string/no_subscription_package_found"
+            android:textColor="@color/dark_grey"
+            android:layout_gravity="center"
+            app:typeface="Roboto-Regular.ttf"
+            android:textSize="@dimen/x16"
+
+            />
+
+        <com.ingic.ezhalbatek.ui.views.CustomRecyclerView
+            android:id="@+id/rv_subPackages"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:padding="@dimen/x10" />
 
         <LinearLayout
-            android:id="@+id/btn_platinium"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_toggle"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:orientation="vertical"
+            android:padding="@dimen/x10"
+            android:visibility="gone">
 
-            <com.ingic.ezhalbatek.ui.views.AnyTextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:layout_weight="0.17"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="01"
-                android:textColor="@color/white"
-                android:textSize="@dimen/x18"
-                app:typeface="@string/font_bold"/>
-
-            <com.ingic.ezhalbatek.ui.views.AnyTextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:textAllCaps="true"
-                android:layout_weight="0.73"
-                android:paddingStart="@dimen/x20"
-                android:gravity="start|center_vertical"
-                android:text="@string/platinium_package"
-                android:textColor="@color/app_font_dark_gray"
-                android:textSize="@dimen/x18"
-                app:typeface="@string/font_normal"/>
-
-            <ImageView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/btn_platinium"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0.1"
-                android:src="@drawable/rightarrow"/>
-        </LinearLayout>
+                android:background="@drawable/btn_toggle"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/btn_gold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x20"
-            android:background="@drawable/btn_toggle"
-            android:orientation="horizontal">
+                <com.ingic.ezhalbatek.ui.views.AnyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:layout_weight="0.17"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="01"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x18"
+                    app:typeface="@string/font_bold" />
 
-            <com.ingic.ezhalbatek.ui.views.AnyTextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:layout_weight="0.17"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="02"
-                android:textColor="@color/white"
-                android:textSize="@dimen/x18"
-                app:typeface="@string/font_bold"/>
+                <com.ingic.ezhalbatek.ui.views.AnyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.73"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="@dimen/x20"
+                    android:text="@string/platinium_package"
+                    android:textAllCaps="true"
+                    android:textColor="@color/app_font_dark_gray"
+                    android:textSize="@dimen/x18"
+                    app:typeface="@string/font_normal" />
 
-            <com.ingic.ezhalbatek.ui.views.AnyTextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:textAllCaps="true"
-                android:layout_weight="0.73"
-                android:paddingStart="@dimen/x20"
-                android:gravity="start|center_vertical"
-                android:text="@string/gold_package"
-                android:textColor="@color/app_font_dark_gray"
-                android:textSize="@dimen/x18"
-                app:typeface="@string/font_normal"/>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.1"
+                    android:src="@drawable/rightarrow" />
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/btn_gold"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0.1"
-                android:src="@drawable/rightarrow"/>
-        </LinearLayout>
+                android:layout_marginTop="@dimen/x20"
+                android:background="@drawable/btn_toggle"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/btn_silver"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x20"
-            android:background="@drawable/btn_toggle"
-            android:orientation="horizontal">
+                <com.ingic.ezhalbatek.ui.views.AnyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:layout_weight="0.17"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="02"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x18"
+                    app:typeface="@string/font_bold" />
 
-            <com.ingic.ezhalbatek.ui.views.AnyTextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:layout_weight="0.17"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="03"
-                android:textColor="@color/white"
-                android:textSize="@dimen/x18"
-                app:typeface="@string/font_bold"/>
+                <com.ingic.ezhalbatek.ui.views.AnyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.73"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="@dimen/x20"
+                    android:text="@string/gold_package"
+                    android:textAllCaps="true"
+                    android:textColor="@color/app_font_dark_gray"
+                    android:textSize="@dimen/x18"
+                    app:typeface="@string/font_normal" />
 
-            <com.ingic.ezhalbatek.ui.views.AnyTextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:textAllCaps="true"
-                android:layout_weight="0.73"
-                android:paddingStart="@dimen/x20"
-                android:gravity="start|center_vertical"
-                android:text="@string/silver_package"
-                android:textColor="@color/app_font_dark_gray"
-                android:textSize="@dimen/x18"
-                app:typeface="@string/font_normal"/>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.1"
+                    android:src="@drawable/rightarrow" />
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/btn_silver"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0.1"
-                android:src="@drawable/rightarrow"/>
+                android:layout_marginTop="@dimen/x20"
+                android:background="@drawable/btn_toggle"
+                android:orientation="horizontal">
+
+                <com.ingic.ezhalbatek.ui.views.AnyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:layout_weight="0.17"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="03"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x18"
+                    app:typeface="@string/font_bold" />
+
+                <com.ingic.ezhalbatek.ui.views.AnyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.73"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="@dimen/x20"
+                    android:text="@string/silver_package"
+                    android:textAllCaps="true"
+                    android:textColor="@color/app_font_dark_gray"
+                    android:textSize="@dimen/x18"
+                    app:typeface="@string/font_normal" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.1"
+                    android:src="@drawable/rightarrow" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
-</LinearLayout>
+</android.support.v4.widget.NestedScrollView>

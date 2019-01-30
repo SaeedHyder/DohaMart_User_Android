@@ -1,38 +1,85 @@
 package com.ingic.ezhalbatek.entities;
 
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class CreateRequest {
 
-    public String job_title;
-    public String service_ids;
-    public String description;
-    public String latitude;
-    public String longitude;
-    public String full_address;
-    public String date;
-    public String time;
-    public String total;
-    public String payment_type;
-    public String currency_code;
-    public String user_id;
-    public String images;
-    public String additional_jobs;
+    @SerializedName("job_title")
+    @Expose
+    private String jobTitle;
+    @SerializedName("service_ids")
+    @Expose
+    private String serviceIds;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("latitude")
+    @Expose
+    private String latitude;
+    @SerializedName("longitude")
+    @Expose
+    private String longitude;
+    @SerializedName("location")
+    @Expose
+    private String location;
+    @SerializedName("full_address")
+    @Expose
+    private String fullAddress;
+    @SerializedName("date")
+    @Expose
+    private String date;
+    @SerializedName("time")
+    @Expose
+    private String time;
+    @SerializedName("total")
+    @Expose
+    private String total;
+    @SerializedName("payment_type")
+    @Expose
+    private String paymentType;
+    @SerializedName("currency_code")
+    @Expose
+    private String currencyCode;
+    @SerializedName("user_id")
+    @Expose
+    private Integer userId;
+    @SerializedName("is_urgent")
+    @Expose
+    private Integer isUrgent;
 
-    public String getJob_title() {
-        return job_title;
+    public CreateRequest(String jobTitle, String serviceIds, String description, String latitude, String longitude, String location, String fullAddress, String date, String time, String total, String paymentType, String currencyCode, Integer userId, Integer isUrgent) {
+        this.jobTitle = jobTitle;
+        this.serviceIds = serviceIds;
+        this.description = description;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.location = location;
+        this.fullAddress = fullAddress;
+        this.date = date;
+        this.time = time;
+        this.total = total;
+        this.paymentType = paymentType;
+        this.currencyCode = currencyCode;
+        this.userId = userId;
+        this.isUrgent = isUrgent;
     }
 
-    public void setJob_title(String job_title) {
-        this.job_title = job_title;
+    public String getJobTitle() {
+        return jobTitle;
     }
 
-    public String getService_ids() {
-        return service_ids;
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
     }
 
-    public void setService_ids(String service_ids) {
-        this.service_ids = service_ids;
+    public String getServiceIds() {
+        return serviceIds;
+    }
+
+    public void setServiceIds(String serviceIds) {
+        this.serviceIds = serviceIds;
     }
 
     public String getDescription() {
@@ -59,12 +106,20 @@ public class CreateRequest {
         this.longitude = longitude;
     }
 
-    public String getFull_address() {
-        return full_address;
+    public String getLocation() {
+        return location;
     }
 
-    public void setFull_address(String full_address) {
-        this.full_address = full_address;
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getFullAddress() {
+        return fullAddress;
+    }
+
+    public void setFullAddress(String fullAddress) {
+        this.fullAddress = fullAddress;
     }
 
     public String getDate() {
@@ -91,43 +146,35 @@ public class CreateRequest {
         this.total = total;
     }
 
-    public String getPayment_type() {
-        return payment_type;
+    public String getPaymentType() {
+        return paymentType;
     }
 
-    public void setPayment_type(String payment_type) {
-        this.payment_type = payment_type;
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
     }
 
-    public String getCurrency_code() {
-        return currency_code;
+    public String getCurrencyCode() {
+        return currencyCode;
     }
 
-    public void setCurrency_code(String currency_code) {
-        this.currency_code = currency_code;
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getImages() {
-        return images;
+    public Integer getIsUrgent() {
+        return isUrgent;
     }
 
-    public void setImages(String images) {
-        this.images = images;
-    }
-
-    public String getAdditional_jobs() {
-        return additional_jobs;
-    }
-
-    public void setAdditional_jobs(String additional_jobs) {
-        this.additional_jobs = additional_jobs;
+    public void setIsUrgent(Integer isUrgent) {
+        this.isUrgent = isUrgent;
     }
 }

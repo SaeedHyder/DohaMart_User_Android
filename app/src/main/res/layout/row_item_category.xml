@@ -12,7 +12,6 @@
         app:cardBackgroundColor="@color/app_gray_brown"
         app:cardCornerRadius="4dp"
         app:cardElevation="2dp"
-        app:cardMaxElevation="5dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true">
 

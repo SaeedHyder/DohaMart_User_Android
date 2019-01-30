@@ -60,6 +60,7 @@ class SubscriptionDetailFragment : BaseFragment() {
         titleBar.showBackButton()
         titleBar.setSubHeading(getResString(R.string.subscriptions))
     }
+
     private fun openLocationSelector() {
 
         try {
@@ -106,7 +107,7 @@ class SubscriptionDetailFragment : BaseFragment() {
 
     private fun bindViewPager() {
         for (i in 1..5) {
-            pagerAdapter.addFragment(ItemPackageDetailFragment.newInstance())
+          //  pagerAdapter.addFragment(ItemPackageDetailFragment.newInstance())
         }
         setPagerSetting()
         pager.adapter = pagerAdapter
@@ -118,8 +119,7 @@ class SubscriptionDetailFragment : BaseFragment() {
         /* pager.setPadding(20, 8, 20, 8);
     pager.setOffscreenPageLimit(3);*/
         pager.setPageTransformer(false) { page, position ->
-            val pageWidth = pager.measuredWidth -
-                    pager.paddingLeft - pager.paddingRight
+            val pageWidth = pager.measuredWidth - pager.paddingLeft - pager.paddingRight
             val pageHeight = pager.height
             val paddingLeft = pager.paddingLeft
             val transformPos = (page.left - (pager.scrollX + paddingLeft)).toFloat() / pageWidth

@@ -2,19 +2,26 @@ package com.ingic.ezhalbatek.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.android.gms.location.places.Place;
 import com.ingic.ezhalbatek.R;
+import com.ingic.ezhalbatek.entities.LoginModule.UserEnt;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
 import com.ingic.ezhalbatek.global.AppConstants;
+import com.ingic.ezhalbatek.global.WebServiceConstants;
 import com.ingic.ezhalbatek.helpers.UIHelper;
 import com.ingic.ezhalbatek.ui.views.AnyEditTextView;
+import com.ingic.ezhalbatek.ui.views.AutoCompleteLocation;
 import com.ingic.ezhalbatek.ui.views.TitleBar;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yanzhenjie.permission.AndPermission;
@@ -28,6 +35,8 @@ import droidninja.filepicker.FilePickerBuilder;
 import droidninja.filepicker.FilePickerConst;
 import droidninja.filepicker.utils.Orientation;
 
+import static com.ingic.ezhalbatek.global.WebServiceConstants.UPDATEPROFILE;
+
 /**
  * Created on 6/5/18.
  */
@@ -36,9 +45,9 @@ public class EditProfileFragment extends BaseFragment {
     @BindView(R.id.btnProfielImage)
     ImageView btnProfielImage;
     @BindView(R.id.edt_name)
-    AnyEditTextView edtName;
+    EditText edtName;
     @BindView(R.id.edt_email)
-    AnyEditTextView edtEmail;
+    TextView edtEmail;
     @BindView(R.id.edtPhone)
     AnyEditTextView edtPhone;
     @BindView(R.id.edtCity)
@@ -48,6 +57,15 @@ public class EditProfileFragment extends BaseFragment {
     @BindView(R.id.btn_register)
     Button btnRegister;
     Unbinder unbinder;
+    @BindView(R.id.btnImagePick)
+    ImageView btnImagePick;
+    @BindView(R.id.AutoComplete)
+    AutoCompleteLocation AutoComplete;
+
+    private String location = "";
+    private String latitude = "";
+    private String longitude = "";
+    private long mLastClickTime = 0;
 
     public static EditProfileFragment newInstance() {
         Bundle args = new Bundle();
@@ -78,14 +96,14 @@ public class EditProfileFragment extends BaseFragment {
         if (edtName.getText().toString().isEmpty() || edtName.getText().toString().length() < 3) {
             edtName.setError(getString(R.string.enter_name));
             return false;
-        } else if (edtEmail.getText() == null || (edtEmail.getText().toString().isEmpty()) ||
+        } /*else if (edtEmail.getText() == null || (edtEmail.getText().toString().isEmpty()) ||
                 (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText().toString()).matches())) {
             edtEmail.setError(getString(R.string.enter_valid_email));
             return false;
-        } else if (edtPhone.getText().toString().equals("") && edtPhone.getText().toString().isEmpty()) {
-            edtPhone.setError(getString(R.string.enter_phone));
+        } */ else if (AutoComplete.getText().toString().equals("") || AutoComplete.getText().toString().isEmpty() || AutoComplete.getText().toString().trim().equals("")) {
+            AutoComplete.setError(getString(R.string.location_error));
             return false;
-        } else if (edtPhone.getText().toString().length() < 9 || edtPhone.getText().toString().length() > 16) {
+        }/* else if (edtPhone.getText().toString().length() < 9 || edtPhone.getText().toString().length() > 16) {
             edtPhone.setError(getString(R.string.numberLength));
             return false;
         } else if (edtCity.getText().toString().isEmpty()) {
@@ -98,7 +116,7 @@ public class EditProfileFragment extends BaseFragment {
         } else if (edtZipCode.getText().toString().isEmpty() || edtZipCode.getText().toString().length() < 3) {
             edtZipCode.setError(getString(R.string.enter_zipcode));
             return false;
-        } else {
+        }*/ else {
             return true;
         }
 
@@ -150,13 +168,42 @@ public class EditProfileFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        setData();
+        autoCompleteListner();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+    private void setData() {
+
+        if (prefHelper.getUser() != null) {
+            edtName.setText(prefHelper.getUser().getFullName() + "");
+            edtEmail.setText(prefHelper.getUser().getEmail() + "");
+            if (prefHelper.getUser().getLocation() != null && !prefHelper.getUser().getLocation().equals("")) {
+                AutoComplete.setText(prefHelper.getUser().getLocation() + "");
+            }
+
+            location = prefHelper.getUser().getLocation() != null ? prefHelper.getUser().getLocation() : "";
+            latitude = prefHelper.getUser().getLatitude() != null ? prefHelper.getUser().getLatitude() : "";
+            longitude = prefHelper.getUser().getLongitude() != null ? prefHelper.getUser().getLongitude() : "";
+        }
     }
+
+    private void autoCompleteListner() {
+
+        AutoComplete.setAutoCompleteTextListener(new AutoCompleteLocation.AutoCompleteLocationListener() {
+            @Override
+            public void onTextClear() {
+
+            }
+
+            @Override
+            public void onItemSelected(Place selectedPlace) {
+                location = selectedPlace.getAddress() + "";
+                latitude = selectedPlace.getLatLng().latitude + "";
+                longitude = selectedPlace.getLatLng().longitude + "";
+            }
+        });
+    }
+
 
     @OnClick({R.id.btnProfielImage, R.id.btn_register})
     public void onViewClicked(View view) {
@@ -166,10 +213,28 @@ public class EditProfileFragment extends BaseFragment {
                 break;
 
             case R.id.btn_register:
-                if (isvalidated()) {
-                    getDockActivity().popBackStackTillEntry(0);
-                    getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), HomeFragment.TAG);
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                    return;
                 }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
+                if (isvalidated()) {
+                    serviceHelper.enqueueCall(webService.updateProfile(prefHelper.getUser().getId() + "", edtName.getText().toString(), prefHelper.getUser().getEmail() != null ? prefHelper.getUser().getEmail() : "",
+                            location, location, latitude, longitude), UPDATEPROFILE);
+
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        super.ResponseSuccess(result, Tag, message);
+        switch (Tag) {
+            case UPDATEPROFILE:
+                UserEnt userEnt = (UserEnt) result;
+                prefHelper.putUser(userEnt);
+                getDockActivity().popFragment();
                 break;
         }
     }

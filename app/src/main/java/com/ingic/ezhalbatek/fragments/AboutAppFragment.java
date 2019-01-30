@@ -8,12 +8,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ingic.ezhalbatek.R;
+import com.ingic.ezhalbatek.entities.CMSEnt;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
+import com.ingic.ezhalbatek.global.AppConstants;
+import com.ingic.ezhalbatek.global.WebServiceConstants;
+import com.ingic.ezhalbatek.retrofit.WebService;
 import com.ingic.ezhalbatek.ui.views.TitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+
+import static com.ingic.ezhalbatek.global.WebServiceConstants.CMS;
 
 /**
  * Created on 6/5/18.
@@ -24,11 +30,16 @@ public class AboutAppFragment extends BaseFragment {
     TextView scrollTv1;
     Unbinder unbinder;
 
-    public static AboutAppFragment newInstance() {
-        Bundle args = new Bundle();
+    private static String Key;
+    private static String TitleKey;
 
+    public static AboutAppFragment newInstance(String dataKey,String title) {
+        Bundle args = new Bundle();
+        Key=dataKey;
+        TitleKey=title;
         AboutAppFragment fragment = new AboutAppFragment();
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -44,25 +55,36 @@ public class AboutAppFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about_app, container, false);
         unbinder = ButterKnife.bind(this, view);
+
         return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        scrollTv1.setText(getResString(R.string.lorem_ipsum));
-        scrollTv1.setMovementMethod(new ScrollingMovementMethod());
+        serviceHelper.enqueueCall(webService.CMS(Key), CMS);
     }
+
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        super.ResponseSuccess(result, Tag, message);
+        switch (Tag){
+            case CMS:
+                CMSEnt ent=(CMSEnt)result;
+                scrollTv1.setText(ent.getBody());
+                scrollTv1.setMovementMethod(new ScrollingMovementMethod());
+
+                break;
+
+        }
+    }
+
     @Override
     public void setTitleBar(TitleBar titleBar) {
         super.setTitleBar(titleBar);
         titleBar.hideButtons();
         titleBar.showBackButton();
-        titleBar.setSubHeading(getResString(R.string.about_app));
+        titleBar.setSubHeading(TitleKey);
     }
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+
 }

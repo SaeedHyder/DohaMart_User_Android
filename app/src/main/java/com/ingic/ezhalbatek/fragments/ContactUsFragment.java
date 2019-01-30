@@ -8,6 +8,8 @@ import android.widget.Button;
 
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
+import com.ingic.ezhalbatek.global.WebServiceConstants;
+import com.ingic.ezhalbatek.helpers.UIHelper;
 import com.ingic.ezhalbatek.ui.views.AnyEditTextView;
 import com.ingic.ezhalbatek.ui.views.TitleBar;
 
@@ -15,6 +17,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+
+import static com.ingic.ezhalbatek.global.WebServiceConstants.CONTACTUS;
 
 /**
  * Created on 6/5/18.
@@ -59,7 +63,7 @@ public class ContactUsFragment extends BaseFragment {
 
     private boolean isvalidated() {
 
-        if (edtName.getText().toString().isEmpty()) {
+        /*if (edtName.getText().toString().isEmpty()) {
             edtName.setError(getString(R.string.enter_name));
             return false;
         } else if (edtPhone.getText().toString().equals("") && edtPhone.getText().toString().isEmpty()) {
@@ -75,7 +79,7 @@ public class ContactUsFragment extends BaseFragment {
 
             edtCity.setError(getString(R.string.enter_valid_city));
             return false;
-        } else if (edtQuery.getText().toString().isEmpty() || edtQuery.getText().toString().length() < 3) {
+        } else*/ if (edtQuery.getText().toString().isEmpty() || edtQuery.getText().toString().length() < 3 || edtQuery.getText().toString().trim().equals("")) {
             edtQuery.setError(getString(R.string.enter_query));
             return false;
         } else {
@@ -97,17 +101,25 @@ public class ContactUsFragment extends BaseFragment {
 
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+
 
     @OnClick(R.id.btnSubmit)
     public void onViewClicked() {
         if (isvalidated()) {
-            getDockActivity().popBackStackTillEntry(0);
-            getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), HomeFragment.TAG);
+            serviceHelper.enqueueCall(webService.contactUs(prefHelper.getUser().getEmail()+"",edtQuery.getText().toString()), CONTACTUS);
+
+        }
+    }
+
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        super.ResponseSuccess(result, Tag, message);
+        switch (Tag){
+            case CONTACTUS:
+                UIHelper.showShortToastInCenter(getDockActivity(),message);
+                getDockActivity().popBackStackTillEntry(0);
+                getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), HomeFragment.TAG);
+                break;
         }
     }
 }

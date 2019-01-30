@@ -5,18 +5,13 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/x5"
-        app:cardElevation="3dp"
-        app:cardMaxElevation="5dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_stroke_grey"
+            android:layout_marginTop="@dimen/x10"
             android:orientation="vertical">
 
             <com.ingic.ezhalbatek.ui.views.AnyTextView
@@ -38,7 +33,7 @@
                 android:layout_height="0.5dp"
                 android:layout_marginBottom="@dimen/x5"
                 android:layout_marginTop="@dimen/x5"
-                android:background="@color/app_font_dark_gray"/>
+                android:background="@color/camera_color"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -111,7 +106,7 @@
                 android:orientation="horizontal">
 
                 <com.ingic.ezhalbatek.ui.views.AnyTextView
-
+                    android:id="@+id/txtVisitDateHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
@@ -137,5 +132,4 @@
 
 
         </LinearLayout>
-    </android.support.v7.widget.CardView>
 </RelativeLayout>

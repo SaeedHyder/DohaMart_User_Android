@@ -13,21 +13,41 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/x10"
+        android:paddingLeft="@dimen/x15"
+        android:paddingEnd="@dimen/x12"
+        android:paddingTop="@dimen/x15"
+        android:paddingBottom="@dimen/x15"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_launcher"
+        android:src="@drawable/backbtn"
         android:visibility="visible" />
 
 
     <com.ingic.ezhalbatek.ui.views.AnyTextView
         android:id="@+id/txt_subHead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
+        android:paddingStart="@dimen/x35"
+        android:paddingEnd="@dimen/x35"
+        android:singleLine="true"
         android:gravity="center"
-        android:text="Template"
+        android:text="Home"
         android:textColor="@color/app_font_dark_gray"
-        android:textSize="@dimen/x22"
+        android:textSize="@dimen/x18"
+        app:typeface="@string/font_normal_dark" />
+
+    <com.ingic.ezhalbatek.ui.views.AnyTextView
+        android:id="@+id/txt_delete_all"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:text="@string/delete_all"
+        android:textColor="@color/app_red"
+        android:paddingLeft="@dimen/x15"
+        android:paddingRight="@dimen/x15"
+        android:textSize="@dimen/x14"
+        android:visibility="gone"
         app:typeface="@string/font_normal_dark" />
 
     <ImageView
@@ -39,7 +59,9 @@
         android:layout_toStartOf="@+id/btnRight2"
         android:paddingBottom="@dimen/x5"
         android:paddingTop="@dimen/x5"
-        android:src="@drawable/ic_launcher"
+        android:paddingStart="@dimen/x5"
+        android:paddingEnd="@dimen/x5"
+        android:src="@drawable/notification"
         android:visibility="visible"/>
 
     <ImageView
@@ -49,9 +71,8 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/x10"
-        android:paddingBottom="@dimen/x5"
-        android:paddingTop="@dimen/x5"
-        android:src="@drawable/ic_launcher"
+        android:padding="@dimen/x5"
+        android:src="@drawable/notification"
         android:visibility="visible"/>
 
     <RelativeLayout
@@ -70,12 +91,8 @@
             android:background="@drawable/badge_drawable"
             android:gravity="center"
             android:maxLength="2"
-            android:paddingBottom="@dimen/x3"
-            android:paddingLeft="@dimen/x4"
-            android:paddingRight="@dimen/x4"
-            android:paddingTop="@dimen/x3"
-            android:text="22"
-            android:textColor="@color/black"
+            android:text="2"
+            android:textColor="@color/white"
             android:textSize="@dimen/x7"
             app:typeface="@string/font_bold"
             />

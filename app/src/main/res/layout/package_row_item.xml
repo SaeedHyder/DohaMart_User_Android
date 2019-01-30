@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   >
+
+    <LinearLayout
+        android:id="@+id/btn_platinium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x15"
+        android:background="@drawable/btn_toggle">
+
+        <com.ingic.ezhalbatek.ui.views.AnyTextView
+            android:id="@+id/txt_package_no"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:layout_weight="0.17"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="01"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x18"
+            app:typeface="@string/font_bold" />
+
+        <com.ingic.ezhalbatek.ui.views.AnyTextView
+            android:id="@+id/txt_package_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="0.73"
+            android:gravity="start|center_vertical"
+            android:paddingStart="@dimen/x20"
+            android:text="@string/platinium_package"
+            android:textAllCaps="true"
+            android:textColor="@color/app_font_dark_gray"
+            android:textSize="@dimen/x18"
+            app:typeface="@string/font_normal_dark" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.1"
+            android:src="@drawable/rightarrow" />
+
+    </LinearLayout>
+</RelativeLayout>
+
+

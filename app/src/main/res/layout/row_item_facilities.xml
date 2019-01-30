@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+
+    <com.ingic.ezhalbatek.ui.views.AnyTextView
+        android:id="@+id/txt_jobselectedtext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:maxLines="1"
+        android:text="@string/selected_jobs"
+        android:textSize="@dimen/x14"
+        android:textStyle="normal"
+        android:textColor="@color/app_font_dark_gray"
+        app:typeface="@string/font_normal_dark" />
+
+
+</LinearLayout>

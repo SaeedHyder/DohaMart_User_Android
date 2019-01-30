@@ -4,7 +4,16 @@ public class ResponseWrapper<T> {
 
     private String Message;
     private String Response;
+    private boolean is_blocked;
     private T Result;
+
+    public boolean isIs_blocked() {
+        return is_blocked;
+    }
+
+    public void setIs_blocked(boolean is_blocked) {
+        this.is_blocked = is_blocked;
+    }
 
     public String getMessage() {
         return Message;

@@ -45,9 +45,10 @@
                     android:layout_height="0.5dp"
                     android:layout_marginBottom="@dimen/x5"
                     android:layout_marginTop="@dimen/x5"
-                    android:background="@color/app_font_dark_gray"/>
+                    android:background="@color/camera_color"/>
 
                 <com.ingic.ezhalbatek.ui.views.AnyTextView
+                    android:id="@+id/txtFacilities"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
@@ -58,6 +59,14 @@
                     android:textSize="@dimen/x14"
                     app:typeface="@string/font_normal_dark"/>
 
+                <com.ingic.ezhalbatek.ui.views.CustomRecyclerView
+                    android:id="@+id/rv_jobs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/x10"
+                    android:layout_marginEnd="@dimen/x10"
+                    android:layout_marginStart="@dimen/x10"/>
+
                 <com.ingic.ezhalbatek.ui.views.AnyTextView
                     android:id="@+id/txtFeatures"
                     android:layout_width="match_parent"
@@ -66,6 +75,7 @@
                     android:layout_marginEnd="@dimen/x10"
                     android:layout_marginStart="@dimen/x10"
                     android:textSize="@dimen/x14"
+                    android:visibility="gone"
                     android:text="@string/lorem_ipsum"
                     app:typeface="@string/font_normal_dark"/>
 
@@ -104,7 +114,7 @@
                     android:layout_height="0.5dp"
                     android:layout_marginBottom="@dimen/x5"
                     android:layout_marginTop="@dimen/x5"
-                    android:background="@color/app_font_dark_gray"/>
+                    android:background="@color/camera_color"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -191,7 +201,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:gravity="center"
+                        android:textAlignment="viewStart"
                         android:text="Dubai Marina, Near Marina"
                         android:textColor="@color/black"
                         android:textSize="@dimen/x14"

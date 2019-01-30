@@ -1,6 +1,8 @@
 package com.ingic.ezhalbatek.entities;
 
 
+import com.ingic.ezhalbatek.entities.ServiceStatus.ServiceDetail;
+
 import java.util.List;
 
 public class RequestCreated {

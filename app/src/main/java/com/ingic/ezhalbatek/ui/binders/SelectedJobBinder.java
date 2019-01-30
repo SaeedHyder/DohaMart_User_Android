@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.ingic.ezhalbatek.R;
+import com.ingic.ezhalbatek.entities.SubServiceEnt;
 import com.ingic.ezhalbatek.helpers.BasePreferenceHelper;
 import com.ingic.ezhalbatek.interfaces.onDeleteImage;
 import com.ingic.ezhalbatek.ui.viewbinders.abstracts.RecyclerViewBinder;
@@ -17,7 +18,7 @@ import butterknife.ButterKnife;
  * Created on 5/23/2017.
  */
 
-public class SelectedJobBinder extends RecyclerViewBinder<String> {
+public class SelectedJobBinder extends RecyclerViewBinder<SubServiceEnt> {
     BasePreferenceHelper preferenceHelper;
     private onDeleteImage onDeleteImage;
 
@@ -34,9 +35,10 @@ public class SelectedJobBinder extends RecyclerViewBinder<String> {
     }
 
     @Override
-    public void bindView(String entity, final int position, Object viewHolder, Context context) {
+    public void bindView(SubServiceEnt entity, final int position, Object viewHolder, Context context) {
         SelectedJobsViewHolder holder = (SelectedJobsViewHolder) viewHolder;
-        holder.txtJobselectedtext.setText(entity);
+        holder.txtJobselectedtext.setText(entity.getTitle()+"");
+        holder.txt_jobselectedAmount.setText("AED "+entity.getAmount()+"");
 
         holder.deleteText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +52,8 @@ public class SelectedJobBinder extends RecyclerViewBinder<String> {
     public static class SelectedJobsViewHolder extends BaseViewHolder {
         @BindView(R.id.txt_jobselectedtext)
         AnyTextView txtJobselectedtext;
+        @BindView(R.id.txt_jobselectedAmount)
+        AnyTextView txt_jobselectedAmount;
         @BindView(R.id.delete_text)
         ImageView deleteText;
 

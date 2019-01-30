@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg2"
+    android:id="@+id/ll_mainFrame"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:alpha="1"
+        android:background="@color/camera_color" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/x80"
-        android:background="@drawable/bg2"
+
         android:orientation="horizontal">
 
         <LinearLayout
@@ -23,12 +31,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="1"
+                android:gravity="center"
+                android:text="0"
                 android:textColor="@color/app_font_black"
                 android:textSize="@dimen/x30"
-                app:typeface="@string/font_normal_dark"
-                />
+                app:typeface="@string/font_normal_dark" />
 
             <com.ingic.ezhalbatek.ui.views.AnyTextView
                 android:id="@+id/txtPendingText"
@@ -38,23 +45,17 @@
                 android:gravity="center"
                 android:text="@string/pending"
                 android:textColor="@color/app_font_black"
-                app:typeface="@string/font_normal_dark"
-                />
+                app:typeface="@string/font_normal_dark" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginTop="@dimen/x10"
-                android:alpha="1"
-                android:background="@color/app_font_gray"/>
+
         </LinearLayout>
 
 
         <View
             android:layout_width="0.5dp"
-            android:layout_height="@dimen/x80"
+            android:layout_height="match_parent"
             android:alpha="1"
-            android:background="@color/app_font_gray"/>
+            android:background="@color/camera_color" />
 
         <LinearLayout
             android:id="@+id/btnCompleteJobs"
@@ -68,12 +69,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center_horizontal"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:text="0"
                 android:textColor="@color/app_red"
                 android:textSize="@dimen/x30"
-                app:typeface="@string/font_normal_dark"
-                />
+                app:typeface="@string/font_normal_dark" />
 
             <com.ingic.ezhalbatek.ui.views.AnyTextView
                 android:id="@+id/txtCompleteText"
@@ -81,24 +82,29 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/complete"
+                android:text="@string/history"
                 android:textColor="@color/app_red"
-                app:typeface="@string/font_normal_dark"/>
+                app:typeface="@string/font_normal_dark" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginTop="@dimen/x10"
-                android:alpha="1"
-                android:background="@color/app_font_gray"/>
+
         </LinearLayout>
 
+
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:alpha="1"
+        android:background="@color/camera_color" />
 
     <LinearLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"/>
+        android:layout_marginStart="@dimen/x10"
+        android:layout_marginEnd="@dimen/x10"
+        android:layout_marginBottom="@dimen/x10"
+        android:orientation="vertical" />
 
 </LinearLayout>

@@ -1,13 +1,20 @@
 package com.ingic.ezhalbatek.fragments;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
+import com.hbb20.CountryCodePicker;
 import com.ingic.ezhalbatek.R;
+import com.ingic.ezhalbatek.entities.LoginModule.UserEnt;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
+import com.ingic.ezhalbatek.global.WebServiceConstants;
 import com.ingic.ezhalbatek.ui.views.AnyEditTextView;
 import com.ingic.ezhalbatek.ui.views.TitleBar;
 
@@ -16,18 +23,24 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static com.ingic.ezhalbatek.global.WebServiceConstants.CHANGENUMBER;
+
 /**
  * Created on 6/6/18.
  */
 public class ChangePhoneFragment extends BaseFragment {
     public static final String TAG = "ChangePhoneFragment";
-    @BindView(R.id.edtPhone)
-    AnyEditTextView edtPhone;
-    @BindView(R.id.edtNewPhone)
-    AnyEditTextView edtNewPhone;
+
     @BindView(R.id.btnUpdate)
     Button btnUpdate;
     Unbinder unbinder;
+    @BindView(R.id.Countrypicker)
+    CountryCodePicker Countrypicker;
+    @BindView(R.id.edtPhone)
+    AnyEditTextView edtPhone;
+    PhoneNumberUtil phoneUtil;
+
+    private long mLastClickTime = 0;
 
     public static ChangePhoneFragment newInstance() {
         Bundle args = new Bundle();
@@ -56,7 +69,10 @@ public class ChangePhoneFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Countrypicker.registerCarrierNumberEditText(edtPhone);
+        phoneUtil = PhoneNumberUtil.getInstance();
     }
+
     @Override
     public void setTitleBar(TitleBar titleBar) {
         super.setTitleBar(titleBar);
@@ -64,26 +80,12 @@ public class ChangePhoneFragment extends BaseFragment {
         titleBar.showBackButton();
         titleBar.setSubHeading(getResString(R.string.change_number));
     }
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+
 
     private boolean isvalidated() {
 
         if (edtPhone.getText().toString().equals("") && edtPhone.getText().toString().isEmpty()) {
             edtPhone.setError(getString(R.string.enter_phone));
-            return false;
-        } else if (edtPhone.getText().toString().length() < 9 || edtPhone.getText().toString().length() > 10) {
-            edtPhone.setError(getString(R.string.numberLength));
-            return false;
-        }
-        if (edtNewPhone.getText().toString().equals("") && edtNewPhone.getText().toString().isEmpty()) {
-            edtNewPhone.setError(getString(R.string.enter_phone));
-            return false;
-        } else if (edtNewPhone.getText().toString().length() < 9 || edtNewPhone.getText().toString().length() > 10) {
-            edtNewPhone.setError(getString(R.string.numberLength));
             return false;
         } else {
             return true;
@@ -93,9 +95,50 @@ public class ChangePhoneFragment extends BaseFragment {
 
     @OnClick(R.id.btnUpdate)
     public void onViewClicked() {
+
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
+
         if (isvalidated()) {
-            getDockActivity().popBackStackTillEntry(0);
-            getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), HomeFragment.TAG);
+            if (isPhoneNumberValid()) {
+                serviceHelper.enqueueCall(webService.changePhone(prefHelper.getUser().getId() + "", "+" + Countrypicker.getSelectedCountryCode(), edtPhone.getText().toString().trim()), CHANGENUMBER);
+            }
         }
     }
+
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        super.ResponseSuccess(result, Tag, message);
+        switch (Tag) {
+            case CHANGENUMBER:
+                UserEnt userEnt = (UserEnt) result;
+                getDockActivity().popFragment();
+                getDockActivity().replaceDockableFragment(VerifyPhoneNumberFragment.Companion.newInstance(userEnt.getVerificationCode(), "+" + Countrypicker.getSelectedCountryCode(), edtPhone.getText().toString().trim()), "VerifyPhoneFragment");
+                break;
+        }
+    }
+
+    private boolean isPhoneNumberValid() {
+
+
+        try {
+            Phonenumber.PhoneNumber number = phoneUtil.parse(edtPhone.getText().toString(), Countrypicker.getSelectedCountryNameCode());
+            if (phoneUtil.isValidNumber(number)) {
+                return true;
+            } else {
+                edtPhone.setError(getDockActivity().getResources().getString(R.string.enter_valid_number_error));
+                return false;
+            }
+        } catch (NumberParseException e) {
+            System.err.println("NumberParseException was thrown: " + e.toString());
+            edtPhone.setError(getDockActivity().getResources().getString(R.string.enter_valid_number_error));
+            return false;
+
+        }
+
+    }
+
+
 }

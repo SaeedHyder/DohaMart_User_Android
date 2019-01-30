@@ -20,9 +20,9 @@
                 android:id="@+id/txt_term_condition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical|center_horizontal"
+                android:textAlignment="viewStart"
+                android:scrollbars="none"
                 android:padding="10dp"
-                android:scrollbars="vertical"
                 android:textColor="@color/app_font_gray"
                 android:textSize="15sp"/>
 

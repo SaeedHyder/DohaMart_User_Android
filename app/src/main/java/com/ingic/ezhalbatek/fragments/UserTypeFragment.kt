@@ -29,24 +29,28 @@ class UserTypeFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
     override fun setTitleBar(titleBar: TitleBar) {
         super.setTitleBar(titleBar)
         titleBar.hideButtons()
-        titleBar.showBackButton()
         titleBar.setSubHeading(getResString(R.string.select_menu))
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btnSubscribe.setOnClickListener { _ ->    dockActivity.replaceDockableFragment(SubscriptionTypesFragment.newInstance(), SubscriptionTypesFragment.Tag)}
+        //  btnSubscribe.setOnClickListener { _ ->    dockActivity.replaceDockableFragment(SubscriptionTypesFragment.newInstance(), SubscriptionTypesFragment.Tag)}
+        btnSubscribe.setOnClickListener { _ -> dockActivity.replaceDockableFragment(SubscriptionsPackagesFragment.newInstance(), "SubscriptionsPackagesFragment") }
         btnTwentySeven.setOnClickListener { _ ->
             dockActivity.popBackStackTillEntry(0)
             dockActivity.replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment")
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         KotterKnife.reset(this)
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_usertype, container, false)
     }

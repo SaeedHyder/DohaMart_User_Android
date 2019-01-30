@@ -91,6 +91,46 @@ public class DialogHelper {
 
     }
 
+    public void CreateAccountDialoge(View.OnClickListener listner) {
+        this.dialog = null;
+        this.dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        this.dialog.setContentView(R.layout.dialoge_signup);
+
+        Button okbutton = (Button) dialog.findViewById(R.id.btn_signup);
+        Button logout = (Button) dialog.findViewById(R.id.btn_logout);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(okbutton.getLayoutParams());
+
+        ImageView btnClose = (ImageView) dialog.findViewById(R.id.btn_close);
+        btnClose.setOnClickListener(view -> dialog.dismiss());
+
+        okbutton.setLayoutParams(layoutParams);
+        okbutton.setOnClickListener(listner);
+
+
+    }
+
+    public void BlockAccountDialoge(View.OnClickListener listner) {
+        this.dialog = null;
+        this.dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        this.dialog.setContentView(R.layout.dialoge_block);
+
+        Button okbutton = (Button) dialog.findViewById(R.id.btn_signup);
+        Button logout = (Button) dialog.findViewById(R.id.btn_logout);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(okbutton.getLayoutParams());
+
+        ImageView btnClose = (ImageView) dialog.findViewById(R.id.btn_close);
+        btnClose.setOnClickListener(view -> dialog.dismiss());
+
+        okbutton.setLayoutParams(layoutParams);
+        okbutton.setOnClickListener(listner);
+
+
+    }
+
     public void showDialog() {
         if (!((Activity) context).isFinishing()) {
             //show dialog

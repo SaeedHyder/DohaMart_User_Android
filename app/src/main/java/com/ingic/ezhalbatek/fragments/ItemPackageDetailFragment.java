@@ -7,7 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
 import com.ingic.ezhalbatek.R;
+import com.ingic.ezhalbatek.entities.LoginModule.Services;
+import com.ingic.ezhalbatek.entities.SubscriptionPackagesEnt;
+import com.ingic.ezhalbatek.entities.SubscriptionsDetail;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
 import com.ingic.ezhalbatek.ui.binders.FeatureItemBinder;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
@@ -33,9 +37,12 @@ public class ItemPackageDetailFragment extends BaseFragment {
     Unbinder unbinder;
     private ArrayList<String> featureCollection;
 
-    public static ItemPackageDetailFragment newInstance() {
-        Bundle args = new Bundle();
+    private static String SUBSCRIPTIONDETAIL = "SUBSCRIPTIONDETAIL";
+    private SubscriptionsDetail subscriptionsDetail;
 
+    public static ItemPackageDetailFragment newInstance(SubscriptionsDetail item) {
+        Bundle args = new Bundle();
+        args.putString(SUBSCRIPTIONDETAIL, new Gson().toJson(item));
         ItemPackageDetailFragment fragment = new ItemPackageDetailFragment();
         fragment.setArguments(args);
         return fragment;
@@ -45,6 +52,11 @@ public class ItemPackageDetailFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            String jsonString = getArguments().getString(SUBSCRIPTIONDETAIL);
+
+            if (jsonString != null) {
+                subscriptionsDetail = new Gson().fromJson(jsonString, SubscriptionsDetail.class);
+            }
         }
 
     }
@@ -62,17 +74,20 @@ public class ItemPackageDetailFragment extends BaseFragment {
         bindRecyclerView();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 
     private void bindRecyclerView() {
-        featureCollection = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            featureCollection.add("Unlimited Features");
+        if (subscriptionsDetail != null) {
+
+            txtDuration.setText(subscriptionsDetail.getSubscriptionDuration() + " MONTHS");
+            txtPrice.setText("AED " + subscriptionsDetail.getAmount());
+
+            featureCollection = new ArrayList<>();
+            if (subscriptionsDetail.getServices() != null && subscriptionsDetail.getServices().size() > 0)
+                for (Services item : subscriptionsDetail.getServices()) {
+                    featureCollection.add("Check " + item.getService().getTitle());
+                }
         }
+
         rvFeatures.bindRecyclerView(new FeatureItemBinder(), featureCollection, new LinearLayoutManager(getDockActivity(), LinearLayoutManager.VERTICAL, false), new DefaultItemAnimator());
     }
 }

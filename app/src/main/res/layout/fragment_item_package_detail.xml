@@ -24,9 +24,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="12 Months"
+
                 android:textColor="@color/white"
-                android:textSize="@dimen/x22"
+                android:textSize="@dimen/x26"
                 app:typeface="@string/font_bold" />
 
             <com.ingic.ezhalbatek.ui.views.AnyTextView
@@ -37,7 +37,7 @@
                 android:text="Package"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:textSize="@dimen/x20"
+                android:textSize="@dimen/x22"
                 app:typeface="@string/font_normal" />
         </RelativeLayout>
 
@@ -76,7 +76,6 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:padding="@dimen/x10"
-            android:text="AED 5000"
             android:textColor="@color/app_font_dark_gray"
             android:textSize="@dimen/x22"
             app:typeface="@string/font_normal_dark" />

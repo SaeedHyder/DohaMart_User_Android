@@ -5,6 +5,8 @@ package com.ingic.ezhalbatek.interfaces;
  */
 
 public interface webServiceResponseLisener<T> {
-    public void ResponseSuccess(T result, String Tag);
-    public void  ResponseFailure(String tag);
+    public void ResponseSuccess(T result, String Tag, String message);
+    public void ResponseFailureNoResonse(String tag);
+    public void ResponseFailure(String tag);
+    public void ResponseBlockAccount(String tag);
 }

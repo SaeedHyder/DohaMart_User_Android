@@ -6,27 +6,43 @@ import android.content.Context;
 import android.support.v4.app.NotificationCompat;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 public class OKHttpClientCreator {
 
     private static NotificationManager mNotifyManager;
     private static NotificationCompat.Builder mBuilder;
 
+
     public static OkHttpClient createCustomInterceptorClient(Context context) {
 
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addNetworkInterceptor(new CustomInterceptor(progressListener))
-                .build();
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
+        builder.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request request = chain.request().newBuilder().addHeader("Accept-Encoding", "identity").build();
+                return chain.proceed(request);
+            }
+        });
+        builder.readTimeout(60, TimeUnit.SECONDS);
+        builder.connectTimeout(60, TimeUnit.SECONDS);
+        builder.addNetworkInterceptor(new CustomInterceptor(progressListener));
+        builder.addInterceptor(loggingInterceptor);
 
-
-        return client;
+        return builder.build();
 
 
     }
+
+
 
     public static OkHttpClient createDefaultInterceptorClient(Context context) {
 

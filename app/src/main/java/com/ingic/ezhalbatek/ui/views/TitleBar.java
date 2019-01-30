@@ -12,122 +12,159 @@ import com.ingic.ezhalbatek.R;
 
 public class TitleBar extends RelativeLayout {
 
-	private TextView txtTitle;
-	private ImageView btnLeft;
-	private ImageView btnRight2;
-	private ImageView btnRight;
-	private AnyTextView txtBadge;
+    private TextView txtTitle;
+    private ImageView btnLeft;
+    private ImageView btnRight2;
+    private ImageView btnRight;
+    private AnyTextView txtBadge;
+    private AnyTextView txtDeleteAll;
 
 
-	private View.OnClickListener menuButtonListener;
-	private OnClickListener backButtonListener;
-	private OnClickListener notificationButtonListener;
+    private View.OnClickListener menuButtonListener;
+    private OnClickListener backButtonListener;
+    private OnClickListener notificationButtonListener;
 
-	private Context context;
+    private Context context;
 
 
-	public TitleBar(Context context) {
-		super(context);
-		this.context = context;
-		initLayout(context);
-	}
+    public TitleBar(Context context) {
+        super(context);
+        this.context = context;
+        initLayout(context);
+    }
 
-	public TitleBar(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		initLayout(context);
-		if (attrs != null)
-			initAttrs(context, attrs);
-	}
+    public TitleBar(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        initLayout(context);
+        if (attrs != null)
+            initAttrs(context, attrs);
+    }
 
-	public TitleBar(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-		initLayout(context);
-		if (attrs != null)
-			initAttrs(context, attrs);
-	}
+    public TitleBar(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        initLayout(context);
+        if (attrs != null)
+            initAttrs(context, attrs);
+    }
 
-	private void initAttrs(Context context, AttributeSet attrs) {
-	}
+    private void initAttrs(Context context, AttributeSet attrs) {
+    }
 
-	private void bindViews() {
+    private void bindViews() {
 
-		txtTitle = (TextView) this.findViewById(R.id.txt_subHead);
-		btnRight = (ImageView) this.findViewById(R.id.btnRight);
-		btnRight2 = (ImageView) this.findViewById(R.id.btnRight2);
-		btnLeft = (ImageView) this.findViewById(R.id.btnLeft);
-		txtBadge = (AnyTextView) findViewById(R.id.txtBadge);
+        txtTitle = (TextView) this.findViewById(R.id.txt_subHead);
+        btnRight = (ImageView) this.findViewById(R.id.btnRight);
+        btnRight2 = (ImageView) this.findViewById(R.id.btnRight2);
+        btnLeft = (ImageView) this.findViewById(R.id.btnLeft);
+        txtBadge = (AnyTextView) findViewById(R.id.txtBadge);
+        txtDeleteAll = (AnyTextView) findViewById(R.id.txt_delete_all);
 
-	}
+    }
 
-	private void initLayout(Context context) {
-		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		inflater.inflate(R.layout.header_main, this);
-		bindViews();
-	}
+    private void initLayout(Context context) {
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.header_main, this);
+        bindViews();
+    }
 
-	public void hideButtons() {
-		txtTitle.setVisibility(View.INVISIBLE);
-		btnLeft.setVisibility(View.INVISIBLE);
-		btnRight.setVisibility(View.INVISIBLE);
-		btnRight2.setVisibility(View.INVISIBLE);
-		txtBadge.setVisibility(View.GONE);
+    public void hideButtons() {
+        txtTitle.setVisibility(View.INVISIBLE);
+        btnLeft.setVisibility(View.INVISIBLE);
+        btnRight.setVisibility(View.INVISIBLE);
+        btnRight2.setVisibility(View.INVISIBLE);
+        txtBadge.setVisibility(View.GONE);
+        txtDeleteAll.setVisibility(View.GONE);
+    }
 
-	}
+    public void showBackButton() {
+        btnLeft.setImageResource(R.drawable.backbtn);
+        btnLeft.setVisibility(View.VISIBLE);
+        btnLeft.setOnClickListener(backButtonListener);
 
-	public void showBackButton() {
-		btnLeft.setImageResource(R.drawable.backbtn);
-		btnLeft.setVisibility(View.VISIBLE);
-		btnLeft.setOnClickListener(backButtonListener);
+    }
 
-	}
+    public void showDeleteAllButton(OnClickListener listner) {
+        txtDeleteAll.setVisibility(View.VISIBLE);
+        txtDeleteAll.setOnClickListener(listner);
 
-	public void showMenuButton() {
-		btnLeft.setVisibility(View.VISIBLE);
-		btnLeft.setOnClickListener(menuButtonListener);
-		btnLeft.setImageResource(R.drawable.nav);
-	}
+    }
 
-	public void setSubHeading(String heading) {
-		txtTitle.setVisibility(View.VISIBLE);
-		txtTitle.setText(heading);
+    public void showHideDeleteAllButton(Boolean isVisible){
+        if(isVisible){
+            txtDeleteAll.setVisibility(VISIBLE);
+        }else {
+            txtDeleteAll.setVisibility(GONE);
+        }
+    }
 
-	}
+    public void showMenuButton() {
+        btnLeft.setVisibility(View.VISIBLE);
+        btnLeft.setOnClickListener(menuButtonListener);
+        btnLeft.setImageResource(R.drawable.nav);
+    }
 
-	public void showNotificationButton(int Count) {
-		btnRight.setVisibility(View.INVISIBLE);
-		btnRight2.setVisibility(View.VISIBLE);
-		btnRight2.setOnClickListener(notificationButtonListener);
-		btnRight2.setImageResource(R.drawable.notification);
-		if (Count > 0) {
-			txtBadge.setVisibility(View.VISIBLE);
-			txtBadge.setText(Count + "");
-		} else {
-			txtBadge.setVisibility(View.GONE);
-		}
+    public void showMenuButton(OnClickListener listner) {
+        btnLeft.setVisibility(View.VISIBLE);
+        btnLeft.setOnClickListener(listner);
+        btnLeft.setImageResource(R.drawable.nav);
+    }
 
-	}
+    public void setSubHeading(String heading) {
+        txtTitle.setVisibility(View.VISIBLE);
+        txtTitle.setText(heading);
 
-	public void showTitleBar() {
-		this.setVisibility(View.VISIBLE);
-	}
+    }
 
-	public void hideTitleBar() {
-		this.setVisibility(View.GONE);
-	}
+    public void showNotificationButton(int Count) {
+        btnRight.setVisibility(View.INVISIBLE);
+        btnRight2.setVisibility(View.VISIBLE);
+        btnRight2.setOnClickListener(notificationButtonListener);
+        btnRight2.setImageResource(R.drawable.notification);
+        if (Count > 0) {
+            txtBadge.setVisibility(View.VISIBLE);
+            txtBadge.setText(Count + "");
+        } else {
+            txtBadge.setVisibility(View.GONE);
+        }
 
-	public void setMenuButtonListener(View.OnClickListener listener) {
-		menuButtonListener = listener;
-	}
+    }
 
-	public void setBackButtonListener(View.OnClickListener listener) {
-		backButtonListener = listener;
-	}
+    public void showNotificationButton(int Count, OnClickListener listner) {
+        btnRight.setVisibility(View.INVISIBLE);
+        btnRight2.setVisibility(View.VISIBLE);
+        btnRight2.setOnClickListener(listner);
+        btnRight2.setImageResource(R.drawable.notification);
 
-	public void setNotificationButtonListener(View.OnClickListener listener) {
-		notificationButtonListener = listener;
-	}
+        if (Count > 0) {
+            txtBadge.setVisibility(View.VISIBLE);
+            txtBadge.setText(Count + "");
+        } else {
+            txtBadge.setVisibility(View.GONE);
+        }
 
+
+    }
+
+    public void showTitleBar() {
+        this.setVisibility(View.VISIBLE);
+    }
+
+    public void hideTitleBar() {
+        this.setVisibility(View.GONE);
+    }
+
+    public void setMenuButtonListener(View.OnClickListener listener) {
+        menuButtonListener = listener;
+    }
+
+    public void setBackButtonListener(View.OnClickListener listener) {
+        backButtonListener = listener;
+    }
+
+    public void setNotificationButtonListener(View.OnClickListener listener) {
+        notificationButtonListener = listener;
+    }
 
 
 }

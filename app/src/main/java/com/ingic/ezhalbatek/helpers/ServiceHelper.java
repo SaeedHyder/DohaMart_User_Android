@@ -1,9 +1,11 @@
 package com.ingic.ezhalbatek.helpers;
 
 import android.util.Log;
+import android.view.View;
 
 import com.ingic.ezhalbatek.activities.DockActivity;
 import com.ingic.ezhalbatek.entities.ResponseWrapper;
+import com.ingic.ezhalbatek.fragments.LoginFragment;
 import com.ingic.ezhalbatek.global.WebServiceConstants;
 import com.ingic.ezhalbatek.interfaces.webServiceResponseLisener;
 
@@ -18,6 +20,7 @@ import retrofit2.Response;
 public class ServiceHelper<T> {
     private webServiceResponseLisener serviceResponseLisener;
     private DockActivity context;
+    private BasePreferenceHelper preferenceHelper;
 
     public ServiceHelper(webServiceResponseLisener serviceResponseLisener, DockActivity conttext) {
         this.serviceResponseLisener = serviceResponseLisener;
@@ -31,10 +34,33 @@ public class ServiceHelper<T> {
                 @Override
                 public void onResponse(Call<ResponseWrapper<T>> call, Response<ResponseWrapper<T>> response) {
                     context.onLoadingFinished();
-                    if (response.body().getResponse().equals(WebServiceConstants.SUCCESS_RESPONSE_CODE)) {
-                        serviceResponseLisener.ResponseSuccess(response.body().getResult(), tag);
+                    preferenceHelper= new BasePreferenceHelper(context);
+                    if (response != null && response.body() != null && response.body().getResponse() != null) {
+                        if (!response.body().isIs_blocked()) {
+                            if (response.body().getResponse().equals(WebServiceConstants.SUCCESS_RESPONSE_CODE)) {
+                                serviceResponseLisener.ResponseSuccess(response.body().getResult(), tag, response.body().getMessage());
+                            } else {
+                                serviceResponseLisener.ResponseFailureNoResonse(tag);
+                                if (!tag.equals(WebServiceConstants.FACEBOOKLOGIN)) {
+                                    UIHelper.showShortToastInCenter(context, response.body().getMessage());
+                                }
+                            }
+                        } else {
+                            DialogHelper dialogHelper = new DialogHelper(context);
+                            dialogHelper.BlockAccountDialoge(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    dialogHelper.hideDialog();
+                                }
+                            });
+                            dialogHelper.showDialog();
+                            if (preferenceHelper.isLogin()) {
+                                serviceResponseLisener.ResponseBlockAccount(tag);
+                            }
+
+                        }
                     } else {
-                        UIHelper.showShortToastInCenter(context, response.body().getMessage());
+                        UIHelper.showShortToastInCenter(context, "No response from server");
                     }
 
                 }
@@ -43,6 +69,7 @@ public class ServiceHelper<T> {
                 public void onFailure(Call<ResponseWrapper<T>> call, Throwable t) {
                     context.onLoadingFinished();
                     t.printStackTrace();
+                    serviceResponseLisener.ResponseFailure(tag);
                     Log.e(ServiceHelper.class.getSimpleName() + " by tag: " + tag, t.toString());
                 }
             });

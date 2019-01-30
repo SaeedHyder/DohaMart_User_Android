@@ -8,10 +8,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.google.gson.Gson;
 import com.ingic.ezhalbatek.R;
+import com.ingic.ezhalbatek.entities.AllCategoriesEnt;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
 import com.ingic.ezhalbatek.ui.views.TitleBar;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,10 +37,13 @@ public class RequestDetailFragment extends BaseFragment {
     Button btnRequest;
     Unbinder unbinder;
     private String titleHeading = "";
+    private static String ALLSERVICESKEY = "ALLSERVICESKEY";
+    private AllCategoriesEnt allCategoriesEnt;
+    private ImageLoader imageLoader;
 
-    public static RequestDetailFragment newInstance(String titleHeading) {
+    public static RequestDetailFragment newInstance(String titleHeading, AllCategoriesEnt ent) {
         Bundle args = new Bundle();
-
+        args.putString(ALLSERVICESKEY, new Gson().toJson(ent));
         RequestDetailFragment fragment = new RequestDetailFragment();
         fragment.setArguments(args);
         fragment.setTitleHeading(titleHeading);
@@ -46,7 +53,13 @@ public class RequestDetailFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        imageLoader = ImageLoader.getInstance();
         if (getArguments() != null) {
+            String jsonString = getArguments().getString(ALLSERVICESKEY);
+
+            if (jsonString != null) {
+                allCategoriesEnt = new Gson().fromJson(jsonString, AllCategoriesEnt.class);
+            }
         }
 
     }
@@ -69,17 +82,23 @@ public class RequestDetailFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        setData();
+
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+    private void setData() {
+        if (allCategoriesEnt != null) {
+        //    imageLoader.displayImage(allCategoriesEnt.getDetailImage(), imgCategoryImage);
+            Picasso.with(getDockActivity()).load(allCategoriesEnt.getDetailImage()).placeholder(R.drawable.placeholder1).into(imgCategoryImage);
+            txtDescriptionDetail.setText(allCategoriesEnt.getDescription() + "");
+        }
     }
+
 
     @OnClick(R.id.btnRequest)
     public void onViewClicked() {
-        getDockActivity().replaceDockableFragment(BookRequestFragment.newInstance(), BookRequestFragment.TAG);
+        getDockActivity().replaceDockableFragment(BookRequestFragment.newInstance(allCategoriesEnt.getId() + ""), BookRequestFragment.TAG);
     }
 
     public void setTitleHeading(String titleHeading) {

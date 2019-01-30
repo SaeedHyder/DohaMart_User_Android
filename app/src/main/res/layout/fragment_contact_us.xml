@@ -24,6 +24,7 @@
             android:layout_height="@dimen/x40"
             android:layout_marginTop="@dimen/x20"
             android:background="@drawable/btn"
+            android:visibility="gone"
             android:orientation="horizontal">
 
             <ImageView
@@ -55,6 +56,7 @@
             android:layout_height="@dimen/x40"
             android:layout_marginTop="@dimen/x10"
             android:background="@drawable/btn"
+            android:visibility="gone"
             android:orientation="horizontal">
 
             <ImageView
@@ -87,6 +89,7 @@
             android:layout_height="@dimen/x40"
             android:layout_marginTop="@dimen/x10"
             android:background="@drawable/btn"
+            android:visibility="gone"
             android:orientation="horizontal">
 
             <ImageView
@@ -120,7 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/x100"
             android:layout_marginTop="@dimen/x10"
-            android:background="@drawable/btn"
+            android:background="@drawable/button_stroke_grey"
             android:ems="10"
             android:gravity="top"
             android:hint="@string/query_hint"

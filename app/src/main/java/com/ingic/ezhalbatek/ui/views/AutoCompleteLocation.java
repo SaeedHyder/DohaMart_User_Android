@@ -47,24 +47,24 @@ public class AutoCompleteLocation extends android.support.v7.widget.AppCompatAut
         Drawable background =
                 typedArray.getDrawable(R.styleable.AutoCompleteLocation_background_layout);
         if (background == null) {
-            background = resources.getDrawable(R.drawable.bg_rounded_white);
+            background = resources.getDrawable(R.color.transparent);
         }
         String hintText = typedArray.getString(R.styleable.AutoCompleteLocation_hint_text);
         if (hintText == null) {
-            hintText = resources.getString(R.string.default_hint_text);
+            hintText = resources.getString(R.string.location);
         }
         int hintTextColor = typedArray.getColor(R.styleable.AutoCompleteLocation_hint_text_color,
-                resources.getColor(R.color.default_hint_text));
+                resources.getColor(R.color.app_button_grey));
         int textColor = typedArray.getColor(R.styleable.AutoCompleteLocation_text_color,
-                resources.getColor(R.color.default_text));
+                resources.getColor(R.color.app_button_grey));
         int padding = resources.getDimensionPixelSize(R.dimen.x10);
         typedArray.recycle();
 
         setBackground(background);
         setHint(hintText);
-        setHintTextColor(hintTextColor);
+      //  setHintTextColor(hintTextColor);
         setTextColor(textColor);
-        setPadding(padding, padding, padding, padding);
+       // setPadding(padding, padding, padding, padding);
         setMaxLines(resources.getInteger(R.integer.default_max_lines));
 
         mCloseIcon = context.getResources().getDrawable(R.drawable.ic_close);

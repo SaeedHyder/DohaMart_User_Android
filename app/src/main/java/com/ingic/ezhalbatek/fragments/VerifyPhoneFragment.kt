@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.ingic.ezhalbatek.R
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment
+import com.ingic.ezhalbatek.global.WebServiceConstants
 import com.ingic.ezhalbatek.helpers.UIHelper
-import com.ingic.ezhalbatek.ui.views.KotterKnife
-import com.ingic.ezhalbatek.ui.views.PinEntryEditText
-import com.ingic.ezhalbatek.ui.views.TitleBar
-import com.ingic.ezhalbatek.ui.views.bindView
+import com.ingic.ezhalbatek.ui.views.*
 
 /**
  * Created on 5/21/18.
@@ -19,11 +17,15 @@ import com.ingic.ezhalbatek.ui.views.bindView
 class VerifyPhoneFragment : BaseFragment() {
     private val txtPinEntry: PinEntryEditText by bindView(R.id.txt_pin_entry)
     private val btnSubmit: Button by bindView(R.id.btn_submit)
+    private val txtResendCode: AnyTextView by bindView(R.id.txt_resend_code)
+    var emailReset = ""
 
     companion object {
         val Tag: String = "VerifyPhoneFragment"
-        fun newInstance(): VerifyPhoneFragment {
+
+        fun newInstance(email: String): VerifyPhoneFragment {
             val fragment = VerifyPhoneFragment()
+            fragment.emailReset = email
             return fragment
         }
     }
@@ -38,15 +40,17 @@ class VerifyPhoneFragment : BaseFragment() {
         titleBar.showBackButton()
         titleBar.setSubHeading(getResString(R.string.verify_phone_number))
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         KotterKnife.reset(this)
     }
+
     private fun validated(): Boolean {
         if (txtPinEntry.text.toString().trim().equals("")) {
             UIHelper.showShortToastInCenter(dockActivity, getString(R.string.verification_code_error))
             return false
-        }else if (txtPinEntry.text.toString().length<4) run {
+        } else if (txtPinEntry.text.toString().length < 4) run {
             UIHelper.showShortToastInCenter(dockActivity, getString(R.string.enter_valid_code_error))
 
             return false
@@ -59,8 +63,31 @@ class VerifyPhoneFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         btnSubmit.setOnClickListener { _ ->
             if (validated()) {
+                serviceHelper.enqueueCall(webService.verifyCode(prefHelper.user.id, txtPinEntry.text.toString()), WebServiceConstants.VERIFYCODE)
+
+            }
+        }
+
+        txtResendCode.setOnClickListener { _ ->
+            serviceHelper.enqueueCall(webService.resendcode(emailReset), WebServiceConstants.RESENDCODE)
+
+        }
+    }
+
+    override fun ResponseSuccess(result: Any?, Tag: String?, message: String?) {
+        super.ResponseSuccess(result, Tag, message)
+        when (Tag) {
+            WebServiceConstants.VERIFYCODE -> {
+                dockActivity.popBackStackTillEntry(0)
+                prefHelper.setLoginStatus(true)
+                prefHelper.setGuestStatus(false)
                 dockActivity.replaceDockableFragment(UserTypeFragment.newInstance(), UserTypeFragment.Tag)
             }
+
+            WebServiceConstants.RESENDCODE ->{
+                UIHelper.showShortToastInCenter(dockActivity,message)
+            }
+
         }
     }
 

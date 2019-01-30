@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
+import com.ingic.ezhalbatek.helpers.UIHelper;
 import com.ingic.ezhalbatek.ui.views.AnyEditTextView;
 import com.ingic.ezhalbatek.ui.views.TitleBar;
 
@@ -15,6 +16,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+
+import static com.ingic.ezhalbatek.global.WebServiceConstants.changePassword;
 
 /**
  * Created on 6/6/18.
@@ -91,13 +94,19 @@ public class ChangePasswordFragment extends BaseFragment {
                 setEditTextFocus(edtNewPassword);
             }
             return false;
-        } else if (!edtConfirmPassword.getText().toString().equals(edtNewPassword.getText().toString())) {
+        } else if (edtNewPassword.getText().toString().equals(edtOldPassword.getText().toString())) {
+            edtNewPassword.setError(getString(R.string.same_password_error));
+            if (edtConfirmPassword.requestFocus()) {
+                setEditTextFocus(edtNewPassword);
+            }
+            return false;
+        }else if (!edtConfirmPassword.getText().toString().equals(edtNewPassword.getText().toString())) {
             edtConfirmPassword.setError(getString(R.string.confirm_password_error));
             if (edtConfirmPassword.requestFocus()) {
                 setEditTextFocus(edtConfirmPassword);
             }
             return false;
-        } else {
+        }  else {
             return true;
         }
     }
@@ -105,8 +114,20 @@ public class ChangePasswordFragment extends BaseFragment {
     @OnClick(R.id.btnUpdate)
     public void onViewClicked() {
         if (isValidated()) {
-            getDockActivity().popBackStackTillEntry(0);
-            getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), HomeFragment.TAG);
+            serviceHelper.enqueueCall(webService.changePassword(prefHelper.getUser().getId() + "", edtOldPassword.getText().toString(), edtNewPassword.getText().toString()), changePassword);
+
+        }
+    }
+
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        super.ResponseSuccess(result, Tag, message);
+        switch (Tag) {
+            case changePassword:
+                UIHelper.showLongToastInCenter(getDockActivity(), getString(R.string.password_changed_successfully));
+                getDockActivity().popBackStackTillEntry(0);
+                getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), HomeFragment.TAG);
+                break;
         }
     }
 }

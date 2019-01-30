@@ -1,20 +1,31 @@
 package com.ingic.ezhalbatek.fragments;
 
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.gson.Gson;
 import com.ingic.ezhalbatek.R;
+import com.ingic.ezhalbatek.entities.LoginModule.Subscription;
+import com.ingic.ezhalbatek.entities.LoginModule.UserEnt;
+import com.ingic.ezhalbatek.entities.SubscriptionsDetail;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
+import com.ingic.ezhalbatek.global.WebServiceConstants;
+import com.ingic.ezhalbatek.ui.binders.PackageTasksBinder;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
+import com.ingic.ezhalbatek.ui.views.CustomRecyclerView;
 import com.ingic.ezhalbatek.ui.views.TitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+
+import static com.ingic.ezhalbatek.global.WebServiceConstants.PURCHASESUBSCRIPTION;
 
 /**
  * Created on 5/22/18.
@@ -41,6 +52,17 @@ public class PackageDetailFragment extends BaseFragment {
     @BindView(R.id.txtFeatures)
     AnyTextView txtFeatures;
 
+
+    private static String SUBSCRIPTIONDETAIL = "SUBSCRIPTIONDETAIL";
+    private static String Address;
+    private static String Latitude;
+    private static String Longitude;
+    @BindView(R.id.rv_jobs)
+    CustomRecyclerView rvJobs;
+    @BindView(R.id.txtFacilities)
+    AnyTextView txtFacilities;
+    private SubscriptionsDetail subscriptionsDetail;
+
     public static PackageDetailFragment newInstance() {
         Bundle args = new Bundle();
 
@@ -49,10 +71,27 @@ public class PackageDetailFragment extends BaseFragment {
         return fragment;
     }
 
+    public static PackageDetailFragment newInstance(SubscriptionsDetail data, String address, String lat, String lng) {
+        Bundle args = new Bundle();
+        args.putString(SUBSCRIPTIONDETAIL, new Gson().toJson(data));
+        Address = address;
+        Latitude = lat;
+        Longitude = lng;
+        PackageDetailFragment fragment = new PackageDetailFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            String jsonString = getArguments().getString(SUBSCRIPTIONDETAIL);
+
+            if (jsonString != null) {
+                subscriptionsDetail = new Gson().fromJson(jsonString, SubscriptionsDetail.class);
+            }
         }
 
     }
@@ -68,6 +107,65 @@ public class PackageDetailFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        if (subscriptionsDetail != null) {
+            setData();
+        } else {
+            btnProceedPayment.setVisibility(View.GONE);
+            setDataPreference();
+        }
+
+
+    }
+
+    private void setDataPreference() {
+        if (prefHelper.getUser().getUserSubscription() != null && prefHelper.getUser().getUserSubscription().getSubscription() != null) {
+            Subscription entity = prefHelper.getUser().getUserSubscription().getSubscription();
+            txtDuration.setText(entity.getSubscriptionDuration() + " Months Package");
+            txtSubscriptionFee.setText("AED " + entity.getAmount());
+            txtSubscriberID.setText(entity.getId() + "");
+
+            if (prefHelper.getUser() != null) {
+                txtCustomerName.setText(prefHelper.getUser().getFullName() != null ? prefHelper.getUser().getFullName() : "-");
+                txtPhone.setText(prefHelper.getUser().getPhoneNo() != null ? prefHelper.getUser().getCountryCode() + " " + prefHelper.getUser().getPhoneNo() : "-");
+                txtEmail.setText(prefHelper.getUser().getEmail() != null ? prefHelper.getUser().getEmail() : "-");
+                txtAddress.setText(prefHelper.getUser().getFullAddress() != null ? prefHelper.getUser().getFullAddress() : "-");
+
+            }
+
+            if (entity.getServices() != null && entity.getServices().size() > 0) {
+                txtFacilities.setVisibility(View.VISIBLE);
+                rvJobs.bindRecyclerView(new PackageTasksBinder(prefHelper), entity.getServices(), new LinearLayoutManager(getDockActivity(), LinearLayoutManager.VERTICAL, false), new DefaultItemAnimator());
+
+            } else {
+                txtFacilities.setVisibility(View.GONE);
+                rvJobs.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    private void setData() {
+        if (subscriptionsDetail != null) {
+            txtDuration.setText(subscriptionsDetail.getSubscriptionDuration() + " Months Package");
+            txtSubscriptionFee.setText("AED " + subscriptionsDetail.getAmount());
+            txtSubscriberID.setText(subscriptionsDetail.getId() + "");
+            txtAddress.setText(Address != null ? Address : "-");
+            if (prefHelper.getUser() != null) {
+                txtCustomerName.setText(prefHelper.getUser().getFullName() != null ? prefHelper.getUser().getFullName() : "-");
+                txtPhone.setText(prefHelper.getUser().getPhoneNo() != null ? prefHelper.getUser().getCountryCode() + " " + prefHelper.getUser().getPhoneNo() : "-");
+                txtEmail.setText(prefHelper.getUser().getEmail() != null ? prefHelper.getUser().getEmail() : "-");
+
+            }
+
+            if (subscriptionsDetail.getServices() != null && subscriptionsDetail.getServices().size() > 0) {
+                txtFacilities.setVisibility(View.VISIBLE);
+                rvJobs.bindRecyclerView(new PackageTasksBinder(prefHelper), subscriptionsDetail.getServices(), new LinearLayoutManager(getDockActivity(), LinearLayoutManager.VERTICAL, false), new DefaultItemAnimator());
+
+            } else {
+                txtFacilities.setVisibility(View.GONE);
+                rvJobs.setVisibility(View.GONE);
+            }
+        }
+
     }
 
     @Override
@@ -78,22 +176,30 @@ public class PackageDetailFragment extends BaseFragment {
         titleBar.setSubHeading(getResString(R.string.package_detail));
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 
     @OnClick(R.id.btnProceedPayment)
     public void onViewClicked() {
-        dialogHelper.showCommonDialog(v -> {
-            prefHelper.setLoginStatus(true);
-            dialogHelper.hideDialog();
-            getDockActivity().popBackStackTillEntry(0);
-            getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
-        }, R.string.empty, R.string.thankyou, R.string.ok, R.string.empty, false, false);
-        dialogHelper.setCancelable(false);
-        dialogHelper.showDialog();
+        serviceHelper.enqueueCall(webService.subscriptionPurchase(subscriptionsDetail.getId() + "", prefHelper.getUser().getId() + "", Latitude, Longitude, Address), PURCHASESUBSCRIPTION);
+    }
 
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        super.ResponseSuccess(result, Tag, message);
+        switch (Tag) {
+            case PURCHASESUBSCRIPTION:
+                UserEnt userEnt = (UserEnt) result;
+                prefHelper.putUser(userEnt);
+                prefHelper.setLoginStatus(true);
+                prefHelper.setGuestStatus(false);
+                dialogHelper.showCommonDialog(v -> {
+                    getDockActivity().popBackStackTillEntry(0);
+                    getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
+                    dialogHelper.hideDialog();
+                }, R.string.empty, R.string.thankyou, R.string.ok, R.string.empty, false, false);
+                dialogHelper.setCancelable(false);
+                dialogHelper.showDialog();
+
+                break;
+        }
     }
 }

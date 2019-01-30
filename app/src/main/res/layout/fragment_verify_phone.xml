@@ -50,7 +50,7 @@
         android:inputType="number"
         android:maxLength="4"
         android:paddingTop="@dimen/x40"
-        android:text="1234"
+        android:hint="0000"
         android:textColor="@color/black"
         android:textIsSelectable="false"
         android:textSize="14sp"
@@ -58,6 +58,7 @@
         app:pinBackgroundDrawable="@drawable/pinborder"
         app:pinLineColors="@color/transparent"
         app:pinTextBottomPadding="@dimen/x20"/>
+
 
     <Button
         android:id="@+id/btn_submit"
@@ -69,6 +70,19 @@
         android:text="@string/submit"
         android:textAllCaps="false"
         android:textColor="@color/white"/>
+
+    <com.ingic.ezhalbatek.ui.views.AnyTextView
+        android:id="@+id/txt_resend_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_marginBottom="@dimen/x10"
+        android:gravity="center_horizontal"
+        android:text="@string/resend_code"
+        android:textColor="@color/app_font_gray"
+        android:textSize="@dimen/x14"
+        app:typeface="@string/font_normal"/>
+
 
 
 </LinearLayout>

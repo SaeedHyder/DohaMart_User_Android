@@ -58,11 +58,7 @@ public class LanguageSelectionFragment extends BaseFragment {
         getMainActivity().changeBackgroundResources(R.drawable.bg);
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+
 
     @Override
     public void setTitleBar(TitleBar titleBar) {
@@ -76,7 +72,6 @@ public class LanguageSelectionFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_english:
-                getDockActivity().popBackStackTillEntry(0);
                 getDockActivity().replaceDockableFragment(LoginFragment.newInstance(),"LoginFragment");
                 break;
             case R.id.btn_arabic:

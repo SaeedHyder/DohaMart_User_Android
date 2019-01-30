@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.ingic.ezhalbatek.R
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment
+import com.ingic.ezhalbatek.global.WebServiceConstants
+import com.ingic.ezhalbatek.global.WebServiceConstants.RESENDCODE
+import com.ingic.ezhalbatek.helpers.UIHelper
 import com.ingic.ezhalbatek.ui.views.*
 import kotlinx.android.synthetic.main.fragment_reset_password_code.*
 import java.util.*
@@ -21,12 +24,19 @@ class ResetPasswordCodeFragment : BaseFragment() {
     //val txtTimer: AnyTextView? by bindView(R.id.txtTimer)
     val btnSubmit: Button by bindView(R.id.btn_submit)
     val edtCode: AnyEditTextView by bindView(R.id.edtcode)
+    val txtResendCode: AnyTextView by bindView(R.id.txt_resend_code)
     lateinit var timer: CountDownTimer
+    var emailReset = ""
+    var codeReset = ""
 
     companion object {
         val Tag: String = "ResetPasswordCodeFragment"
-        fun newInstance(): ResetPasswordCodeFragment {
+
+
+        fun newInstance(email: String, code: String): ResetPasswordCodeFragment {
             val fragment = ResetPasswordCodeFragment()
+            fragment.emailReset = email
+            fragment.codeReset = code
             return fragment
         }
     }
@@ -50,24 +60,46 @@ class ResetPasswordCodeFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         KotterKnife.reset(this)
     }
+
     override fun setTitleBar(titleBar: TitleBar) {
         super.setTitleBar(titleBar)
         titleBar.hideButtons()
         titleBar.showBackButton()
         titleBar.setSubHeading(getResString(R.string.forgot_password_title))
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRestartCounter()
         btnSubmit.setOnClickListener { _ ->
             if (isValidate()) {
                 timer.cancel()
-                dockActivity.popBackStackTillEntry(0)
-                dockActivity.replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment")
+                serviceHelper.enqueueCall(webService.verifypasswordcode(emailReset, codeReset), WebServiceConstants.VERIFYCODE)
+
+            }
+        }
+
+        txtResendCode.setOnClickListener(View.OnClickListener {
+            serviceHelper.enqueueCall(webService.resendcode(emailReset), WebServiceConstants.RESENDCODE)
+        })
+    }
+
+    override fun ResponseSuccess(result: Any?, Tag: String?, message: String?) {
+        super.ResponseSuccess(result, Tag, message)
+        when (Tag) {
+            WebServiceConstants.VERIFYCODE -> {
+                dockActivity.popBackStackTillEntry(2)
+                dockActivity.replaceDockableFragment(ChangeForgotPassword.newInstance(emailReset,codeReset), "ChangeForgotPassword")
+
+            }
+
+            RESENDCODE->{
+                UIHelper.showShortToastInCenter(dockActivity,message)
             }
         }
     }
@@ -80,14 +112,14 @@ class ResetPasswordCodeFragment : BaseFragment() {
                 setEditTextFocus(edtCode)
             }
             return false
-        }else if (edtCode.getText().toString().length<4) run {
+        } else if (edtCode.getText().toString().length < 4) run {
 
             edtCode.setError(getString(R.string.enter_valid_code_error))
             if (edtCode.requestFocus()) {
                 setEditTextFocus(edtCode)
             }
             return false
-        }  else
+        } else
             return true
     }
 
