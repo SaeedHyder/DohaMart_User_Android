@@ -7,6 +7,7 @@ import android.widget.Button;
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.entities.ServiceStatus.Service;
 import com.ingic.ezhalbatek.global.AppConstants;
+import com.ingic.ezhalbatek.helpers.DateHelper;
 import com.ingic.ezhalbatek.helpers.UIHelper;
 import com.ingic.ezhalbatek.interfaces.RecyclerItemListener;
 import com.ingic.ezhalbatek.ui.viewbinders.abstracts.RecyclerViewBinder;
@@ -44,6 +45,7 @@ public class PendingServiceBinder extends RecyclerViewBinder<Service> {
         }
 
         holder.txtJobTitle.setText(entity.getJobTitle() + "");
+        holder.txtDate.setText(entity.getDate() + "");
         if (entity.getAssignTechnician() != null) {
             holder.btnCallRate.setAlpha((float) 1);
             holder.txtTechnicainName.setText(entity.getAssignTechnician().getTechnicianDetails().getFullName() != null ? entity.getAssignTechnician().getTechnicianDetails().getFullName() : "-");
@@ -135,6 +137,8 @@ public class PendingServiceBinder extends RecyclerViewBinder<Service> {
         AnyTextView txtTechnicianNumber;
         @BindView(R.id.txtStatus)
         AnyTextView txtStatus;
+        @BindView(R.id.txtDate)
+        AnyTextView txtDate;
         @BindView(R.id.btnCallRate)
         Button btnCallRate;
         @BindView(R.id.btnDetails)

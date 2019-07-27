@@ -20,7 +20,7 @@ public class TaskBinder extends RecyclerViewBinder<AdditionalJob> {
 
 
     public TaskBinder(BasePreferenceHelper preferenceHelper) {
-        super(R.layout.row_item_selectedjobs);
+        super(R.layout.row_item_additional_job);
         this.preferenceHelper = preferenceHelper;
     }
 
@@ -34,12 +34,15 @@ public class TaskBinder extends RecyclerViewBinder<AdditionalJob> {
     public void bindView(AdditionalJob entity, final int position, Object viewHolder, Context context) {
         ViewHolder holder = (ViewHolder) viewHolder;
 
-        holder.txtJobselectedAmount.setVisibility(View.VISIBLE);
-        holder.deleteText.setVisibility(View.GONE);
         holder.txtJobselectedtext.setText(entity.getItem().getName() + "");
-        Double amount = Double.valueOf(entity.getItem().getAmount());
-        holder.txtJobselectedAmount.setText("AED " + amount + "");
-
+        Double amount = 0.0;
+        amount = Double.valueOf(entity.getItem().getAmount());
+        holder.txtJobselectedAmount.setText(context.getResources().getString(R.string.QAR) + " " + amount + "");
+        if (entity.getQuantity() != null) {
+            holder.txtQuantity.setText(context.getResources().getString(R.string.qty) + " " + entity.getQuantity() + "");
+        }else{
+            holder.txtQuantity.setText(context.getResources().getString(R.string.qty) +  " 1");
+        }
     }
 
 
@@ -48,8 +51,8 @@ public class TaskBinder extends RecyclerViewBinder<AdditionalJob> {
         AnyTextView txtJobselectedtext;
         @BindView(R.id.txt_jobselectedAmount)
         AnyTextView txtJobselectedAmount;
-        @BindView(R.id.delete_text)
-        ImageView deleteText;
+        @BindView(R.id.txt_Quantity)
+        AnyTextView txtQuantity;
 
         ViewHolder(View view) {
             super(view);

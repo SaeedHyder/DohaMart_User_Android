@@ -222,11 +222,11 @@ public class JobDoneAcknowledgeFragment extends BaseFragment {
                 rbRating.setScore(0);
             }
             llExtraCost.setVisibility(View.VISIBLE);
-            txtExtraEarning.setText(requestData.getUrgentCost() != null ? "AED" + " " + requestData.getUrgentCost() + "" : "-");
+            txtExtraEarning.setText(requestData.getUrgentCost() != null ?getDockActivity().getResources().getString(R.string.QAR) + " " + requestData.getUrgentCost() + "" : "-");
             double totalAmount = requestData.getTotalAmount() + requestData.getUrgentCost();
-            txtTotalEarning.setText("AED" + " " + totalAmount + "");
+            txtTotalEarning.setText(getDockActivity().getResources().getString(R.string.QAR) + " " + totalAmount + "");
 
-            // txtTotalEarning.setText("AED" + " " + amount + "");
+            // txtTotalEarning.setText("QAR" + " " + amount + "");
 
             if (requestData.getStatus() == 1 || requestData.getStatus() == 2) {
                 txtStatus.setText(AppConstants.Technician_Assigned);
@@ -276,7 +276,7 @@ public class JobDoneAcknowledgeFragment extends BaseFragment {
             } else {
                 rbRating.setScore(0);
             }
-            txtTotalEarning.setText("AED" + " " + amount + "");
+            txtTotalEarning.setText(getDockActivity().getResources().getString(R.string.QAR) + " " + amount + "");
 
             if (visitData.getStatus().equals("1") || visitData.getStatus().equals("2")) {
                 txtStatus.setText(AppConstants.Technician_Assigned);

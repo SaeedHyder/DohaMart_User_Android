@@ -1,6 +1,7 @@
 package com.ingic.ezhalbatek.fragments;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -35,9 +36,19 @@ public class SubscriptionsPackagesFragment extends BaseFragment {
     @BindView(R.id.txt_no_data)
     AnyTextView txtNoData;
 
+    private static Integer catId;
+
     public static SubscriptionsPackagesFragment newInstance() {
         Bundle args = new Bundle();
 
+        SubscriptionsPackagesFragment fragment = new SubscriptionsPackagesFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public static SubscriptionsPackagesFragment newInstance(Integer id) {
+        Bundle args = new Bundle();
+        catId=id;
         SubscriptionsPackagesFragment fragment = new SubscriptionsPackagesFragment();
         fragment.setArguments(args);
         return fragment;
@@ -102,7 +113,15 @@ public class SubscriptionsPackagesFragment extends BaseFragment {
         switch (id) {
             case R.id.btn_platinium:
                 SubscriptionPackagesEnt data=(SubscriptionPackagesEnt)ent;
-                getDockActivity().replaceDockableFragment(SubscriptionPackageDetail.newInstance(data),"SubscriptionPackageDetail");
+                if(catId!=null && catId!=0){
+                    if(catId>=data.getId()){
+                        getDockActivity().replaceDockableFragment(SubscriptionPackageDetail.newInstance(data), "SubscriptionPackageDetail");
+                    }else{
+                        UIHelper.showShortToastInCenter(getDockActivity(),getResString(R.string.package_can_not_downgraded));
+                    }
+                }else {
+                    getDockActivity().replaceDockableFragment(SubscriptionPackageDetail.newInstance(data), "SubscriptionPackageDetail");
+                }
                 break;
 
         }

@@ -103,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:gravity="center"
-                        android:text="AED 500"
+                        android:text="QAR 500"
                         android:textColor="@color/black"
                         android:textSize="@dimen/x14"
                         app:typeface="@string/font_bold"/>
@@ -283,6 +283,19 @@
             android:background="@drawable/button_red"
             android:text="@string/procedd_payment"
             android:textAllCaps="false"
+            android:textColor="@color/white"
+            />
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/x10"
+            android:background="@drawable/button_red"
+            android:text="@string/update_package"
+            android:textAllCaps="false"
+            android:visibility="gone"
             android:textColor="@color/white"
             />
     </LinearLayout>

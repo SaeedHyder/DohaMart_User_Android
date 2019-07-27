@@ -33,7 +33,7 @@ public class AppConstants {
     public static final String TERM = "term";
     public static final String PRIVCAY = "privacy";
     public static final String PAYMENTTYPE = "cash";
-    public static final String COUNTRYCURRENCY = "AED";
+    public static final String COUNTRYCURRENCY = "QAR";
     public static final String ACCEPTED = "Accepted";
     public static final String REJECTED = "Rejected";
     public static final String Technician_Assigned = "Technician Assigned";

@@ -156,7 +156,7 @@ public class JobReportFragment extends BaseFragment {
                 rbRating.setScore(0);
             }
 
-            txtTotalEarning.setText("AED" + " " + amount + "");
+            txtTotalEarning.setText(getDockActivity().getResources().getString(R.string.QAR)+ " " + amount + "");
 
             if (subEntity.getStatus().equals("1") || subEntity.getStatus().equals("2")) {
                 txtStatus.setText(AppConstants.Technician_Assigned);

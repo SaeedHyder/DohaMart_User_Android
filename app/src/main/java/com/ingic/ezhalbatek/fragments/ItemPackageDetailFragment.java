@@ -79,7 +79,7 @@ public class ItemPackageDetailFragment extends BaseFragment {
         if (subscriptionsDetail != null) {
 
             txtDuration.setText(subscriptionsDetail.getSubscriptionDuration() + " MONTHS");
-            txtPrice.setText("AED " + subscriptionsDetail.getAmount());
+            txtPrice.setText(getDockActivity().getResources().getString(R.string.QAR)+" " + subscriptionsDetail.getAmount());
 
             featureCollection = new ArrayList<>();
             if (subscriptionsDetail.getServices() != null && subscriptionsDetail.getServices().size() > 0)

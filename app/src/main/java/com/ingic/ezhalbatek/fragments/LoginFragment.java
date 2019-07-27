@@ -68,9 +68,9 @@ public class LoginFragment extends BaseFragment implements FacebookLoginHelper.F
     public void setTitleBar(TitleBar titleBar) {
         super.setTitleBar(titleBar);
         titleBar.hideButtons();
-        if (showBackBtn) {
+        /*if (showBackBtn) {
             titleBar.showBackButton();
-        }
+        }*/
 
         if (edtEmail != null && edtPassword != null) {
             edtEmail.setText("");

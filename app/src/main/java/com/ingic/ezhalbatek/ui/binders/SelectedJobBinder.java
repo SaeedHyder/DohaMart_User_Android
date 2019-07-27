@@ -38,7 +38,7 @@ public class SelectedJobBinder extends RecyclerViewBinder<SubServiceEnt> {
     public void bindView(SubServiceEnt entity, final int position, Object viewHolder, Context context) {
         SelectedJobsViewHolder holder = (SelectedJobsViewHolder) viewHolder;
         holder.txtJobselectedtext.setText(entity.getTitle()+"");
-        holder.txt_jobselectedAmount.setText("AED "+entity.getAmount()+"");
+        holder.txt_jobselectedAmount.setText(entity.getAmount()+"");
 
         holder.deleteText.setOnClickListener(new View.OnClickListener() {
             @Override

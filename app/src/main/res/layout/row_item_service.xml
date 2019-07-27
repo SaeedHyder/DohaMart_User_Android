@@ -112,6 +112,38 @@
                     android:gravity="center"
                     android:paddingEnd="@dimen/x5"
                     android:paddingStart="@dimen/x10"
+                    android:text="@string/date"
+                    android:textColor="@color/app_red"
+                    android:textSize="@dimen/x14"
+                    app:typeface="@string/font_normal_dark"/>
+
+                <com.ingic.ezhalbatek.ui.views.AnyTextView
+                    android:id="@+id/txtDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="N/A"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/x14"
+                    app:typeface="@string/font_normal_dark"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x5"
+                android:orientation="horizontal">
+
+                <com.ingic.ezhalbatek.ui.views.AnyTextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/x5"
+                    android:paddingStart="@dimen/x10"
                     android:text="@string/status"
                     android:textColor="@color/app_red"
                     android:textSize="@dimen/x14"

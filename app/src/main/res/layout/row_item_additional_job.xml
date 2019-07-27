@@ -31,10 +31,9 @@
 
         <com.ingic.ezhalbatek.ui.views.AnyTextView
             android:id="@+id/txt_Quantity"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x10"
-            android:layout_weight="1"
             android:gravity="center"
             android:maxLines="1"
             android:paddingBottom="@dimen/x10"
@@ -46,15 +45,15 @@
 
         <com.ingic.ezhalbatek.ui.views.AnyTextView
             android:id="@+id/txt_jobselectedAmount"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/x10"
-            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/x15"
+
             android:gravity="right"
             android:maxLines="1"
             android:paddingBottom="@dimen/x10"
             android:paddingTop="@dimen/x10"
-            android:text="AED 500"
+            android:text="QAR 500"
             android:textSize="@dimen/x15"
             android:textStyle="normal"
             app:typeface="@string/font_normal_dark" />

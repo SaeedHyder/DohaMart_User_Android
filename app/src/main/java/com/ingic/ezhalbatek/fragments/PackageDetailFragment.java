@@ -14,7 +14,6 @@ import com.ingic.ezhalbatek.entities.LoginModule.Subscription;
 import com.ingic.ezhalbatek.entities.LoginModule.UserEnt;
 import com.ingic.ezhalbatek.entities.SubscriptionsDetail;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
-import com.ingic.ezhalbatek.global.WebServiceConstants;
 import com.ingic.ezhalbatek.ui.binders.PackageTasksBinder;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
 import com.ingic.ezhalbatek.ui.views.CustomRecyclerView;
@@ -48,6 +47,8 @@ public class PackageDetailFragment extends BaseFragment {
     AnyTextView txtEmail;
     @BindView(R.id.btnProceedPayment)
     Button btnProceedPayment;
+    @BindView(R.id.btnUpdate)
+    Button btnUpdate;
     Unbinder unbinder;
     @BindView(R.id.txtFeatures)
     AnyTextView txtFeatures;
@@ -111,6 +112,7 @@ public class PackageDetailFragment extends BaseFragment {
             setData();
         } else {
             btnProceedPayment.setVisibility(View.GONE);
+            btnUpdate.setVisibility(View.VISIBLE);
             setDataPreference();
         }
 
@@ -120,8 +122,8 @@ public class PackageDetailFragment extends BaseFragment {
     private void setDataPreference() {
         if (prefHelper.getUser().getUserSubscription() != null && prefHelper.getUser().getUserSubscription().getSubscription() != null) {
             Subscription entity = prefHelper.getUser().getUserSubscription().getSubscription();
-            txtDuration.setText(entity.getSubscriptionDuration() + " Months Package");
-            txtSubscriptionFee.setText("AED " + entity.getAmount());
+            txtDuration.setText(entity.getSubscriptionDuration() + " Month("+ entity.getTitle()+")");
+            txtSubscriptionFee.setText(getResString(R.string.QAR)+" " + entity.getAmount());
             txtSubscriberID.setText(entity.getId() + "");
 
             if (prefHelper.getUser() != null) {
@@ -146,7 +148,7 @@ public class PackageDetailFragment extends BaseFragment {
     private void setData() {
         if (subscriptionsDetail != null) {
             txtDuration.setText(subscriptionsDetail.getSubscriptionDuration() + " Months Package");
-            txtSubscriptionFee.setText("AED " + subscriptionsDetail.getAmount());
+            txtSubscriptionFee.setText(getResString(R.string.QAR) + " " + subscriptionsDetail.getAmount());
             txtSubscriberID.setText(subscriptionsDetail.getId() + "");
             txtAddress.setText(Address != null ? Address : "-");
             if (prefHelper.getUser() != null) {
@@ -176,11 +178,22 @@ public class PackageDetailFragment extends BaseFragment {
         titleBar.setSubHeading(getResString(R.string.package_detail));
     }
 
+    @OnClick({R.id.btnProceedPayment, R.id.btnUpdate})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btnProceedPayment:
+                serviceHelper.enqueueCall(webService.subscriptionPurchase(subscriptionsDetail.getId() + "", prefHelper.getUser().getId() + "", Latitude, Longitude, Address), PURCHASESUBSCRIPTION);
 
-    @OnClick(R.id.btnProceedPayment)
-    public void onViewClicked() {
-        serviceHelper.enqueueCall(webService.subscriptionPurchase(subscriptionsDetail.getId() + "", prefHelper.getUser().getId() + "", Latitude, Longitude, Address), PURCHASESUBSCRIPTION);
+                break;
+            case R.id.btnUpdate:
+                if (prefHelper.getUser().getUserSubscription() != null && prefHelper.getUser().getUserSubscription().getSubscription() != null) {
+                    Subscription entity = prefHelper.getUser().getUserSubscription().getSubscription();
+                    getDockActivity().replaceDockableFragment(SubscriptionsPackagesFragment.newInstance(entity.getCategoryId()), "SubscriptionsPackagesFragment");
+                }
+                break;
+        }
     }
+
 
     @Override
     public void ResponseSuccess(Object result, String Tag, String message) {
@@ -202,4 +215,7 @@ public class PackageDetailFragment extends BaseFragment {
                 break;
         }
     }
+
+
+
 }

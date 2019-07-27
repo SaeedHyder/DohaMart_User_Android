@@ -202,10 +202,10 @@ public class ServiceDetailFragment extends BaseFragment {
             }
 
 
-            //txtTotalEarning.setText("AED" + " " + amount + "");
-            txtExtraEarning.setText("AED" + " " + entity.getUrgentCost() + "");
+            //txtTotalEarning.setText("QAR" + " " + amount + "");
+            txtExtraEarning.setText(getDockActivity().getResources().getString(R.string.QAR) + " " + entity.getUrgentCost() + "");
             double totalAmount=entity.getTotalAmount()+entity.getUrgentCost();
-            txtTotalEarning.setText("AED" + " " + totalAmount+ "");
+            txtTotalEarning.setText(getDockActivity().getResources().getString(R.string.QAR) + " " + totalAmount+ "");
 
             if (entity.getStatus() == 1 || entity.getStatus() == 2) {
                 txtStatus.setText(AppConstants.Technician_Assigned);

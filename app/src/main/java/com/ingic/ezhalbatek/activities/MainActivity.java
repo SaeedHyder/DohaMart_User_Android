@@ -49,6 +49,7 @@ import com.ingic.ezhalbatek.fragments.MyServicesFragment;
 import com.ingic.ezhalbatek.fragments.NotificationsFragment;
 import com.ingic.ezhalbatek.fragments.SideMenuFragment;
 import com.ingic.ezhalbatek.fragments.SubscriptionStatusFragment;
+import com.ingic.ezhalbatek.fragments.TutorialFragment;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
 import com.ingic.ezhalbatek.global.AppConstants;
 import com.ingic.ezhalbatek.global.SideMenuChooser;
@@ -218,7 +219,8 @@ public class MainActivity extends DockActivity implements OnClickListener {
         if (prefHelper.isLogin()) {
             replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
         } else {
-            replaceDockableFragment(LanguageSelectionFragment.newInstance(), LanguageSelectionFragment.TAG);
+            //replaceDockableFragment(LanguageSelectionFragment.newInstance(), LanguageSelectionFragment.TAG);
+            replaceDockableFragment(TutorialFragment.newInstance(), "TutorialFragment");
         }
 
         Bundle bundle = getIntent().getExtras();

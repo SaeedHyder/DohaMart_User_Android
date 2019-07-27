@@ -24,14 +24,6 @@
     <string name="msg_connection_failed">Error! Connection to server failed.</string>
     <string name="msg_connection_error">Please check your internet connection</string>
 
-    <!-- Date Time -->
-    <string name="common.months">months</string>
-    <string name="common.weeks">weeks</string>
-    <string name="common.days">days</string>
-    <string name="common.hrs">hrs</string>
-    <string name="common.mins">mins</string>
-    <string name="common.secs">secs</string>
-    <string name="common.ago">ago</string>
 
     <!-- AnyTextView -->
     <string name="typeface_not_found">Typeface %$1 not found, or could not be loaded.
@@ -262,7 +254,7 @@
     <string name="progress">In Progress</string>
     <string name="completed">Completed</string>
     <string name="pending_jobs">Pending Jobs</string>
-    <string name="select_sub_service">Select Sub Service</string>
+    <string name="select_sub_service">Select Job</string>
     <string name="internet_not_connected">Internet is not Connected</string>
     <string name="gps_question">Location is Disabled.Do you want to enable it</string>
     <string name="gps_yes">Yes</string>
@@ -292,5 +284,11 @@
     <string name="history">History</string>
     <string name="admin">Admin</string>
     <string name="extra_cost">Extra Cost </string>
+    <string name="next">Next</string>
+
+    <string name="QAR">QAR</string>
+    <string name="update_package">Update Package</string>
+    <string name="package_can_not_downgraded">Package can not be downgraded</string>
+    <string name="qty">Qty</string>
 
 </resources>

@@ -37,11 +37,11 @@ public class Job_Acknw_Binder extends RecyclerViewBinder<getAdditionalJobsEnt> {
 
 
         holder.txtJobselectedtext.setText(entity.getItem().getName()+"");
-        holder.txtQuantity.setText("Qty " + entity.getQuantity() + "");
+        holder.txtQuantity.setText(context.getResources().getString(R.string.qty)+" " + entity.getQuantity() + "");
       //  Double amount = Double.valueOf(entity.getItem().getAmount())*entity.getItem().getQuantity();
         amount=0.0;
         amount = Double.valueOf(entity.getItem().getAmount());
-        holder.txtJobselectedAmount.setText("AED " + amount + "");
+        holder.txtJobselectedAmount.setText(context.getResources().getString(R.string.QAR)+" "  + amount + "");
 
     }
 

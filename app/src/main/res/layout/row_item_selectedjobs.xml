@@ -16,31 +16,46 @@
 
         <com.ingic.ezhalbatek.ui.views.AnyTextView
             android:id="@+id/txt_jobselectedtext"
-            android:layout_width="0dp"
+            android:layout_width="277dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x10"
             android:layout_weight="0.5"
             android:maxLines="1"
-            android:paddingBottom="@dimen/x10"
             android:paddingTop="@dimen/x10"
+            android:paddingBottom="@dimen/x10"
             android:text="@string/selected_jobs"
             android:textSize="@dimen/x15"
             android:textStyle="normal"
             app:typeface="@string/font_normal_dark" />
 
+        <com.ingic.ezhalbatek.ui.views.AnyEditTextView
+            android:id="@+id/edtQuantity"
+            android:layout_width="@dimen/x37"
+            android:layout_height="@dimen/x32"
+            android:layout_marginLeft="@dimen/x10"
+            android:maxLines="1"
+            android:background="@drawable/box"
+            android:maxLength="3"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:gravity="center"
+            android:paddingLeft="@dimen/x5"
+            android:paddingRight="@dimen/x5"
+            android:hint="0"
+            android:textSize="@dimen/x15"
+            android:textStyle="normal"
+            app:typeface="@string/font_normal_dark" />
 
 
         <com.ingic.ezhalbatek.ui.views.AnyTextView
             android:id="@+id/txt_jobselectedAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginLeft="@dimen/x10"
-
             android:maxLines="1"
             android:paddingBottom="@dimen/x10"
             android:paddingTop="@dimen/x10"
-            android:text="AED 500"
+            android:text="500"
             android:textSize="@dimen/x15"
             android:textStyle="normal"
             app:typeface="@string/font_normal_dark" />

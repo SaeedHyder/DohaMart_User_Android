@@ -888,6 +888,23 @@ public class DateHelper {
 		return OurDate;
 	}
 
+	public static String getLocalDate(String OurDate) {
+		try {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+			Date value = formatter.parse(OurDate);
+
+			SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd"); //this format changeable
+			dateFormatter.setTimeZone(TimeZone.getDefault());
+			OurDate = dateFormatter.format(value);
+
+			//Log.d("OurDate", OurDate);
+		} catch (Exception e) {
+			OurDate = "00-00-0000 00:00";
+		}
+		return OurDate;
+	}
+
 	public static String getFormatedDate(String Currentformat, String DesiredFormat, String OurDate) {
 		try {
 			SimpleDateFormat formatter = new SimpleDateFormat(Currentformat);

@@ -642,7 +642,7 @@ public class BookRequestFragment extends BaseFragment {
             return false;
      //   } else if (spnJobtype.getSelectedItemPosition() == 0 || selectedJobsCollection.size() <= 0) {
         } else if (selectedJobsCollection.size() <= 0) {
-            UIHelper.showShortToastInCenter(getDockActivity(), "Select sub service");
+            UIHelper.showShortToastInCenter(getDockActivity(), "Select Job to proceed");
 
             return false;
         } else if (edtAddtionalJob.getText().toString().isEmpty() || edtAddtionalJob.getText().toString().length() < 3 || edtAddtionalJob.getText().toString().trim().equals("")) {

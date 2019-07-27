@@ -187,7 +187,7 @@ public class AdditionalJobAcknowledFragment extends BaseFragment {
             txtNoData.setVisibility(View.VISIBLE);
         }
 
-        txtTotalEarning.setText("AED" + " " + amount + "");
+        txtTotalEarning.setText(getDockActivity().getResources().getString(R.string.QAR) + " " + amount + "");
 
 
     }
