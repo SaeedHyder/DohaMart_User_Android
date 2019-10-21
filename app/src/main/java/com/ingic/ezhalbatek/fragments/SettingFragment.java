@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 
@@ -17,7 +18,6 @@ import com.ingic.ezhalbatek.entities.LoginModule.UserEnt;
 import com.ingic.ezhalbatek.fragments.abstracts.BaseFragment;
 import com.ingic.ezhalbatek.global.AppConstants;
 import com.ingic.ezhalbatek.helpers.DialogHelper;
-import com.ingic.ezhalbatek.helpers.UIHelper;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
 import com.ingic.ezhalbatek.ui.views.TitleBar;
 
@@ -59,6 +59,18 @@ public class SettingFragment extends BaseFragment {
     LinearLayout btnContactUs;
     @BindView(R.id.btnCallUs)
     LinearLayout btnCallUs;
+    @BindView(R.id.arrow1)
+    ImageView arrow1;
+    @BindView(R.id.arrow2)
+    ImageView arrow2;
+    @BindView(R.id.arrow3)
+    ImageView arrow3;
+    @BindView(R.id.arrow4)
+    ImageView arrow4;
+    @BindView(R.id.arrow5)
+    ImageView arrow5;
+    @BindView(R.id.arrow6)
+    ImageView arrow6;
 
     public static SettingFragment newInstance() {
         Bundle args = new Bundle();
@@ -97,9 +109,34 @@ public class SettingFragment extends BaseFragment {
             }
         }
 
-        if(prefHelper.getUser()!=null && prefHelper.getUser().getNotification()!=null && prefHelper.getUser().getNotification().equals("1")){
+        if (prefHelper.isLanguageArabian()) {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+            btnEnglish.setTextColor(getResources().getColor(R.color.app_font_gray));
+            btnArabic.setTextColor(getResources().getColor(R.color.app_red));
+
+            arrow1.setRotation(180);
+            arrow2.setRotation(180);
+            arrow3.setRotation(180);
+            arrow4.setRotation(180);
+            arrow5.setRotation(180);
+            arrow6.setRotation(180);
+
+        } else {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+            btnEnglish.setTextColor(getResources().getColor(R.color.app_red));
+            btnArabic.setTextColor(getResources().getColor(R.color.app_font_gray));
+
+            arrow1.setRotation(0);
+            arrow2.setRotation(0);
+            arrow3.setRotation(0);
+            arrow4.setRotation(0);
+            arrow5.setRotation(0);
+            arrow6.setRotation(0);
+        }
+
+        if (prefHelper.getUser() != null && prefHelper.getUser().getNotification() != null && prefHelper.getUser().getNotification().equals("1")) {
             swtNotification.setChecked(true);
-        }else{
+        } else {
             swtNotification.setChecked(false);
         }
 
@@ -258,7 +295,9 @@ public class SettingFragment extends BaseFragment {
                     });
                     dialogHelper.showDialog();
                 } else {
-                    UIHelper.showShortToastInCenter(getDockActivity(), "Will be implemented in future version");
+                    btnEnglish.setTextColor(getResources().getColor(R.color.app_red));
+                    btnArabic.setTextColor(getResources().getColor(R.color.app_font_gray));
+                    prefHelper.putLang(getDockActivity(), "en");
                 }
                 break;
             case R.id.btn_Arabic:
@@ -276,11 +315,12 @@ public class SettingFragment extends BaseFragment {
                     });
                     dialogHelper.showDialog();
                 } else {
-                    UIHelper.showShortToastInCenter(getDockActivity(), "Will be implemented in future version");
+                    btnEnglish.setTextColor(getResources().getColor(R.color.app_font_gray));
+                    btnArabic.setTextColor(getResources().getColor(R.color.app_red));
+                    prefHelper.putLang(getDockActivity(), "ar");
                 }
                 break;
         }
     }
-
 
 }

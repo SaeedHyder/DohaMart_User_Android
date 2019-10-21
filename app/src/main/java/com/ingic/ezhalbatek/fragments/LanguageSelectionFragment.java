@@ -68,7 +68,7 @@ public class LanguageSelectionFragment extends BaseFragment {
         titleBar.setSubHeading(getResString(R.string.select_language));
     }
 
-    @OnClick({R.id.btn_english, R.id.btn_arabic})
+  /*  @OnClick({R.id.btn_english, R.id.btn_arabic})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_english:
@@ -76,6 +76,30 @@ public class LanguageSelectionFragment extends BaseFragment {
                 break;
             case R.id.btn_arabic:
                 willbeimplementedinBeta();
+                break;
+        }
+    }*/
+    @OnClick({R.id.btn_english, R.id.btn_arabic})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_english:
+                prefHelper.setLanguageSelected(true);
+
+                if (!prefHelper.isLanguageArabian()) {
+                    getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
+                } else {
+                    prefHelper.putLang(getDockActivity(), "en");
+                }
+
+                break;
+            case R.id.btn_arabic:
+                if (prefHelper.isLanguageArabian()) {
+                    getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
+                } else {
+                    prefHelper.putLang(getDockActivity(), "ar");
+                }
+
+                //   UIHelper.showShortToastInDialoge(getDockActivity(),getResString(R.string.will_be_implemented));
                 break;
         }
     }

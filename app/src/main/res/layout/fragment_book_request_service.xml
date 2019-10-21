@@ -79,7 +79,7 @@
             android:maxLines="1"
             android:paddingBottom="@dimen/x10"
             android:paddingTop="@dimen/x10"
-            android:text="@string/additional_job"
+            android:text="@string/additional_note_"
             android:textColor="@color/app_red"
             android:textSize="@dimen/x15"
             android:textStyle="normal"
@@ -233,7 +233,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x60"
-                android:layout_marginRight="@dimen/x5"
+                android:layout_marginEnd="@dimen/x5"
                 android:layout_weight="1"
                 android:background="@drawable/button_stroke_grey"
                 android:gravity="center"
@@ -274,7 +274,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x60"
-                android:layout_marginLeft="@dimen/x5"
+                android:layout_marginStart="@dimen/x5"
                 android:layout_weight="1"
                 android:background="@drawable/button_stroke_grey"
                 android:gravity="center"

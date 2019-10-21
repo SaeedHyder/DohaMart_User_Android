@@ -4,6 +4,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
+
             android:orientation="vertical">
 
     <LinearLayout
@@ -54,6 +55,7 @@
                     android:layout_gravity="start"
                     android:gravity="center"
                     android:paddingStart="@dimen/x10"
+                    android:paddingEnd="@dimen/x10"
                     android:text="@string/facilities"
                     android:textColor="@color/app_red"
                     android:textSize="@dimen/x14"

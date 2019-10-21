@@ -57,6 +57,16 @@ public class SubServiceEnt {
     @Expose
     private String serviceImage;
 
+    private String quantity;
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
     public Integer getId() {
         return id;
     }

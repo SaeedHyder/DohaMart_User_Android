@@ -29,7 +29,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.google.android.gms.location.places.Place;
+import com.google.gson.Gson;
 import com.ingic.ezhalbatek.R;
+import com.ingic.ezhalbatek.entities.BookingObject;
 import com.ingic.ezhalbatek.entities.CreateRequest;
 import com.ingic.ezhalbatek.entities.LocationModel;
 import com.ingic.ezhalbatek.entities.SubServiceEnt;
@@ -176,10 +179,33 @@ public class BookRequestFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        if (prefHelper.isLanguageArabian()) {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        } else {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        }
+
         serviceHelper.enqueueCall(webService.getAllSubServices(serviceID), ALLSUBSERVICES);
 
         bindImageViews();
-        bindSpannableText();
+     //   if (!prefHelper.isLanguageArabian()) {
+            bindSpannableText();
+
+
+        edtLocationgps.setAutoCompleteTextListener(new AutoCompleteLocation.AutoCompleteLocationListener() {
+            @Override
+            public void onTextClear() {
+
+            }
+
+            @Override
+            public void onItemSelected(Place selectedPlace) {
+
+                locationLat = selectedPlace.getLatLng().latitude;
+                locationLng = selectedPlace.getLatLng().longitude;
+            }
+        });
     }
 
     @Override
@@ -202,6 +228,7 @@ public class BookRequestFragment extends BaseFragment {
     }
 
     private void bindSpannableText() {
+
         setClickableText(getResString(R.string.term_option_value), getResString(R.string.terms), getResString(R.string.privacy), chkTermPrivacy, new ClickableSpan() {
             @Override
             public void onClick(View widget) {
@@ -286,7 +313,7 @@ public class BookRequestFragment extends BaseFragment {
                         .format(date.getTime());
                 textView.setText(new SimpleDateFormat(AppConstants.DATE_FORMAT, Locale.ENGLISH)
                         .format(date.getTime()));
-                predate=new SimpleDateFormat(AppConstants.DATE_FORMAT, Locale.ENGLISH)
+                predate = new SimpleDateFormat(AppConstants.DATE_FORMAT, Locale.ENGLISH)
                         .format(date.getTime());
             }
         });
@@ -309,7 +336,7 @@ public class BookRequestFragment extends BaseFragment {
                     if (DateHelper.isSameDay(DateSelected, date) && !DateHelper.isTimeAfter(date.getHours(), date.getMinutes(), hourOfDay, minute)) {
                         UIHelper.showShortToastInCenter(getDockActivity(), getResString(R.string.less_time_error));
                     } else if (DateHelper.isSameDay(DateSelected, date) && !DateHelper.TwoHoursCheck(date.getHours(), date.getMinutes(), hourOfDay, minute)) {
-                        UIHelper.showShortToastInCenter(getDockActivity(), "Please select time atleast 2 hours from current time");
+                        UIHelper.showShortToastInCenter(getDockActivity(), getResString(R.string.please_select_time_atleast_2_hour));
                     } else {
                         Calendar c = Calendar.getInstance();
                         int year = c.get(Calendar.YEAR);
@@ -449,7 +476,7 @@ public class BookRequestFragment extends BaseFragment {
                 break;
             case R.id.btn_addimage:
                 if (imagesCollection.size() == 5) {
-                    UIHelper.showShortToastInCenter(getDockActivity(), "Max 5 Images are allowed.");
+                    UIHelper.showShortToastInCenter(getDockActivity(), getResString(R.string.max_5_images_allowed));
                     return;
                 } else {
                     pickImageForUser(5 - imagesCollection.size());
@@ -471,7 +498,7 @@ public class BookRequestFragment extends BaseFragment {
                         ArrayList<String> ids = new ArrayList<>();
                         double totalAmount = 0;
                         for (SubServiceEnt item : selectedJobsCollection) {
-                            ids.add(item.getId() + "");
+                            ids.add(item.getId() + "-" + item.getQuantity());
                             try {
                                 totalAmount = totalAmount + Double.parseDouble(item.getAmount());
                             } catch (Exception e) {
@@ -496,8 +523,15 @@ public class BookRequestFragment extends BaseFragment {
                         RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), prefHelper.getUser().getId() + "");
                         RequestBody is_urgent = RequestBody.create(MediaType.parse("text/plain"), urgentTask.isChecked() ? "1" : "0");
 
+                        BookingObject bookingObject = new BookingObject(edtEmail.getText().toString(), serviceIds, edtAddtionalJob.getText().toString(), locationLat + "",
+                                locationLng + "", edtLocationgps.getText().toString(), edtLocationspecific.getText().toString(), btnPreferreddate.getText().toString(),
+                                btnPreferredtime.getText().toString(), totalAmount + "", AppConstants.PAYMENTTYPE, AppConstants.COUNTRYCURRENCY, prefHelper.getUser().getId() + "",
+                                urgentTask.isChecked() ? "1" : "0", "");
 
-                        serviceHelper.enqueueCall(webService.createRequest(jobTitle, serviceId, description, latitude, longitude, location, full_address, date, time, total, payment_type, currency_code, user_id, is_urgent, files), CREATEREQUEST);
+                        RequestBody body = RequestBody.create(MediaType.parse("text/plain"), new Gson().toJson(bookingObject));
+
+                        serviceHelper.enqueueCall(webService.createBodyRequest(body, files), CREATEREQUEST);
+                        // serviceHelper.enqueueCall(webService.createRequest(jobTitle, serviceId, description, latitude, longitude, location, full_address, date, time, payment_type,total, currency_code, user_id, is_urgent, files), CREATEREQUEST);
 
                           /*  CreateRequest createRequest = new CreateRequest(edtEmail.getText().toString(), serviceIds,
                                 edtAddtionalJob.getText().toString(), locationLat + "", locationLng + "", edtLocationgps.getText().toString(),
@@ -634,41 +668,54 @@ public class BookRequestFragment extends BaseFragment {
     }
 
     private boolean isvalidated() {
+
+        boolean isvalidQuantity = true;
+        String title = "";
+        for (SubServiceEnt item : selectedJobsCollection) {
+            if (item.getQuantity() == null || item.getQuantity().equals("")) {
+                isvalidQuantity = false;
+                title = item.getTitle();
+            }
+        }
+
         if (edtEmail.getText().toString().isEmpty() || edtEmail.getText().toString().length() < 3 || edtEmail.getText().toString().trim().equals("")) {
-            edtEmail.setError("Enter job title");
+            edtEmail.setError(getDockActivity().getResources().getString(R.string.enter_job_title));
             if (edtEmail.requestFocus()) {
                 setEditTextFocus(edtEmail);
             }
             return false;
-     //   } else if (spnJobtype.getSelectedItemPosition() == 0 || selectedJobsCollection.size() <= 0) {
+            //   } else if (spnJobtype.getSelectedItemPosition() == 0 || selectedJobsCollection.size() <= 0) {
         } else if (selectedJobsCollection.size() <= 0) {
-            UIHelper.showShortToastInCenter(getDockActivity(), "Select Job to proceed");
-
+            UIHelper.showShortToastInCenter(getDockActivity(), getResString(R.string.select_job_to_proceed));
             return false;
+        } else if (selectedJobsCollection.size() > 0 && !isvalidQuantity) {
+            UIHelper.showShortToastInCenter(getDockActivity(), getResString(R.string.enter_quantity_of) + " " + title);
+            return false;
+
         } else if (edtAddtionalJob.getText().toString().isEmpty() || edtAddtionalJob.getText().toString().length() < 3 || edtAddtionalJob.getText().toString().trim().equals("")) {
-            edtAddtionalJob.setError("write job description to proceed");
+            edtAddtionalJob.setError(getResString(R.string.write_your_job_desc));
             if (edtAddtionalJob.requestFocus()) {
                 setEditTextFocus(edtAddtionalJob);
             }
             return false;
         } else if (edtLocationgps.getText().toString().isEmpty() || edtLocationgps.getText().toString().trim().equals("")) {
-            UIHelper.showShortToastInCenter(getDockActivity(), "Enter your location");
+            UIHelper.showShortToastInCenter(getDockActivity(), getResString(R.string.enter_your_location));
             //      edtLocationgps.setError("");
 
             return false;
         } else if (edtLocationspecific.getText().toString().isEmpty() || edtLocationspecific.getText().toString().length() < 3 || edtLocationspecific.getText().toString().trim().equals("")) {
-            edtLocationspecific.setError("Enter your address");
+            edtLocationspecific.setError(getResString(R.string.enter_your_address));
             if (edtLocationspecific.requestFocus()) {
                 setEditTextFocus(edtLocationspecific);
             }
             return false;
         } else if (btnPreferreddate.getText().toString().isEmpty()) {
-            UIHelper.showShortToastInCenter(getDockActivity(), "Select date");
+            UIHelper.showShortToastInCenter(getDockActivity(), getResString(R.string.select_date));
             //  btnPreferreddate.setError("");
 
             return false;
         } else if (btnPreferredtime.getText().toString().isEmpty()) {
-            UIHelper.showShortToastInCenter(getDockActivity(), "Select time");
+            UIHelper.showShortToastInCenter(getDockActivity(), getResString(R.string.select_time));
             //  btnPreferredtime.setError("");
             return false;
         } else

@@ -123,6 +123,14 @@ public class JobDoneAcknowledgeFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if (prefHelper.isLanguageArabian()) {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        } else {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        }
+
         mainFrame.setVisibility(View.GONE);
         amount = 0.0;
         if (isCompleted) {

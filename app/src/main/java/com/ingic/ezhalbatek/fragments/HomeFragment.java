@@ -76,6 +76,8 @@ public class HomeFragment extends BaseFragment {
         getMainActivity().refreshSideMenu();
         onNotificationReceived();
 
+
+
         if (InternetHelper.CheckInternetConectivityandShowToast(getDockActivity())) {
             txtNoData.setVisibility(View.GONE);
             serviceHelper.enqueueCall(webService.getAllCategories(), ALLSERVICES);
@@ -149,7 +151,7 @@ public class HomeFragment extends BaseFragment {
 
         if (allservices.size() > 0) {
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getDockActivity(), 3);
-            rvCategories.bindRecyclerView(new CategoryItemBinder(itemClickListener), allservices, gridLayoutManager, new DefaultItemAnimator());
+            rvCategories.bindRecyclerView(new CategoryItemBinder(itemClickListener,prefHelper), allservices, gridLayoutManager, new DefaultItemAnimator());
         } else {
             rvCategories.setVisibility(View.GONE);
         }

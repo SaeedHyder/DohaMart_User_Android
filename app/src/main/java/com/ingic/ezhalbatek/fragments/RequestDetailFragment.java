@@ -83,13 +83,21 @@ public class RequestDetailFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+        if (prefHelper.isLanguageArabian()) {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        } else {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        }
+
         setData();
 
     }
 
     private void setData() {
         if (allCategoriesEnt != null) {
-        //    imageLoader.displayImage(allCategoriesEnt.getDetailImage(), imgCategoryImage);
+            //    imageLoader.displayImage(allCategoriesEnt.getDetailImage(), imgCategoryImage);
             Picasso.with(getDockActivity()).load(allCategoriesEnt.getDetailImage()).placeholder(R.drawable.placeholder1).into(imgCategoryImage);
             txtDescriptionDetail.setText(allCategoriesEnt.getDescription() + "");
         }

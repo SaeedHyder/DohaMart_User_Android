@@ -76,7 +76,7 @@ public class NotificationsFragment extends BaseFragment implements OnLongTap {
         super.setTitleBar(titleBar);
         titleBar.hideButtons();
         titleBar.showBackButton();
-        titleBar.showHideDeleteAllButton(true);
+        titleBar.showHideDeleteAllButton(true,getDockActivity().getResources().getString(R.string.delete_all));
         titleBar.setSubHeading(getResString(R.string.notification));
         titleBar.showDeleteAllButton(new View.OnClickListener() {
             @Override
@@ -94,7 +94,7 @@ public class NotificationsFragment extends BaseFragment implements OnLongTap {
                     UIHelper.showShortToastInCenter(getDockActivity(), "No notification found");
                 }
             }
-        });
+        },getDockActivity().getResources().getString(R.string.delete_all));
     }
 
     @Nullable
@@ -122,9 +122,9 @@ public class NotificationsFragment extends BaseFragment implements OnLongTap {
             case getNotifications:
                 notifications = (ArrayList<NotificationsEnt>) result;
                 if (notifications.size() <= 0 && getTitleBar() != null) {
-                    getTitleBar().showHideDeleteAllButton(false);
+                    getTitleBar().showHideDeleteAllButton(false,getDockActivity().getResources().getString(R.string.delete_all));
                 } else if (getTitleBar() != null) {
-                    getTitleBar().showHideDeleteAllButton(true);
+                    getTitleBar().showHideDeleteAllButton(true,getDockActivity().getResources().getString(R.string.delete_all));
                 }
                 ShortcutBadger.applyCount(getDockActivity(), 0);
                 bindData(notifications);

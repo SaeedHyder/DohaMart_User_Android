@@ -18,6 +18,9 @@ public class CMSEnt {
     @SerializedName("body")
     @Expose
     private String body;
+    @SerializedName("ar_body")
+    @Expose
+    private String arbody;
     @SerializedName("created_at")
     @Expose
     private String createdAt;
@@ -27,6 +30,14 @@ public class CMSEnt {
     @SerializedName("deleted_at")
     @Expose
     private String deletedAt;
+
+    public String getArbody() {
+        return arbody;
+    }
+
+    public void setArbody(String arbody) {
+        this.arbody = arbody;
+    }
 
     public Integer getId() {
         return id;

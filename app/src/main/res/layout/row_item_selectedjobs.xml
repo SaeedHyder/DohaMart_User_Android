@@ -36,6 +36,7 @@
             android:maxLines="1"
             android:background="@drawable/box"
             android:maxLength="3"
+            android:digits="0123456798"
             android:imeOptions="actionDone"
             android:inputType="number"
             android:gravity="center"

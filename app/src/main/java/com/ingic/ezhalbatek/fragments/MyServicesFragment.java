@@ -49,8 +49,6 @@ public class MyServicesFragment extends BaseFragment {
     @BindView(R.id.ll_mainFrame)
     LinearLayout llMainFrame;
 
-    Unbinder unbinder;
-
     private ServicesStatus servicesStatus;
     private ArrayList<Service> pending;
     private ArrayList<Service> completed;
@@ -75,7 +73,7 @@ public class MyServicesFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my_services, container, false);
 
-        unbinder = ButterKnife.bind(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -90,6 +88,14 @@ public class MyServicesFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if (prefHelper.isLanguageArabian()) {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        } else {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        }
+
         llMainFrame.setVisibility(View.GONE);
         serviceHelper.enqueueCall(webService.getServicesStatus(prefHelper.getUser().getId() + "", AppConstants.SERVICE), SERVICESTATUS);
 
@@ -143,11 +149,14 @@ public class MyServicesFragment extends BaseFragment {
     }
 
     private void replaceFragmentOnTab(BaseFragment frag) {
-        FragmentTransaction transaction = getChildFragmentManager()
-                .beginTransaction();
+        try {
+            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragmentContainer, frag);
+            transaction.commitAllowingStateLoss();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-        transaction.replace(R.id.fragmentContainer, frag);
-        transaction.commitAllowingStateLoss();
 
     }
 

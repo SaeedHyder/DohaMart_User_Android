@@ -4,6 +4,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/x25"
+                    android:id="@+id/mainFrame"
                 android:orientation="vertical">
 
     <ImageView
@@ -27,6 +28,7 @@
         android:paddingStart="@dimen/x10"
         android:paddingTop="@dimen/x10"
         android:text="@string/home"
+        android:textAlignment="viewStart"
         android:textColor="@color/app_font_gray"
         android:textSize="16sp"
         android:textStyle="normal"

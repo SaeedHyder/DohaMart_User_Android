@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.entities.AllCategoriesEnt;
 import com.ingic.ezhalbatek.entities.CategoryEnt;
+import com.ingic.ezhalbatek.helpers.BasePreferenceHelper;
 import com.ingic.ezhalbatek.interfaces.RecyclerItemListener;
 import com.ingic.ezhalbatek.ui.viewbinders.abstracts.RecyclerViewBinder;
 import com.ingic.ezhalbatek.ui.views.AnyTextView;
@@ -24,11 +25,14 @@ public class CategoryItemBinder extends RecyclerViewBinder<AllCategoriesEnt> {
 
     private RecyclerItemListener itemListener;
     private ImageLoader imageLoader;
+    private BasePreferenceHelper preferenceHelper;
 
-    public CategoryItemBinder(RecyclerItemListener itemListener) {
+
+    public CategoryItemBinder(RecyclerItemListener itemListener, BasePreferenceHelper preferenceHelper) {
         super(R.layout.row_item_category);
         this.itemListener = itemListener;
         imageLoader = ImageLoader.getInstance();
+        this.preferenceHelper = preferenceHelper;
     }
 
     @Override
@@ -42,8 +46,13 @@ public class CategoryItemBinder extends RecyclerViewBinder<AllCategoriesEnt> {
         //holder.imgItemImage.setImageResource(entity.getServiceImage());
         if (entity.getServiceImage() != null)
             imageLoader.displayImage(entity.getServiceImage(), holder.imgItemImage);
-        holder.txtItemTitle.setText(entity.getTitle());
-        
+
+        if (preferenceHelper.isLanguageArabian()) {
+            holder.txtItemTitle.setText(entity.getArTitle());
+        } else {
+            holder.txtItemTitle.setText(entity.getTitle());
+        }
+
         if (itemListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

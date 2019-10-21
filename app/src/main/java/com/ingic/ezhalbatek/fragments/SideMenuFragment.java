@@ -266,12 +266,7 @@ public class SideMenuFragment extends BaseFragment {
 
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
 
-    }
 
     private void bindNavItems() {
         navItems = new ArrayList<>();
@@ -292,7 +287,7 @@ public class SideMenuFragment extends BaseFragment {
         /*if (prefHelper.isLogin()) {
             navItems.add(new NavigationEnt(R.drawable.home_nav, (R.string.logout)));
         }*/
-        rvNav.bindRecyclerView(new NavigationBinder(listener), navItems,
+        rvNav.bindRecyclerView(new NavigationBinder(listener,prefHelper), navItems,
                 new LinearLayoutManager(getDockActivity(), LinearLayoutManager.VERTICAL, false),
                 new DefaultItemAnimator());
     }

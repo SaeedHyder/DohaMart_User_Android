@@ -3,6 +3,7 @@ package com.ingic.ezhalbatek.retrofit;
 
 import com.ingic.ezhalbatek.entities.AdminEnt;
 import com.ingic.ezhalbatek.entities.AllCategoriesEnt;
+import com.ingic.ezhalbatek.entities.BookingObject;
 import com.ingic.ezhalbatek.entities.CMSEnt;
 import com.ingic.ezhalbatek.entities.ChangePhoneEnt;
 import com.ingic.ezhalbatek.entities.CreateRequest;
@@ -241,14 +242,18 @@ public interface WebService {
                                         @Part("full_address") RequestBody full_address,
                                         @Part("date") RequestBody date,
                                         @Part("time") RequestBody time,
-                                        @Part("total") RequestBody total,
                                         @Part("payment_type") RequestBody payment_type,
+                                        @Part("total") RequestBody total,
                                         @Part("currency_code") RequestBody currency_code,
                                         @Part("user_id") RequestBody user_id,
                                         @Part("is_urgent") RequestBody is_urgent,
                                         @Part ArrayList<MultipartBody.Part> images
     );
 
+    @Multipart
+    @POST("request/create")
+    Call<ResponseWrapper> createBodyRequest(   @Part("body") RequestBody body,
+                                               @Part ArrayList<MultipartBody.Part> images);
 
 
     @GET("user/getadminuser")

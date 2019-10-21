@@ -135,6 +135,14 @@ public class ServiceDetailFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if (prefHelper.isLanguageArabian()) {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        } else {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        }
+
         amount = 0.0;
         ContainerButtons.setVisibility(isJobCompleted ? View.GONE : View.VISIBLE);
         ContainerRate.setVisibility(isJobCompleted ? View.VISIBLE : View.GONE);

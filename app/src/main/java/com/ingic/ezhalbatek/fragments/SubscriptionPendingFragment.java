@@ -82,6 +82,13 @@ public class SubscriptionPendingFragment extends BaseFragment {
         prefHelper.setIsFromInProgressSubscriber(true);
         prefHelper.setIsFromCompletedSubscriber(false);
 
+        if (prefHelper.isLanguageArabian()) {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        } else {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        }
+
         if (pendingRequest != null && pendingRequest.size() > 0) {
             rvPendingJobs.setVisibility(View.VISIBLE);
             txtNoData.setVisibility(View.GONE);

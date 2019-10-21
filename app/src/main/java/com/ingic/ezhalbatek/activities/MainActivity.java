@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
@@ -130,6 +132,43 @@ public class MainActivity extends DockActivity implements OnClickListener {
                 .pickPhoto(this);
     }
 
+    private void setCurrentLocale() {
+        if (prefHelper.isLanguageArabian()) {
+            Resources resources = getResources();
+            DisplayMetrics dm = resources.getDisplayMetrics();
+            Configuration conf = resources.getConfiguration();
+            Locale locale=new Locale("ar");
+            //   conf.setLayoutDirection(locale);
+            conf.locale = locale;
+            resources.updateConfiguration(conf, dm);
+
+
+        } else {
+            Resources resources = getResources();
+            DisplayMetrics dm = resources.getDisplayMetrics();
+            Configuration conf = resources.getConfiguration();
+            Locale locale=new Locale("en");
+            //  conf.setLayoutDirection(locale);
+            conf.locale = locale;
+            resources.updateConfiguration(conf, dm);
+
+
+        }
+    }
+    public void restartActivity() {
+        Intent intent = getIntent();
+        if (getIntent().getExtras() != null) {
+            Bundle bundle = new Bundle();
+            bundle.putString("actionType", "");
+            bundle.putString("action_type", "");
+            bundle.putString("title", "");
+            intent.putExtras(bundle);
+        }
+
+        finish();
+        startActivity(intent);
+    }
+
     private void settingSideMenu(String type, String direction) {
 
         if (type.equals(SideMenuChooser.DRAWER.getValue())) {
@@ -219,7 +258,11 @@ public class MainActivity extends DockActivity implements OnClickListener {
         if (prefHelper.isLogin()) {
             replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
         } else {
-            //replaceDockableFragment(LanguageSelectionFragment.newInstance(), LanguageSelectionFragment.TAG);
+           /* if (prefHelper.isLanguageSelected()) {
+                replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
+            } else {
+                replaceDockableFragment(LanguageSelectionFragment.newInstance(), "LanguageSelectionFragment");
+            }*/
             replaceDockableFragment(TutorialFragment.newInstance(), "TutorialFragment");
         }
 
@@ -463,6 +506,8 @@ public class MainActivity extends DockActivity implements OnClickListener {
         sideMenuDirection = SideMenuDirection.LEFT.getValue();
 
         settingSideMenu(sideMenuType, sideMenuDirection);
+
+        setCurrentLocale();
 
 
         titleBar.setMenuButtonListener(new OnClickListener() {

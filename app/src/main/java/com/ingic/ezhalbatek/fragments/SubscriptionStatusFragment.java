@@ -95,6 +95,12 @@ public class SubscriptionStatusFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        if (prefHelper.isLanguageArabian()) {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        } else {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        }
         llMainFrame.setVisibility(View.GONE);
         serviceHelper.enqueueCall(webService.getServicesStatus(prefHelper.getUser().getId() + "", AppConstants.SUBSCRIPTION), SERVICESTATUS);
 

@@ -24,7 +24,6 @@ public class ChangeLanguageFragment extends BaseFragment {
     AnyTextView btnEnglist;
     @BindView(R.id.btnArabic)
     AnyTextView btnArabic;
-    Unbinder unbinder;
 
     public static ChangeLanguageFragment newInstance() {
         Bundle args = new Bundle();
@@ -45,7 +44,7 @@ public class ChangeLanguageFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_change_language, container, false);
-        unbinder = ButterKnife.bind(this, view);
+      ButterKnife.bind(this, view);
         return view;
     }
 
@@ -61,21 +60,18 @@ public class ChangeLanguageFragment extends BaseFragment {
         titleBar.showBackButton();
         titleBar.setSubHeading(getResString(R.string.change_language));
     }
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+
 
     @OnClick({R.id.btnEnglist, R.id.btnArabic})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btnEnglist:
-                willbeimplementedinBeta();
+                prefHelper.putLang(getDockActivity(), "en");
                 break;
             case R.id.btnArabic:
-                willbeimplementedinBeta();
+                prefHelper.putLang(getDockActivity(), "ar");
                 break;
         }
     }
+
 }

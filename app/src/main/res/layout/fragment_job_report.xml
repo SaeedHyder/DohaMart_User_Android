@@ -29,7 +29,7 @@
                 android:gravity="center"
                 android:paddingEnd="@dimen/x10"
                 android:paddingStart="@dimen/x10"
-                android:text="Monthly Maintenance"
+                android:text="@string/monthly_maintenance"
                 android:textColor="@color/app_font_dark_gray"
                 android:textSize="@dimen/x15"
                 app:typeface="@string/font_normal_dark" />

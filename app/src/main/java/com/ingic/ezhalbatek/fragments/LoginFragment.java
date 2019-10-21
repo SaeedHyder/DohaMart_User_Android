@@ -92,6 +92,14 @@ public class LoginFragment extends BaseFragment implements FacebookLoginHelper.F
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onViewCreated(view, savedInstanceState);
+
+        if (prefHelper.isLanguageArabian()) {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        } else {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        }
+
         getMainActivity().changeBackgroundResources(R.drawable.bg);
 
         setupFacebookLogin();

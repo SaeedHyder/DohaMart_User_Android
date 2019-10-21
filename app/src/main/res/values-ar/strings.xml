@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- mark favourite message -->
+
+    <string name="api_key">AIzaSyCDylplefNyWlLDoBL_n2VFjwlMWvq3sBg  </string>
+
+
+    <string name="facebook_app_id">2190694874509698</string>
+    <string name="fb_login_protocol_scheme">fb2190694874509698</string>
+
+    <!-- Error Messages -->
+
+
+
+    <!-- AnyTextView -->
+    <string name="typeface_not_found">Typeface %$1 not found, or could not be loaded.
+        Showing default typeface.</string>
+    <string name="app">AnyTextView</string>
+    <string name="assets_fonts_folder">fonts/</string>
+
+    <string name="confirm_pass">تأكيد كلمة المرور</string>
+
+    <string name="search_hint">Search Ads, User or Category</string>
+    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and types
+        etting industry. Lorem Ipsum has been the industrys standard dummy text ever sinc
+        e the 1500s, when an unknown printer took a galley of type and scrambled it t
+        o make a type specimen book. It has survived not only five centuries, but
+         also the leap into electronic typesetting, remaining essentially unchanged
+         . It was popularised in the 1960s with the release of Letraset sheets cont
+         aining Lorem Ipsum passages, and more recently with desktop publishing so
+         ftware like Aldus PageMaker including versions of Lorem Ipsum.</string>
+
+    <string name="connection_lost">لم يتم العثور على الإنترنت</string>
+
+
+    <!--FONTS-->
+    <string name="font_normal">Raleway-ExtraLight_0.ttf</string>
+    <string name="font_normal_dark">OpenSans-Regular.ttf</string>
+    <!--  <string name="font_normal_dark">Roboto-Regular.ttf</string>-->
+    <string name="font_bold">Raleway-SemiBold_0.ttf</string>
+    <!--  <string name="font_bold">Poppins-Bold_1.ttf</string>-->
+
+    <string name="message_quit">هل انت متأكد انك تريد الخروج؟</string>
+    <string name="message_wait">يرجى الانتظار بينما يتم تحميل البيانات</string>
+    <string name="msg_connection_failed">خطأ! فشل في الاتصال.</string>
+    <string name="msg_connection_error">الرجاء التحقق من الاتصال بالانترنت الخاص بك</string>
+    <string name="code_not_recieve">لم تتلقى الرمز؟ الرجاء الانتظار</string>
+    <string name="enter_phone">رقم الهاتف لا يمكن ان يكون فارغاً</string>
+    <string name="location_error">لا يمكن ان يكون الموقع فارغاً</string>
+    <string name="enter_code">ادخل الرمز</string>
+    <string name="enter_code_error">لا يمكن ان يكون الرمز فارغاً</string>
+    <string name="enter_your_location">ادخل موقعك</string>
+    <string name="enter_valid_code_error">ادخل رمز صحيح</string>
+    <string name="select_job_to_proceed">اختر الخدمة للمتابعة</string>
+    <string name="enter_quantity_of">ادخل كمية من</string>
+    <string name="zipcode">الرمز البريدي</string>
+    <string name="sign_up">قم بالتسجيل</string>
+    <string name="facebook_signup">التسجيل عن طريق الفيس بوك</string>
+    <string name="verification_code_error">ادخل رمز التحقق</string>
+    <string name="verify_phone_number">تحقق من رقم الهاتف</string>
+    <string name="verify_forgot_password">التحقق من نسيان كلمة المرور</string>
+    <string name="select_menu">اختر القائمة</string>
+    <string name="subscribe">الاشتراك</string>
+    <string name="twenty_seven">خدمة 24/7</string>
+    <string name="platinium_package">باقة البلاتينيوم</string>
+    <string name="gold_package">الباقة الذهبية</string>
+    <string name="silver_package">الباقة الفضية</string>
+    <string name="verification_message">تم ارسال رمز التحقق الى هاتفك</string>
+    <string name="enter_verfication_code">ادخل رمز التحقق</string>
+    <string name="city">المدينة</string>
+    <string name="technician_not_assigned">لم يتم تحديد الفني حتى الآن </string>
+    <string name="procedd_payment">اكمال عملية الدفع</string>
+    <string name="location_dummy">ادخل موقعك هنا</string>
+    <string name="location_dummy_2">ادخل عنوانك هنا</string>
+    <string name="select_date">حدد التاريخ</string>
+    <string name="select_time">حدد الوقت</string>
+    <string name="payment_option_value">سيتم الدفع نقداً عند تقديم الخدمة</string>
+
+    <string name="guest_message">يرجى التسجيل أو تسجيل الدخول للمتابعة!</string>
+    <string name="less_time_error">يرجى تحديد وقت الوصول</string>
+    <string name="select_date_error">حدد التاريخ اولاً</string>
+    <string name="tesk_summary">ملخص المهمة  :</string>
+    <string name="user_name">اسم المستخدم</string>
+    <string name="contact_number">رقم التواصل</string>
+    <string name="enter_query">اكتب استعلاماً واحداً على الأقل</string>
+    <string name="turn_notification">تشغيل الاشعارات</string>
+    <string name="term_condition">احكام وشروط</string>
+    <string name="confirm_password_error">تأكيد كلمة المرور غير متطابقة</string>
+    <string name="same_password_error">يجب تغيير كلمة السر القديمة الى كلمة سر جديدة</string>
+    <string name="permission_error">مطلوب إذن للوصول الى هذه الميزة</string>
+    <string name="resend_code">إعادة ارسال الرمز</string>
+    <string name="enter_valid_number_error">ادخل رقم صحيح</string>
+    <string name="password_changed_successfully">تم تغيير كلمة المرور بنجاح</string>
+    <string name="no_notification_found">لم يتم العثور على اشعارات</string>
+    <string name="view_profile">عرض الملف الشخصي</string>
+    <string name="package_name">الباقة</string>
+    <string name="create_your_account_to_get_access_of_all_services">قم بإنشاء حسابك للوصول الى جميع الخدمات</string>
+    <string name="blocked_by_admin">محظور من قبل المشرف</string>
+    <string name="no_additional_job_found">لم يتم العثور على وظيفة إضافية</string>
+    <string name="delete_notification">حذف الاشعار</string>
+    <string name="internet_not_connected">الانترنت غير متصل</string>
+    <string name="gps_question">الموقع معطل. هل تريد تمكينه</string>
+    <string name="acknoowledge_job_done">هل انت متاكد انك تريد الاعتراف بهذه الخدمة؟</string>
+    <string name="acknoowledge_additional_job_reject">هل انت متاكد انك تريد رفض هذه الخدمة؟</string>
+    <string name="acknoowledge_additional_job">هل انت متاكد انك تريد الاعتراف بعمل اضافي؟</string>
+    <string name="acknoowledge_job">اعتراف الخدمة</string>
+    <string name="no_completed_job_found">لم يتم العثور على خدمة مكتملة</string>
+    <string name="enter_your_address">ادخل عنوانك</string>
+    <string name="write_your_job_desc">اكتب وصف الخدمة للمتابعة</string>
+    <string name="please_select_time_atleast_2_hour">يرجى تحديد الوقت على الأقل ساعتان من الوقت الحالي</string>
+    <string name="max_5_images_allowed">٥ صور مسموح بها.</string>
+    <string name="no_pending_job_found">لم يتم العثور على تقدم الخدمة</string>
+    <string name="no_subscription_package_found">لم يتم العثور على باقة الاشتراك</string>
+    <string name="QAR">QAR</string>
+
+    <string name="profile">ملفي الشخصي</string>
+
+    <string name="action_settings">الإعدادات</string>
+    <string name="notification">الإشعارات</string>
+    <string name="app_name">Ezhalbatek</string>
+    <string name="english">انجليزي</string>
+    <string name="arabic">عربي</string>
+    <string name="email">البريد الالكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="reset_password">إعادة تعيين كلمة المرور</string>
+    <string name="sign_in">تسجيل الدخول</string>
+    <string name="newuser">مستخدم جديد؟</string>
+    <string name="create_account">إنشاء حساب</string>
+    <string name="othersignin">أو تسجيل الدخول مع</string>
+    <string name="guest_user">استخدم كضيف</string>
+    <string name="facebook_login">تسجيل الدخول باستخدام الفيسبوك</string>
+    <string name="enter_valid_email">أدخل بريدًا إلكترونيًا صالحًا</string>
+    <string name="enter_password">أدخل كلمة المرو</string>
+    <string name="passwordLength">الأدنى لطول كلمة المرور 6 أحرف يجب أن يكون الحد </string>
+    <string name="phone">رقم الهاتف</string>
+    <string name="submit">إرسال</string>
+    <string name="forgot_password_title">هل نسيت كلمة المرور</string>
+    <string name="full_name">الاسم الكامل</string>
+    <string name="enter_name">أدخل الاسم الكامل</string>
+    <string name="select_language">اختيار اللغة</string>
+    <string name="register">تسجيل</string>
+    <string name="continue_text">استمر</string>
+    <string name="facilities">مرافق</string>
+    <string name="subscription_price">أسعار الاشتراكات</string>
+    <string name="customer_name">اسم العميل :</string>
+    <string name="subscriber_id">كود المشترك :</string>
+    <string name="address">العنوان :</string>
+    <string name="address_">العنوان</string>
+    <string name="phone_number">رقم الهاتف :</string>
+    <string name="phone_number_">رقم الهاتف</string>
+    <string name="customer_email">البريد الإلكتروني :</string>
+    <string name="delete_all_message">تريد حذف هذا الإشعار؟ هل أنت متأكد أنك</string>
+    <string name="delete_notification_">حذف الإشعارات</string>
+    <string name="feedback_submitted_succesfully">تم إرسال الملاحظات بنجاح</string>
+    <string name="total_amount">المجموع </string>
+    <string name="status">الحالة : </string>
+    <string name="pending">قيد الانتظار</string>
+    <string name="history">الارشيف</string>
+    <string name="admin">Admin</string>
+    <string name="extra_cost">تكلفة إضافيه </string>
+    <string name="next">التالي</string>
+    <string name="home">الصفحة الرئيسية</string>
+    <string name="settings">الإعدادات</string>
+    <string name="subsctiption">اشتراك</string>
+    <string name="my_subscription">اشتراكاتي</string>
+    <string name="my_services">خدماتي</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="description">الوصف :</string>
+    <string name="request_service">طلب الخدمة</string>
+    <string name="selected_jobs">الخدمات المختارة</string>
+    <string name="additional_job">أعمال اضافيه</string>
+    <string name="location">الموقع</string>
+    <string name="address_request">العنوان</string>
+    <string name="preferred_date_time">الوقت/ التاريخ المناسب</string>
+    <string name="job_title">عنوان الخدمة</string>
+    <string name="addtional_job_description">أضف تفاصيل دقيقة للطلب،…</string>
+    <string name="terms">الشروط </string>
+    <string name="privacy">سياسة الخصوصية</string>
+    <string name="book_service">سجل الطلب</string>
+    <string name="subscription_package">باقة الاشتراك :</string>
+    <string name="next_visit">تاريخ الزيارة القادمة  :</string>
+    <string name="view_report">عرض التقرير</string>
+    <string name="rate">التقييم</string>
+    <string name="rate_technicain">تيقيم فني الخدمة</string>
+    <string name="write_feedback_here">اكتب ملاحظاتك هنا</string>
+    <string name="confirm">التاكيد</string>
+    <string name="rating">تقييم :</string>
+    <string name="technician_number">للاتصال بالفني : </string>
+    <string name="technician_name">اسم الفني :</string>
+    <string name="time_duration">المدة الزمنية  :</string>
+    <string name="visit_made">تاريخ الزيارة  :</string>
+    <string name="date">التاريخ :</string>
+    <string name="service_id">كود الخدمة :</string>
+    <string name="update">تحديث</string>
+    <string name="query_hint">اكتب استفسارك هنا..</string>
+    <string name="change_password">تغيير كلمة المرور</string>
+    <string name="rate_app">قيم تطبيق ازهل بيتك</string>
+    <string name="change_phone">تغيير رقم الهاتف</string>
+    <string name="change_language">تغيير اللغة</string>
+    <string name="about_app">حول تطبيق ازهل بيتك</string>
+    <string name="contact_us">راسلنا</string>
+    <string name="call_us">اتصل بنا</string>
+    <string name="old_password">كلمة المرور القديمة</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="re_enter_password">اعد ادخال كلمة المرور</string>
+    <string name="view_details">عرض التفاصيل</string>
+    <string name="call_technician">اتصل بالفني</string>
+    <string name="job_title_head_">عنوان الخدمة</string>
+    <string name="jobs_">الخدمات</string>
+    <string name="additional_note_">ملاحظات إضافيه</string>
+    <string name="cancel_Job">إلغاء الطلب</string>
+    <string name="yes">نعم</string>
+    <string name="no">كلا</string>
+    <string name="cancel_message">هل انت متاكد من إلغاءالطلب؟</string>
+    <string name="offer_packages">العروض والباقات</string>
+    <string name="subscriptions">اشتراك</string>
+    <string name="thankyou">شكرا لك</string>
+    <string name="empty"/>
+    <string name="ok">تم</string>
+    <string name="package_detail">تفاصيل الباقات</string>
+    <string name="request_for_service">طلب الخدمة</string>
+    <string name="request_send">تم ارسال الطلب</string>
+    <string name="edit_profile">تعديل الملف الشخصي</string>
+    <string name="service_status">حالة الطلب</string>
+    <string name="rate_review">التقييم والاراء</string>
+    <string name="service_details">تفاصيل الخدمة</string>
+    <string name="app_settings">إعدادات التطبيق</string>
+    <string name="change_number">تغيير الرقم</string>
+    <string name="contact_form">نموذج الاتصال</string>
+    <string name="logout_message">هل أنت متأكد أنك تريد تسجيل الخروج؟</string>
+    <string name="subscription_status">وضع الاشتراك</string>
+    <string name="urgent_task_within_3_hours_with_20_extra_cost">مهمة عاجلة في غضون 3 ساعات بتكلفة إضافية 20 ٪</string>
+    <string name="next_visit_job">الزيارة المقبلة</string>
+    <string name="progress">جاري العمل</string>
+    <string name="completed">تم الانتهاء</string>
+    <string name="select_sub_service">اختر الخدمة</string>
+    <string name="gps_yes">نعم</string>
+    <string name="gps_no">كلا</string>
+    <string name="write_feedback">اكتب ملاحظاتك هنا </string>
+    <string name="accept">قبول</string>
+    <string name="reject">رفض</string>
+    <string name="delete_notification_message">هل أنت متأكد أنك تريد حذف هذا الإشعار؟</string>
+    <string name="job_done_acknowledge">تم إنجاز العمل</string>
+    <string name="update_package">تحديث الباقةe</string>
+    <string name="package_can_not_downgraded">باقة غير قابلة للتخفيض</string>
+    <string name="qty">Qty </string>
+    <string name="monthly_maintenance">الصيانة الشهرية</string>
+    <string name="enter_job_title">من فضلك ادخل عنوان الخدمة</string>
+    <string name="language">تغيير اللغة</string>
+    <string name="term_option_value">أوافق على جميع الشروط سياسة الخصوصية</string>
+    <string name="delete_all">حذف الكل</string>
+
+
+
+
+</resources>

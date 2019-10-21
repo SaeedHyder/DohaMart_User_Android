@@ -7,6 +7,7 @@ import android.widget.Button;
 import com.ingic.ezhalbatek.R;
 import com.ingic.ezhalbatek.entities.ServiceStatus.Service;
 import com.ingic.ezhalbatek.global.AppConstants;
+import com.ingic.ezhalbatek.helpers.BasePreferenceHelper;
 import com.ingic.ezhalbatek.helpers.DateHelper;
 import com.ingic.ezhalbatek.helpers.UIHelper;
 import com.ingic.ezhalbatek.interfaces.RecyclerItemListener;
@@ -22,6 +23,7 @@ import butterknife.ButterKnife;
 public class PendingServiceBinder extends RecyclerViewBinder<Service> {
     private RecyclerItemListener itemClickListener;
     private boolean isCompleted;
+    private  BasePreferenceHelper preferenceHelper;
 
     public PendingServiceBinder(RecyclerItemListener itemClickListener, boolean isCompleted) {
         super(R.layout.row_item_service);
@@ -45,6 +47,7 @@ public class PendingServiceBinder extends RecyclerViewBinder<Service> {
         }
 
         holder.txtJobTitle.setText(entity.getJobTitle() + "");
+
         holder.txtDate.setText(entity.getDate() + "");
         if (entity.getAssignTechnician() != null) {
             holder.btnCallRate.setAlpha((float) 1);

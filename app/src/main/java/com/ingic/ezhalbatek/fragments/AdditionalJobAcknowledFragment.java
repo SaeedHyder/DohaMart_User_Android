@@ -114,6 +114,8 @@ public class AdditionalJobAcknowledFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
         mainFrame.setVisibility(View.GONE);
         rvJobs.setNestedScrollingEnabled(false);
 

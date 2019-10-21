@@ -86,6 +86,12 @@ public class SubscriptionCompleteFragment extends BaseFragment {
         prefHelper.setIsFromInProgressSubscriber(false);
         prefHelper.setIsFromCompletedSubscriber(true);
 
+        if (prefHelper.isLanguageArabian()) {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        } else {
+            view.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        }
 
         if (completedRequest != null && completedRequest.size() > 0) {
             rvCompleteJobs.setVisibility(View.VISIBLE);

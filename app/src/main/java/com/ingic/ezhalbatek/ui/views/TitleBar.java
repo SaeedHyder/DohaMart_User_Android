@@ -84,14 +84,16 @@ public class TitleBar extends RelativeLayout {
 
     }
 
-    public void showDeleteAllButton(OnClickListener listner) {
+    public void showDeleteAllButton(OnClickListener listner,String title) {
         txtDeleteAll.setVisibility(View.VISIBLE);
         txtDeleteAll.setOnClickListener(listner);
+        txtDeleteAll.setText(title);
 
     }
 
-    public void showHideDeleteAllButton(Boolean isVisible){
+    public void showHideDeleteAllButton(Boolean isVisible,String title){
         if(isVisible){
+            txtDeleteAll.setText(title);
             txtDeleteAll.setVisibility(VISIBLE);
         }else {
             txtDeleteAll.setVisibility(GONE);

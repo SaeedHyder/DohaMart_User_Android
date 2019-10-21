@@ -132,7 +132,7 @@ public class RateJobDone extends BaseFragment {
         }
 
         if(getTitleBar()!=null){
-            getTitleBar().showHideDeleteAllButton(false);
+            getTitleBar().showHideDeleteAllButton(false,getDockActivity().getResources().getString(R.string.delete_all));
         }
     }
 
